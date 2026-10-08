@@ -19,6 +19,8 @@ interface Page {
   intro: string
   /** The short numbered list, in order. It always starts at step 1. */
   steps: Pick[]
+  /** Harder checks for when every step above has failed. Its own section, numbered from 1. */
+  advanced?: Pick[]
   /** Full passages, shown only when the reader opens them. */
   more: string[]
 }
@@ -32,6 +34,8 @@ export const QUICK_REFS: Page[] = [
     steps: [
       { passage: 'ts-battery-no-comm', starts: 'Check the BMS cable first', short: 'Test the BMS cable. Replace it if it fails.' },
       { passage: 'ts-battery-no-comm', starts: 'Make sure the battery voltage is above 51 V', short: 'Battery voltage above 51 V? If not, use the "will not address, or reads 0 V" entry.' },
+    ],
+    advanced: [
       { passage: 'ts-battery-no-comm', starts: 'Look at the battery BMS port', short: 'Check the BMS port: round 4-pin or Ethernet.' },
       { passage: 'ts-battery-no-comm', starts: 'Still no communication', short: 'Round 4-pin: check continuity of the port and connector.' },
       { passage: 'ts-battery-no-comm', starts: 'If any of the three has no continuity', short: 'No continuity: replace the BMS connector.' },
@@ -61,6 +65,28 @@ const GENERIC_TAGS = ['All Sanctuary 2 revisions', 'All revisions and Sanctuary 
 
 type Loaded = Passage | Error
 
+function StepList({ steps }: { steps: { line: AnswerLine; short: string }[] }) {
+  return (
+    <ol className="qr-steps">
+      {steps.map(({ line: l, short }, i) => (
+        <li key={i}>
+          <span className="qr-num" aria-hidden>
+            {i + 1}
+          </span>
+          <div>
+            {!GENERIC_TAGS.includes(l.revisions) && <span className="tag">{l.revisions}</span>}
+            <span className="qr-short">{short}</span>
+            <details className="qr-full">
+              <summary>FULL STEP</summary>
+              <p>{l.text}</p>
+            </details>
+          </div>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
 export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoice }) {
   const [loaded, setLoaded] = useState<Map<string, Loaded> | null>(null)
 
@@ -75,15 +101,18 @@ export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoic
   }, [page, rev])
 
   // Steps that do not apply to the chosen revision drop out, and the list still counts from 1.
-  const steps: { line: AnswerLine; short: string }[] = []
-  if (loaded) {
-    for (const pick of page.steps) {
-      const p = loaded.get(pick.passage)
+  const resolve = (picks: Pick[] = []) => {
+    const out: { line: AnswerLine; short: string }[] = []
+    for (const pick of picks) {
+      const p = loaded?.get(pick.passage)
       const line = p && !(p instanceof Error) ? p.lines.find((l) => l.text.startsWith(pick.starts)) : undefined
-      if (line) steps.push({ line, short: pick.short })
+      if (line) out.push({ line, short: pick.short })
     }
+    return out
   }
-  const sources = [...new Set(steps.flatMap((s) => s.line.sources))]
+  const steps = resolve(page.steps)
+  const advanced = resolve(page.advanced)
+  const sources = [...new Set([...steps, ...advanced].flatMap((s) => s.line.sources))]
   const more = loaded ? page.more.map((id) => loaded.get(id)).filter((p): p is Passage => !!p && !(p instanceof Error)) : []
 
   return (
@@ -93,23 +122,13 @@ export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoic
       {loaded === null && <p className="muted">LOADING...</p>}
       {loaded && steps.length === 0 && <p className="muted">Nothing here applies to the revision you chose.</p>}
       {steps.length > 0 && (
-        <ol className="qr-steps">
-          {steps.map(({ line: l, short }, i) => (
-            <li key={i}>
-              <span className="qr-num" aria-hidden>
-                {i + 1}
-              </span>
-              <div>
-                {!GENERIC_TAGS.includes(l.revisions) && <span className="tag">{l.revisions}</span>}
-                <span className="qr-short">{short}</span>
-                <details className="qr-full">
-                  <summary>FULL STEP</summary>
-                  <p>{l.text}</p>
-                </details>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <StepList steps={steps} />
+      )}
+      {advanced.length > 0 && (
+        <details className="qr-adv">
+          <summary>ADVANCED: IF ALL OTHER STEPS FAIL</summary>
+          <StepList steps={advanced} />
+        </details>
       )}
       {sources.length > 0 && (
         <details className="sources">

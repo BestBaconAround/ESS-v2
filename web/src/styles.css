@@ -216,3 +216,8 @@ body {
 .qr-full summary::before { content: '+ '; color: var(--accent); }
 .qr-full[open] summary::before { content: '- '; }
 .qr-full p { margin: 8px 0 0; font: 400 0.95rem/1.5 inherit; color: var(--text); }
+.qr-adv { margin-top: 22px; border: 1px dashed var(--line-2); border-radius: 3px; padding: 12px 14px; }
+.qr-adv > summary { cursor: pointer; list-style: none; font: 700 0.8rem var(--mono); letter-spacing: 0.08em; color: var(--accent); }
+.qr-adv summary::before { content: '+ '; }
+.qr-adv[open] > summary::before { content: '- '; }
+.qr-adv .qr-steps { margin-top: 12px; }
