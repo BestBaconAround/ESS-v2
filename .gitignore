@@ -3,3 +3,5 @@ web/dist
 *.log
 tools/shots
 tools/cloudflared
+dist-static
+artifact

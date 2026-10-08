@@ -122,7 +122,7 @@ export default function App() {
         <div className="topbar-right">
           <div className="status" aria-live="polite">
             <span className={`dot ${online ? 'on' : status === 'offline' ? 'off' : ''}`} aria-hidden />
-            <span>{online ? 'ONLINE' : status === 'offline' ? 'OFFLINE' : 'CONNECTING'}</span>
+            <span>{online ? (status.mode === 'local' ? 'LOADED' : 'ONLINE') : status === 'offline' ? 'OFFLINE' : 'CONNECTING'}</span>
             {online && (
               <span className="muted">
                 {' '}

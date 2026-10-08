@@ -6,6 +6,7 @@ export interface Health {
   ok: boolean
   version: string
   passages: number
+  mode?: 'server' | 'local'
 }
 
 async function json<T>(r: Response): Promise<T> {

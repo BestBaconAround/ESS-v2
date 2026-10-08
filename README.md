@@ -26,6 +26,12 @@ a public `https://....trycloudflare.com` address; open it on any device. Things 
   with `HOST=0.0.0.0` set. Nothing is exposed to the public internet.
 - The tunnel program is downloaded once into `tools/cloudflared/` (not committed).
 
+## One-file version (no server)
+`npm run build:static` builds `dist-static/index.html` and `artifact/index.html`: the whole chatbot in one file. The search is plain
+JavaScript, so it runs in the browser with no server and no network. It uses `web/src/api-local.ts` in place of the server calls.
+`artifact/index.html` is the form the Artifact tool publishes (a private page on the owner's Claude account, which works from a phone
+with nothing running on this PC). Both builds share the same page and a dark-first theme with a light palette for light devices.
+
 ## How it works
 - `server/` is a small Node server (no framework): `POST /api/ask {question, revision}`, `GET /api/passage?id=`,
   `GET /api/health`, `GET /api/suggestions`, and it serves the built page from `web/dist`.
