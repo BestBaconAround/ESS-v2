@@ -2,10 +2,10 @@
 // the search is plain JavaScript over the sourced content, so the whole chatbot runs in the browser.
 import { buildCorpus } from '../../shared/ask/corpus'
 import { SearchIndex } from '../../shared/ask/search'
-import { answer, passageFor, type AnswerResponse, type Passage, type RevisionChoice } from '../../server/answer'
+import { answer, passageFor, type AnswerLine, type AnswerResponse, type Passage, type RevisionChoice } from '../../server/answer'
 import type { Knowledge } from '../../server/knowledge'
 
-export type { AnswerResponse, Passage, RevisionChoice }
+export type { AnswerLine, AnswerResponse, Passage, RevisionChoice }
 
 export interface Health {
   ok: boolean

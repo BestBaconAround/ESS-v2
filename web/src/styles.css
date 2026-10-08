@@ -138,7 +138,14 @@ body {
 .menu button:hover { background: var(--accent-soft); color: var(--accent); }
 .menu button.current { color: var(--accent); }
 .qr-title { font: 700 clamp(1.5rem, 4vw, 2.3rem)/1.1 var(--mono); text-transform: uppercase; margin: 0 0 14px; text-wrap: balance; }
-.qr-list { display: flex; flex-direction: column; gap: 14px; }
+.qr-list { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
+.qr-steps { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-direction: column; gap: 10px; counter-reset: none; }
+.qr-steps li { display: flex; gap: 14px; align-items: flex-start; border: 1px solid var(--line); background: var(--panel); border-radius: 3px; padding: 14px 16px; min-width: 0; overflow-wrap: anywhere; }
+.qr-num { flex: none; width: 2rem; height: 2rem; display: grid; place-items: center; font: 700 1rem var(--mono); color: var(--on-accent); background: var(--accent-fill); border-radius: 2px; font-variant-numeric: tabular-nums; }
+.qr-more { margin-top: 22px; }
+.qr-more summary { cursor: pointer; letter-spacing: 0.08em; list-style: none; font: 600 0.76rem var(--mono); color: var(--accent); }
+.qr-more summary::before { content: '+ '; }
+.qr-more[open] summary::before { content: '- '; }
 
 /* ---- main ---- */
 .main { flex: 1; width: 100%; max-width: 960px; margin: 0 auto; padding: 36px 22px 24px; min-width: 0; }

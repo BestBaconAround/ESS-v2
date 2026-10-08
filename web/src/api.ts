@@ -1,6 +1,6 @@
-import type { AnswerResponse, Passage, RevisionChoice } from '../../server/answer'
+import type { AnswerLine, AnswerResponse, Passage, RevisionChoice } from '../../server/answer'
 
-export type { AnswerResponse, Passage, RevisionChoice }
+export type { AnswerLine, AnswerResponse, Passage, RevisionChoice }
 
 export interface Health {
   ok: boolean
