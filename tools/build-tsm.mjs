@@ -70,7 +70,11 @@ const sections = TOC.map((sec, i) => {
   const subs = new Set((sec.subs ?? []).map(norm))
   const blocks = body.map((l) => (subs.has(norm(l.text)) ? { h: l.text, page: l.page } : { p: l.text, page: l.page }))
   const last = body.length ? body[body.length - 1].page : sec.from
-  return { id: slug(sec.title), title: sec.title, from: sec.from, to: Math.max(last, sec.from), ...(sec.faults ? { faults: true } : {}), blocks }
+  // Pages to show as images: up to where the next section starts (that page too, unless the next heading is at its very top).
+  const nextLine = i + 1 < TOC.length ? lines[starts[i + 1]] : null
+  const nextAtTop = nextLine && lines.findIndex((l) => l.page === nextLine.page) === starts[i + 1]
+  const imagesTo = nextLine ? (nextAtTop ? nextLine.page - 1 : nextLine.page) : pages.length - 1
+  return { id: slug(sec.title), title: sec.title, from: sec.from, to: Math.max(last, sec.from), imagesTo: Math.max(imagesTo, sec.from), ...(sec.faults ? { faults: true } : {}), blocks }
 })
 
 const out = join(dirname(fileURLToPath(import.meta.url)), '..', 'shared', 'tsm')

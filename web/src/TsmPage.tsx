@@ -10,6 +10,8 @@ export interface TsmSection {
   title: string
   from: number
   to: number
+  /** Last page shown as an image: the section's pages run up to where the next one starts. */
+  imagesTo: number
   faults?: boolean
   blocks: Block[]
 }
@@ -17,7 +19,23 @@ export interface TsmSection {
 export const TSM_SECTIONS: TsmSection[] = data.sections as TsmSection[]
 export const TSM_SOURCE: string = data.source
 
-const pages = (s: TsmSection) => (s.from === s.to ? `p.${s.from}` : `pp.${s.from}-${s.to}`)
+const pages = (s: TsmSection) => (s.from === s.imagesTo ? `p.${s.from}` : `pp.${s.from}-${s.imagesTo}`)
+
+/** The rendered manual pages sit next to the page (web/public/tsm). The path is relative so it also works under a repo sub-path. */
+const pageImage = (n: number) => `tsm/p${String(n).padStart(3, '0')}.webp`
+
+function PageImages({ from, to }: { from: number; to: number }) {
+  return (
+    <div className="tsm-pages">
+      {Array.from({ length: to - from + 1 }, (_, k) => from + k).map((n) => (
+        <figure key={n} className="tsm-fig">
+          <img src={pageImage(n)} alt={`Technical Service Manual, page ${n}`} loading="lazy" decoding="async" />
+          <figcaption>p.{n}</figcaption>
+        </figure>
+      ))}
+    </div>
+  )
+}
 
 /** Every alarm, fault and status code of the manual's tables, each opening the entry the chatbot already has for it. */
 function FaultList({ rev }: { rev: RevisionChoice }) {
@@ -61,20 +79,33 @@ export default function TsmPage({ section, rev, onGo }: { section: TsmSection; r
     <section className="quickref tsm" aria-label={section.title}>
       <p className="tsm-kicker">TECHNICAL SERVICE MANUAL // {pages(section).toUpperCase()}</p>
       <h1 className="qr-title">{section.title}</h1>
-      <p className="muted small">The manual&apos;s own text. Figures, photos and some tables are not included: open the PDF for those.</p>
-      <div className="tsm-body">
-        {section.blocks.map((b, n) => {
-          const mark = b.page !== lastPage
-          lastPage = b.page
-          return (
-            <div key={n} className="tsm-block">
-              {mark && <span className="tsm-page">p.{b.page}</span>}
-              {b.h ? <h2 className="tsm-h">{b.h}</h2> : <p>{b.p}</p>}
-            </div>
-          )
-        })}
-      </div>
       {section.faults && <FaultList rev={rev} />}
+      {section.faults ? (
+        <details className="qr-more tsm-details">
+          <summary>
+            SHOW THE MANUAL PAGES (PP.{section.from}-{section.imagesTo})
+          </summary>
+          <PageImages from={section.from} to={section.imagesTo} />
+        </details>
+      ) : (
+        <PageImages from={section.from} to={section.imagesTo} />
+      )}
+      <details className="qr-more tsm-details">
+        <summary>TEXT OF THIS SECTION</summary>
+        <p className="muted small">The manual&apos;s text, without its figures, photos and table layout. The pages above are the real thing.</p>
+        <div className="tsm-body">
+          {section.blocks.map((b, n) => {
+            const mark = b.page !== lastPage
+            lastPage = b.page
+            return (
+              <div key={n} className="tsm-block">
+                {mark && <span className="tsm-page">p.{b.page}</span>}
+                {b.h ? <h2 className="tsm-h">{b.h}</h2> : <p>{b.p}</p>}
+              </div>
+            )
+          })}
+        </div>
+      </details>
       <nav className="tsm-pager" aria-label="Neighbouring sections">
         {prev ? (
           <button type="button" className="chip" onClick={() => onGo(prev.id)}>

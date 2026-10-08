@@ -6,6 +6,7 @@
    "title": "Safety",
    "from": 6,
    "to": 7,
+   "imagesTo": 7,
    "blocks": [
     {
      "p": "READ THIS USER MANUAL IN ITS ENTIRETY BEFORE OPERATING THE UNIT.",
@@ -70,6 +71,7 @@
    "title": "Introduction",
    "from": 8,
    "to": 8,
+   "imagesTo": 8,
    "blocks": [
     {
      "p": "Please read and familiarize yourself with the following documents � Sanctuary User Manual (soon to be published) � Installation Manual (Sanctuary 3) (Sanctuary 2) � CT Guide � EMS-C Manual � Sanctuary Settings Guide",
@@ -86,6 +88,7 @@
    "title": "Installation",
    "from": 8,
    "to": 10,
+   "imagesTo": 10,
    "blocks": [
     {
      "p": "Please refer to the installation manual for installation instructions: � Sanctuary 2 rev 1 installation manual � Sanctuary 2 rev 2 installation manual � Sanctuary 2 rev 3 installation manual � Sanctuary 2 rev 4 Installation Manual � Sanctuary 3 Installation Manual",
@@ -190,6 +193,7 @@
    "title": "Commissioning (First-Time Setup)",
    "from": 11,
    "to": 14,
+   "imagesTo": 14,
    "blocks": [
     {
      "p": "After installing the Sanctuary, the installer will commission the system using the Lion Technician app. This is a one-time procedure that configures the Sanctuary, the communicator, and the Lion Energy database with the new product.",
@@ -318,6 +322,7 @@
    "title": "Sanctuary Version Identification",
    "from": 14,
    "to": 15,
+   "imagesTo": 15,
    "blocks": [
     {
      "p": "Sanctuary 2 had four versions. Each version had some unique distinguishing features. Sanctuary 2 rev1 (below) had six black plastic RJ45 connectors on the I/O board.",
@@ -342,6 +347,7 @@
    "title": "Version Compatibility",
    "from": 16,
    "to": 17,
+   "imagesTo": 17,
    "blocks": [
     {
      "p": "Some Sanctuary batteries and inverters are not compatible with each other. The Sanctuary 1 and Sanctuary 2 batteries use the same modbus communication protocol over RS-485. A Sanctuary 2 battery may be used with a Sanctuary 1 inverter if the Sanctuary 1 BMS cable is used. A Sanctuary 1 battery may be used with a Sanctuary 2 inverter if the Sanctuary 2 BMS cable is used.",
@@ -782,6 +788,7 @@
    "title": "Sanctuary Architecture",
    "from": 17,
    "to": 18,
+   "imagesTo": 18,
    "blocks": [
     {
      "p": "The main components of the Sanctuary inverter are a controller, bidirectional inverter, bidirectional DC-DC converter, MPPT converters, and relays.",
@@ -806,6 +813,7 @@
    "title": "Tools for Troubleshooting",
    "from": 18,
    "to": 19,
+   "imagesTo": 19,
    "blocks": [
     {
      "p": "It is recommended to bring the following tools as standard equipment to most service calls:",
@@ -842,6 +850,7 @@
    "title": "General Troubleshooting",
    "from": 19,
    "to": 19,
+   "imagesTo": 19,
    "blocks": [
     {
      "p": "There are two LEDs on the front panel of the inverter. A solid green LED means that there are no alarms. A flashing green LED means there is one or more active alarms and that system functionality is limited. A red alarm LED means that a fault is present and the inverter has shut down to protect itself.",
@@ -858,6 +867,7 @@
    "title": "Battery",
    "from": 20,
    "to": 27,
+   "imagesTo": 27,
    "blocks": [
     {
      "h": "Cells",
@@ -1106,6 +1116,7 @@
    "title": "Sanctuary 3 Battery Communication",
    "from": 27,
    "to": 31,
+   "imagesTo": 31,
    "blocks": [
     {
      "h": "Battery Power Switch",
@@ -1170,6 +1181,7 @@
    "title": "Load Power is Off",
    "from": 32,
    "to": 32,
+   "imagesTo": 32,
    "blocks": [
     {
      "h": "Transfer (Bypass) Switch",
@@ -1214,6 +1226,7 @@
    "title": "Connecting to the Grid",
    "from": 33,
    "to": 34,
+   "imagesTo": 34,
    "blocks": [
     {
      "p": "There are several possible reasons why the inverter(s) won't connect to the grid. Before reconnecting to the grid, the inverter will have a grid low frequency alarm and a grid low voltage alarm.",
@@ -1294,6 +1307,7 @@
    "title": "Power Button Testing",
    "from": 34,
    "to": 44,
+   "imagesTo": 44,
    "blocks": [
     {
      "p": "Caution: Before replacing either switch, be sure to turn off all power to the inverter including grid, solar, and battery.",
@@ -1374,6 +1388,7 @@
    "title": "Sanctuary 2 Inverter Relay Check",
    "from": 45,
    "to": 48,
+   "imagesTo": 48,
    "blocks": [
     {
      "p": "The Sanctuary 2 has grid relays and load relays. The load relays can be seen on the I/O board when you remove the lower cover of the Sanctuary inverter. The line 1 load relay is the one on the left. The line 2 load relay is the one on the right.",
@@ -1430,6 +1445,7 @@
    "title": "Sanctuary 3 Relay Tests",
    "from": 48,
    "to": 50,
+   "imagesTo": 50,
    "blocks": [
     {
      "p": "Unlike Sanctuary 2, Sanctuary 3 does not have load relays.",
@@ -1478,6 +1494,7 @@
    "title": "IGBT Testing (Sanctuary 2)",
    "from": 51,
    "to": 54,
+   "imagesTo": 54,
    "blocks": [
     {
      "p": "If an IGBT fails, it will often conduct enough current to make a relay stick closed. The softstart resistors on the control board and wiring may be damaged. Run these checks before applying power if you suspect a damaged IGBT. If any IGBT fails the test, the inverter will need to be replaced.",
@@ -1542,6 +1559,7 @@
    "title": "How to Recover From a Failed Firmware Update",
    "from": 55,
    "to": 57,
+   "imagesTo": 57,
    "blocks": [
     {
      "p": "The DSP (digital signal processor) microcontroller handles the waveforms and switching the IGBTs. The ARM processor handles the relays, power switch, USB, RS-485, front panel LEDs, etc.",
@@ -1630,6 +1648,7 @@
    "title": "Communicator",
    "from": 57,
    "to": 61,
+   "imagesTo": 61,
    "blocks": [
     {
      "p": "There are two types of communicators used for the Sanctuary. The first communicator Lion Energy developed is the Wireless Communication Module (WCM). The second is the Energy Management System - Compact (EMS-C). A Sanctuary system will use either one or the other. The Sanctuary 3 systems were supplied only with the EMS-C. The communicator is used for commissioning the system and for uploading data to the cloud where it can be viewed on an app or in a web browser. The communicator can connect to a laptop or mobile device (tablet or cell phone) through Bluetooth for commissioning the system or for monitoring data on the app. For normal operation, the communicator uploads the data to the cloud through WiFi or an Ethernet cable connection.",
@@ -1762,6 +1781,7 @@
    "title": "Solar",
    "from": 61,
    "to": 65,
+   "imagesTo": 65,
    "blocks": [
     {
      "h": "Voltage",
@@ -1878,6 +1898,7 @@
    "title": "Generator",
    "from": 66,
    "to": 67,
+   "imagesTo": 67,
    "blocks": [
     {
      "p": "When the Sanctuary is using generator power, the generator connects internally to the load port of the Sanctuary. Voltage and frequency are from the generator. The generator needs to be connected to each inverter in parallel inverter systems.",
@@ -1934,6 +1955,7 @@
    "title": "Alarm / Fault / Status Codes",
    "from": 67,
    "to": 67,
+   "imagesTo": 96,
    "faults": true,
    "blocks": [
     {
@@ -1947,6 +1969,7 @@
    "title": "Commonly Used Terms in Solar",
    "from": 97,
    "to": 99,
+   "imagesTo": 99,
    "blocks": [
     {
      "p": "AC: Alternating Current. This is a form of electrical power where the voltage vs. time graph looks like a sine wave. Common household power is 120/240 V, 60 Hz AC in the United States.",
@@ -2083,6 +2106,7 @@
    "title": "Reference Materials",
    "from": 99,
    "to": 101,
+   "imagesTo": 101,
    "blocks": [
     {
      "p": "Lion Energy Web Site: https://lionenergy.com/",
