@@ -412,7 +412,7 @@ export const PROCEDURES: Procedure[] = [
       s('Sanctuary 3: clamp the CT labeled Line 1 around Line 1 feeding the main panel and the CT labeled Line 2 around Line 2. The arrows point away from the main panel and toward the grid power source. Usually only the parent inverter has CTs.', [src('san3', 37)], ['gen3']),
       s('What wrong CTs do: wrong location, missing CTs, reversed arrows or swapped L1 and L2 make the inverter charge the battery from the grid and discharge it into the grid, and on Sanctuary 3 the batteries can drain to nothing so the inverter will not charge them. Fix the CTs, then power cycle the batteries (author).', [src('ctguide', 12), src('san3', 37), src('author')], ['rev1', 'rev2', 'rev3', 'rev4', 'gen3']),
     ],
-    todo: ['A photo of the CT wires spliced to Cat5 and a step-by-step for re-seating a CT.'],
+    todo: ['A photo of the CT wires spliced to Cat5 and a step-by-step for re-seating a CT.', 'TODO(author): the wire colors of the CT leads and of the Cat5 conductors on the male (RJ45) end. The Technical Service Manual (p.9) gives only the pin numbers: pins 3 (N) and 6 (P) for L1, pins 1 (N) and 2 (P) for L2.'],
   },
   {
     id: 'p-power-button',

@@ -132,7 +132,7 @@ export const REFERENCE_SECTIONS: ReferenceSection[] = [
     id: 'ports',
     title: 'Ports and pins',
     rows: [
-      row('CT pins', 'RJ45 pins 3 and 6 = L1 CT (3 = N, 6 = P). Pins 1 and 2 = L2 CT (1 = N, 2 = P). Rev 4 and Sanctuary 3 have both CTs in one plug. Plugged into the meter port, only the L2 CT reads, and it reads backwards.', [src('tsm', 9)], ['rev4']),
+      row('CT pins', 'The CTs are on these pins, and the CT wires go on the pins of the RJ45 plug (the male end). Pins 3 and 6 = L1 CT (3 = N, 6 = P). Pins 1 and 2 = L2 CT (1 = N, 2 = P). Rev 4 and Sanctuary 3 have both CTs in one plug. Plugged into the meter port, only the L2 CT reads, and it reads backwards.', [src('tsm', 9)], ['rev4']),
       row('CT placement', 'The CTs must at least include the current going to the inverter grid port. Loads upstream of the CTs cannot use battery power on demand while on-grid. In a parallel system only the parent inverter has the CTs (unless Common Grid CT is off).', [src('tsm', 9), src('settings', 33), src('manual', 34)]),
       row('WCM pins', '1 = 5 V, 6 = GND, 7 = RS-485 A, 8 = RS-485 B.', [src('tsm', 57)]),
       row('EMS-C inverter port', '1 = BMS CAN H, 2 = BMS CAN L, 4 = Inverter CAN H, 5 = Inverter CAN L, 6 = GND, 7 = RS-485 A, 8 = RS-485 B.', [src('tsm', 58)]),
