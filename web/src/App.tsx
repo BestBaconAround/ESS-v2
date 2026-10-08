@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState, type FormEvent } from 'react'
 import { ask, health, passage as fetchPassage, suggestions as fetchSuggestions, type AnswerResponse, type Health, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
 import QuickRef, { QUICK_REFS, type QuickRefId } from './QuickRef'
+import TsmPage, { TSM_SECTIONS } from './TsmPage'
 
 const REVISIONS: { value: RevisionChoice; label: string }[] = [
   { value: 'all', label: 'ALL' },
@@ -30,6 +31,9 @@ function loadRevision(): RevisionChoice {
   return 'all'
 }
 
+/** The page on show: the chat, a quick reference page, or a section (`tsm:<id>`) of the Technical Service Manual. */
+type View = 'chat' | QuickRefId | `tsm:${string}`
+
 function BoltLogo() {
   // A dot-matrix lightning bolt.
   const dots = ['..#..', '.#...', '###..', '..#..', '.#...']
@@ -47,7 +51,8 @@ export default function App() {
   const [rev, setRev] = useState<RevisionChoice>(loadRevision)
   const [status, setStatus] = useState<Health | null | 'offline'>(null)
   const [chips, setChips] = useState<string[]>([])
-  const [view, setView] = useState<'chat' | QuickRefId>('chat')
+  const [view, setView] = useState<View>('chat')
+  const [tocOpen, setTocOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const nextId = useRef(1)
@@ -82,7 +87,7 @@ export default function App() {
     }
   }, [menuOpen])
 
-  const go = (v: 'chat' | QuickRefId) => {
+  const go = (v: View) => {
     setView(v)
     setMenuOpen(false)
     window.scrollTo({ top: 0 })
@@ -166,6 +171,23 @@ export default function App() {
                     ))}
                   </Fragment>
                 ))}
+                <li className="menu-head">TECHNICAL SERVICE MANUAL</li>
+                <li>
+                  <button type="button" className="menu-toggle" aria-expanded={tocOpen} aria-controls="tsm-toc" onClick={() => setTocOpen((v) => !v)}>
+                    TABLE OF CONTENTS <span className={`caret ${tocOpen ? 'up' : ''}`} aria-hidden />
+                  </button>
+                  {tocOpen && (
+                    <ul id="tsm-toc" className="submenu">
+                      {TSM_SECTIONS.map((t) => (
+                        <li key={t.id}>
+                          <button type="button" className={view === `tsm:${t.id}` ? 'current' : ''} onClick={() => go(`tsm:${t.id}`)} aria-current={view === `tsm:${t.id}` ? 'page' : undefined}>
+                            <span className="toc-page">{t.from}</span> {t.title}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
               </ul>
             )}
           </div>
@@ -196,7 +218,11 @@ export default function App() {
 
       {view !== 'chat' && (
         <main className="main">
-          <QuickRef page={QUICK_REFS.find((q) => q.id === view)!} rev={rev} />
+          {view.startsWith('tsm:') ? (
+            <TsmPage section={TSM_SECTIONS.find((t) => `tsm:${t.id}` === view) ?? TSM_SECTIONS[0]} rev={rev} onGo={(id) => go(`tsm:${id}`)} />
+          ) : (
+            <QuickRef page={QUICK_REFS.find((q) => q.id === view) ?? QUICK_REFS[0]} rev={rev} />
+          )}
         </main>
       )}
 

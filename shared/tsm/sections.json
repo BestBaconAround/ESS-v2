@@ -1,0 +1,2138 @@
+{
+ "source": "Lion Sanctuary Technical Service Manual, updated 9/30/2026",
+ "sections": [
+  {
+   "id": "safety",
+   "title": "Safety",
+   "from": 6,
+   "to": 7,
+   "blocks": [
+    {
+     "p": "READ THIS USER MANUAL IN ITS ENTIRETY BEFORE OPERATING THE UNIT.",
+     "page": 6
+    },
+    {
+     "p": "Keep this guide for future reference. Carefully read and comply with all safety directives before installing or using the Sanctuary system. Otherwise, personal bodily injury or death may result. For installation guidelines, please refer to the installation manual.",
+     "page": 6
+    },
+    {
+     "h": "Symbols Used",
+     "page": 6
+    },
+    {
+     "p": "WARNING: Indicates a hazardous situation which, if not avoided, could result in injury or death. CAUTION: Indicates a hazardous situation which, if not avoided, could result in minor injury or damage to the equipment. NOTE: Indicates an important step or tip that leads to best results but is not safety or damage related.",
+     "page": 6
+    },
+    {
+     "h": "Follow these directives for safe use",
+     "page": 6
+    },
+    {
+     "p": "System Integrity: The inverter and all system components must not be disassembled or altered by unauthorized personnel. Unauthorized modifications can compromise system safety, void warranties, and result in serious injury or death. Electrical Hazard: Always disconnect all power sources, including the AC and DC terminals, before performing any maintenance or cleaning. Use lockout/tagout procedures to ensure the system remains de-energized during maintenance. Grounding Requirements: Proper grounding is essential for safe operation. Ensure that the system is connected to a permanent, grounded wiring system, and comply with all applicable grounding and bonding requirements. Load Calculations: Ensure all connections follow the specifications outlined in the Installation Guide and comply with the National Electric Code (NEC). Using incorrect wire sizes, breaker ratings, or failing to properly balance loads can lead to system malfunction or pose safety hazards. Always verify that all load connections meet both installation and code requirements. Heavy Equipment: This system includes heavy equipment. Use lifting assistance during installation to prevent injury. Compliance with Regulations: All installation and maintenance activities must comply with local, state, and national electrical codes and standards, including but not limited to UL 9540 and UL 1973. Adherence to these standards is mandatory to ensure safety and compliance.",
+     "page": 6
+    },
+    {
+     "p": "Final Continuity Check: Do not power on the system until a final continuity check is performed to ensure all connections are secure and correctly installed. Battery Handling: Strictly follow the manufacturer's instructions for handling and installation of batteries. Failure to do so may result in fire, explosion, or electric shock. Do not use a battery with a damaged cell or leaking electrolyte. Tool Usage: Exercise caution when using metal tools around batteries and electrical components. Dropping tools on energized conductors can cause short circuits, leading to potential fires or explosions. Ventilation: The installation location must provide adequate ventilation to prevent overheating of the system components. Ensure that the unit is installed in a wellventilated area according to the manufacturer's recommendations. Weatherproofing � IP65 Compliance: When installing the Sanctuary system outdoors, it is critical to maintain IP65 and NEMA 3R protection to ensure long-term performance and safety.",
+     "page": 7
+    },
+    {
+     "p": "o Any holes made in the wire box for conduit or wiring must be sealed using the appropriate fittings and components.",
+     "page": 7
+    },
+    {
+     "p": "o Improper sealing may lead to water or dust ingress, which can cause equipment damage, corrosion, or electrical faults.",
+     "page": 7
+    },
+    {
+     "p": "o Always use the appropriate conduit connectors, grommets, and glands to maintain enclosure integrity.",
+     "page": 7
+    },
+    {
+     "p": "o It is the installer's responsibility to ensure that the final installation meets the appropriate standards for outdoor use.",
+     "page": 7
+    },
+    {
+     "p": "Qualified Personnel Only: Installation, service, and maintenance of this Sanctuary system must be performed by qualified personnel/technicians. Only certified professionals with the appropriate training should install or service the unit, with or without a battery. For questions on how to become certified to install the Lion Energy Sanctuary, please visit our installers page or contact the Lion Energy ESS Support team.",
+     "page": 7
+    },
+    {
+     "h": "General Safety Guidelines",
+     "page": 7
+    },
+    {
+     "p": "Emergency Procedures: In case of fire, evacuate the area and contact emergency services immediately. Overheated batteries may release hydrogen gas. Handling of Damaged Equipment: If the unit or any of its components are damaged, do not operate the system. If smoke comes out, do not operate. Do not operate if any wiring overheats. Contact a qualified technician or Lion Energy's ESS Support Team for inspection and repair.",
+     "page": 7
+    }
+   ]
+  },
+  {
+   "id": "introduction",
+   "title": "Introduction",
+   "from": 8,
+   "to": 8,
+   "blocks": [
+    {
+     "p": "Please read and familiarize yourself with the following documents � Sanctuary User Manual (soon to be published) � Installation Manual (Sanctuary 3) (Sanctuary 2) � CT Guide � EMS-C Manual � Sanctuary Settings Guide",
+     "page": 8
+    },
+    {
+     "p": "Before troubleshooting the Sanctuary, it's necessary to have a good understanding of how it operates. The majority of problems that our ESS support team deals with are due to incorrect installation.",
+     "page": 8
+    }
+   ]
+  },
+  {
+   "id": "installation",
+   "title": "Installation",
+   "from": 8,
+   "to": 10,
+   "blocks": [
+    {
+     "p": "Please refer to the installation manual for installation instructions: � Sanctuary 2 rev 1 installation manual � Sanctuary 2 rev 2 installation manual � Sanctuary 2 rev 3 installation manual � Sanctuary 2 rev 4 Installation Manual � Sanctuary 3 Installation Manual",
+     "page": 8
+    },
+    {
+     "h": "Parallel or Single Inverter",
+     "page": 8
+    },
+    {
+     "p": "Any time loads from two or more Sanctuary inverters are connected in parallel, the system must be commissioned as a parallel system. If the load ports from different inverters do not connect together, the different inverters need to be commissioned separately as separate systems.",
+     "page": 8
+    },
+    {
+     "h": "Parallel Batteries",
+     "page": 8
+    },
+    {
+     "p": "The Sanctuary batteries operate while connected in parallel. If more than one inverter is connected in parallel, the battery banks cannot be separated. The parallel inverters must all connect to the same parallel battery bank.",
+     "page": 8
+    },
+    {
+     "h": "Current Transformers (CT)",
+     "page": 9
+    },
+    {
+     "p": "The Sanctuary comes with a set of two CTs for measuring whole home power consumption. The reason the CTs are separate from the inverter is so that the inverter can supply power to non-backed-up loads, minimizing the utility bill. The CTs allow the inverter to \"see\" loads between the CTs and the inverter's grid port. Loads upstream of the CTs cannot use power on demand from the battery while on-grid. The CTs must at a minimum include the current going to the grid port of the inverter. The inverter compares the phase of the current at the CT with the phase of the grid voltage to determine the direction of the current. Correct CT placement and orientation is critical for proper system operation. If the CTs are placed on the opposite lines, the current will read backwards. If the CT is facing the opposite direction, current will read as backwards. Please see the CT Guide for more information.",
+     "page": 9
+    },
+    {
+     "p": "CT Pins",
+     "page": 9
+    },
+    {
+     "p": "On the RJ45 connector, pins 3 & 6 are used for the CT. Orientation: pin 3 is N; pin 6 is P. With Sanctuary 2 rev4 and Sanctuary 3, both CTs are combined into a single plug where pins 1 & 2 are used for the L2 CT. Orientation: pin1 is N; pin 2 is P. Pins 3 & 6 are used for the L1 CT. Orientation: pin 3 is N; pin 6 is P. If the CTs are plugged into the meter port on Sanctuary 2 rev4 or Sanctuary 3, then only the L2 CT will read power, but will be connected to the L1 CT and read backwards. The L1 CT data will not show any power in that case. Be sure to plug the CT cord into the correct CT port as shown on the diagram inside the wiring panel cover of the inverter.",
+     "page": 9
+    },
+    {
+     "h": "Powering on the Sanctuary",
+     "page": 10
+    },
+    {
+     "p": "To power on the Sanctuary, perform the following steps.",
+     "page": 10
+    },
+    {
+     "p": "1. Turn the batteries on. a. For Sanctuary 2, plug in the power cables on each battery within 20 seconds of the previous battery. After all batteries are plugged in, on each battery, unplug one power cable for 10 seconds and then plug it back in. This allows any battery that disabled with an over-current alarm to re-enable. b. For Sanctuary 3, turn on the power button on each battery.",
+     "page": 10
+    },
+    {
+     "p": "2. Turn on the \"Complete System Shutdown\" switch so that the button is in the recessed position.",
+     "page": 10
+    },
+    {
+     "p": "3. Turn on the PV switch by rotating it clockwise to the horizontal (on) position. 4. Turn on the circuit breaker that supplies power to the grid port. 5. Turn on the power switch on the EMS-C by sliding it to the up (on) position. 6. Turn on the AC/DC On/Off switch so that the button is in the recessed position.",
+     "page": 10
+    },
+    {
+     "p": "In normal operation, the Sanctuary's load port turns on from battery power before the Sanctuary connects to the grid.",
+     "page": 10
+    },
+    {
+     "h": "Completely Shutting Down the System",
+     "page": 10
+    },
+    {
+     "p": "If the system was installed with a manual transfer switch, move the switch to the grid position so that the backup-loads panel is powered by the grid instead of the inverter. To completely shut down the Sanctuary, perform the following steps on each inverter:",
+     "page": 10
+    },
+    {
+     "p": "1. Turn off the PV switch by rotating it counter-clockwise to the vertical (off) position.",
+     "page": 10
+    },
+    {
+     "p": "2. Turn off the AC/DC On/Off switch. The button should be in the out position (flush, not recessed).",
+     "page": 10
+    },
+    {
+     "p": "3. Turn off the power switch on the EMS-C by sliding it to the down position. 4. Turn off the \"Complete System Shutdown\" switch. The button should be in",
+     "page": 10
+    },
+    {
+     "p": "the out position (flush, not recessed). 5. Turn off the circuit breaker that supplies power to the grid port.",
+     "page": 10
+    },
+    {
+     "p": "If the Sanctuary will be off for more than a month, make sure each battery is charged to at least 50% before shutting down the system. If it is necessary to de-energize the inverter's battery port, do the following:",
+     "page": 10
+    },
+    {
+     "p": "For Sanctuary 2, unplug either the positive or negative battery cable from each battery.",
+     "page": 10
+    },
+    {
+     "p": "For Sanctuary 3, turn off the power button on each battery.",
+     "page": 10
+    }
+   ]
+  },
+  {
+   "id": "commissioning-first-time-setup",
+   "title": "Commissioning (First-Time Setup)",
+   "from": 11,
+   "to": 14,
+   "blocks": [
+    {
+     "p": "After installing the Sanctuary, the installer will commission the system using the Lion Technician app. This is a one-time procedure that configures the Sanctuary, the communicator, and the Lion Energy database with the new product.",
+     "page": 11
+    },
+    {
+     "p": "The Sanctuary system will not need to be re-commissioned unless it is necessary to change the number of batteries or inverters in the system. If the system is recommissioned, it creates a separate, new product in the system and resets most of the settings back to default, erasing custom configurations. Some settings such as \"CT L1 reverse\" do not get reset during a recommission. Recommissioning may require ESS support to solve the issue.",
+     "page": 11
+    },
+    {
+     "p": "Please do not use recommissioning as a troubleshooting process. Unless the problem was an incorrect number of inverters or batteries, it is very unlikely that recommissioning will solve the problem.",
+     "page": 11
+    },
+    {
+     "h": "What Commissioning Does",
+     "page": 11
+    },
+    {
+     "p": "When an installer commissions a system, it guides him through the process step-by-step. The following list summarizes what is done during commissioning. Only a few items in this list (bold red) can only be done through commissioning. The rest can be modified postcommissioning.",
+     "page": 11
+    },
+    {
+     "p": "� Sets up inverter settings to work either in parallel or as a single inverter � Sets the modbus address of each inverter � Sets the modbus address of each battery so that the inverter can communicate with",
+     "page": 11
+    },
+    {
+     "p": "them (Gen2 only) � Sets the number of batteries in the system � Sets default settings (but does not reset all inverter settings) � Allows the installer to run a CT check � Allows the installer to connect the Sanctuary to a WiFi network � Tells the web app how many inverters are in the system � Tells the web app how many batteries are in the system � Registers the product with the API so the product is viewable on the web app � Allows the installer to share the product with the customer � Saves the customer's information � Updates the communicator firmware � Updates the inverter firmware",
+     "page": 11
+    },
+    {
+     "p": "Problem Need to add a battery (more than it was originally commissioned with) Need to permanently remove a battery",
+     "page": 12
+    },
+    {
+     "p": "Need to add or replace an inverter Need to remove an inverter Change user name/address Change grid status (on or off grid) Change installing technician Delete product from web app",
+     "page": 12
+    },
+    {
+     "p": "Invite the customer to view the product Update firmware Change WiFi SSID/password",
+     "page": 12
+    },
+    {
+     "p": "Solution recommission",
+     "page": 12
+    },
+    {
+     "p": "recommission or go to component > delete (or call ESS support) Recommission or call ESS support recommission or call ESS support web app: Menu > Edit info web app: Menu > Edit info web app: Menu > Edit info web app: Menu > Edit info (permission required) web app: Menu > share access web app: Menu > settings (not advanced) web app: Menu > settings (not advanced)",
+     "page": 12
+    },
+    {
+     "h": "Commissioning Parallel Sanctuary 3 Inverters With an Inoperable EMS-C Battery",
+     "page": 12
+    },
+    {
+     "p": "The commissioning process depends on isolating communication to one inverter at a time to set the modbus address on each inverter. On Sanctuary 3, this is usually done by turning off the other inverters.",
+     "page": 12
+    },
+    {
+     "p": "In the standard setup, we have the inverter port on the EMS-C connected to the parent inverter's PARALLEL A port, and the parent inverter's PARALLEL B port connects to the first child inverter's PARALLEL A port. We need to bypass the parent inverter while the EMS-C addresses the child inverters.",
+     "page": 12
+    },
+    {
+     "p": "After addressing the parent inverter, instead of turning off the parent inverter (that's powering the EMS-C), leave the complete system shutdown button on so that the EMS-C remains powered on. Before addressing a child inverter,",
+     "page": 12
+    },
+    {
+     "p": "1. Keep the parent inverter's \"Complete System Shutdown\" switch in the on position throughout the rest of the inverter addressing steps.",
+     "page": 12
+    },
+    {
+     "p": "2. Disconnect the cables from the parent inverter's PARALLEL A and PARALLEL B ports.",
+     "page": 12
+    },
+    {
+     "p": "3. Connect those cables together using a coupler or RJ45 splitter. An alternative is to connect the inverter port of the EMS-C to an Ethernet cable that connects to the child inverter's PARALLEL A port. These two methods accomplish the same thing.",
+     "page": 12
+    },
+    {
+     "p": "This way, the EMS-C will not communicate with the parent inverter while addressing the child inverter(s).",
+     "page": 13
+    },
+    {
+     "p": "4. Continue the inverter addressing commissioning per the instructions.",
+     "page": 13
+    },
+    {
+     "p": "5. After the inverter addressing step is complete, reconnect the parent inverter's PARALLEL A and PARALLEL B cables as shown in the installation manual.",
+     "page": 13
+    },
+    {
+     "h": "Post-Commissioning Checklist",
+     "page": 13
+    },
+    {
+     "p": "After the Sanctuary system has been installed and commissioned, the installer needs to check to make sure it's working correctly.",
+     "page": 13
+    },
+    {
+     "p": "� Alarm check. Are there any alarms being reported? Are the green lights on the front panels of the inverters on solid? If the green LED on the front panel is flashing, there is an active alarm or the inverter is in standby mode (button off). Check the web app for alarms.",
+     "page": 13
+    },
+    {
+     "p": "� Is the communicator (WCM or EMS-C) connected to the homeowners WiFi? (and not configured to connect to your mobile hotspot)",
+     "page": 13
+    },
+    {
+     "p": "� Is data being uploaded and visible on smart.lionenergy.com? � Is grid power on for all inverters? Use the compare tool on the website to check each",
+     "page": 13
+    },
+    {
+     "p": "inverter's grid voltage for both L1 and L2. � Is load power on for all inverters? Turn on loads, at least 1000W per number of",
+     "page": 13
+    },
+    {
+     "p": "inverters, if possible. Use the compare tool to verify that each inverter sends power to the load ports. � Verify that there is no possible way for the customer to connect grid power to the load ports by flipping breakers or switches. Many AHJs disallow a breaker interlock style bypass. A bypass configuration where breakers are turned on/off in separate panels is disallowed everywhere and is prohibited by Lion Energy because the load ports can connect to the grid if the bypass breaker is turned on while the inverters are connected to the same load panel. � Make sure all batteries are conducting power. If not, check the battery breakers. Use the compare tool on the web app to verify. If solar isn't charging the batteries or if loads aren't discharging the batteries, you can temporarily put the system into emergency mode to charge the batteries from the grid and check if all are charging. � Solar - make sure all installed strings can produce over 120V in daylight. � Solar - make sure cold weather Voc calculations show that no string will exceed 500V open circuit at the coldest temperature for that climate. (This should have already been done before installation.)",
+     "page": 13
+    },
+    {
+     "p": "Sanctuary User Manual � CT check - are the CTs configured correctly? Do you have a parallel inverter system with CTs at each inverter? If so, disable \"Common Grid CT\". On the graph, when grid power is negative, grid power is being used (purchased). When grid power is positive, the system is selling power back to the grid. � Time-of-Use (TOU) setup: If the customer has peak billing hours, TOU setup can help avoid grid use during peak billing times. � Shared access: did you share the product with the customer's email?",
+     "page": 14
+    }
+   ]
+  },
+  {
+   "id": "sanctuary-version-identification",
+   "title": "Sanctuary Version Identification",
+   "from": 14,
+   "to": 15,
+   "blocks": [
+    {
+     "p": "Sanctuary 2 had four versions. Each version had some unique distinguishing features. Sanctuary 2 rev1 (below) had six black plastic RJ45 connectors on the I/O board.",
+     "page": 14
+    },
+    {
+     "p": "Sanctuary 2 rev2 changed to six metallic RJ45 connectors, facing downward, but still retained the single row of green push connectors (which accept 20 AWG solid wire).",
+     "page": 14
+    },
+    {
+     "p": "Rev3 added a black plastic RJ45 connector to the left of the six metallic RJ45 connectors and added a second row of push connectors.",
+     "page": 14
+    },
+    {
+     "p": "Sanctuary User Manual Rev 4 (below) changed from push connectors to plug-in screw terminals. It has two power buttons on the side of the unit. The Sanctuary 3 also has two power buttons on the side and the case is white.",
+     "page": 15
+    }
+   ]
+  },
+  {
+   "id": "version-compatibility",
+   "title": "Version Compatibility",
+   "from": 16,
+   "to": 17,
+   "blocks": [
+    {
+     "p": "Some Sanctuary batteries and inverters are not compatible with each other. The Sanctuary 1 and Sanctuary 2 batteries use the same modbus communication protocol over RS-485. A Sanctuary 2 battery may be used with a Sanctuary 1 inverter if the Sanctuary 1 BMS cable is used. A Sanctuary 1 battery may be used with a Sanctuary 2 inverter if the Sanctuary 2 BMS cable is used.",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary 3 batteries communicate with the inverter over CAN and are not compatible with Sanctuary 2 batteries.",
+     "page": 16
+    },
+    {
+     "p": "This table lists which inverters and batteries are compatible with each other.",
+     "page": 16
+    },
+    {
+     "p": "Inverter / Battery Compatibility Chart",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary Gen 1 battery (pan head Philips screws)",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary Gen 1 battery (pan head Philips screws) YES",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary Gen 2 battery (pan head Philips screws) YES*",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary Gen 2 battery (recessed Allen screws) YES*",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary Gen 2 outdoor battery (double RJ-45) YES*",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary 3 white outdoor battery",
+     "page": 16
+    },
+    {
+     "p": "NO",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary 1 inverter",
+     "page": 16
+    },
+    {
+     "p": "YES",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary 2 (rev1-3) inverter",
+     "page": 16
+    },
+    {
+     "p": "YES*",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary 2 rev4 inverter",
+     "page": 16
+    },
+    {
+     "p": "YES*",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary 3 inverter",
+     "page": 16
+    },
+    {
+     "p": "NO",
+     "page": 16
+    },
+    {
+     "p": "Sanctuary Gen YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "2 battery (pan",
+     "page": 17
+    },
+    {
+     "p": "head Philips",
+     "page": 17
+    },
+    {
+     "p": "screws)",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary Gen YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "2 battery",
+     "page": 17
+    },
+    {
+     "p": "(recessed Allen",
+     "page": 17
+    },
+    {
+     "p": "screws)",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary Gen YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "2 outdoor",
+     "page": 17
+    },
+    {
+     "p": "battery (double",
+     "page": 17
+    },
+    {
+     "p": "RJ-45)",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary 3 NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "white outdoor",
+     "page": 17
+    },
+    {
+     "p": "battery",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary 1 YES",
+     "page": 17
+    },
+    {
+     "p": "YES*",
+     "page": 17
+    },
+    {
+     "p": "YES*",
+     "page": 17
+    },
+    {
+     "p": "YES*",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "inverter",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary 2 YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "(rev1-3)",
+     "page": 17
+    },
+    {
+     "p": "inverter",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary 2 YES*",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "rev4 inverter",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary 3 NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "NO",
+     "page": 17
+    },
+    {
+     "p": "YES",
+     "page": 17
+    },
+    {
+     "p": "inverter",
+     "page": 17
+    },
+    {
+     "p": "YES* means compatible with a BMS com cable change",
+     "page": 17
+    }
+   ]
+  },
+  {
+   "id": "sanctuary-architecture",
+   "title": "Sanctuary Architecture",
+   "from": 17,
+   "to": 18,
+   "blocks": [
+    {
+     "p": "The main components of the Sanctuary inverter are a controller, bidirectional inverter, bidirectional DC-DC converter, MPPT converters, and relays.",
+     "page": 17
+    },
+    {
+     "p": "When off-grid, the inverter operates in grid forming mode where the inverter sets the output voltage and frequency waveform. AC output power is determined by the loads.",
+     "page": 17
+    },
+    {
+     "p": "When connected to the grid, the inverter operates in grid following mode where the grid sets the voltage and frequency waveform and the inverter either adds power to the grid, or draws power from the grid. The inverter also runs in grid following mode when connected to a generator.",
+     "page": 17
+    },
+    {
+     "p": "Sanctuary 3 is not equipped with the load relays in the above diagram. Sanctuary 3 includes built-in circuit breakers for the generator, grid, and load ports (not shown in the above diagram).",
+     "page": 18
+    }
+   ]
+  },
+  {
+   "id": "tools-for-troubleshooting",
+   "title": "Tools for Troubleshooting",
+   "from": 18,
+   "to": 19,
+   "blocks": [
+    {
+     "p": "It is recommended to bring the following tools as standard equipment to most service calls:",
+     "page": 18
+    },
+    {
+     "p": "� Multi-meter including both AC and DC clamp-on current measurement capability � Allen wrenches: 4mm, 6mm, 8mm � Screw drivers: #1 Phillips, #2 Phillips, slotted, small slotted � Socket wrenches: 7mm, 16mm � Torque wrench, 1/4\" drive. (Torque specs are in the Sanctuary 3 installation manual.) � Laptop � Cell phone � USB-A to USB-C cable for firmware updating",
+     "page": 18
+    },
+    {
+     "p": "� RJ-45 connectors, RJ-45 crimpers, bulk Ethernet cable, Ethernet cable tester, spare RJ-45 couplers, spare RJ-45 splitters",
+     "page": 19
+    },
+    {
+     "p": "� 60V / 5A variable power supply for when batteries are at 0% � Wire stripper � Needle nose pliers � Flashlight � USB to RS-485 adapter: RJ-45 connections: 6=GND; 7=A; 8=B.",
+     "page": 19
+    },
+    {
+     "p": "Additional Tools Recommended for Installation",
+     "page": 19
+    },
+    {
+     "p": "� Hydraulic crimpers � Wire and terminals for batteries: Welding cable red & black 1/0 AWG with spare",
+     "page": 19
+    },
+    {
+     "p": "eyelet ends (1/0 AWG with 3/8\" hole, 1/0 AWG with 5/16\" hole) � Wire � Drill � Hydraulic hole punch set � Conduit and fittings",
+     "page": 19
+    }
+   ]
+  },
+  {
+   "id": "general-troubleshooting",
+   "title": "General Troubleshooting",
+   "from": 19,
+   "to": 19,
+   "blocks": [
+    {
+     "p": "There are two LEDs on the front panel of the inverter. A solid green LED means that there are no alarms. A flashing green LED means there is one or more active alarms and that system functionality is limited. A red alarm LED means that a fault is present and the inverter has shut down to protect itself.",
+     "page": 19
+    },
+    {
+     "p": "If the \"normal\" LED on the front panel of the Sanctuary is on solid and not flashing, the load port should be powered on. Only qualified personnel should attempt to service the Sanctuary system. The following sections list some common problems and suggestions on how to solve them.",
+     "page": 19
+    }
+   ]
+  },
+  {
+   "id": "battery",
+   "title": "Battery",
+   "from": 20,
+   "to": 27,
+   "blocks": [
+    {
+     "h": "Cells",
+     "page": 20
+    },
+    {
+     "p": "Each Sanctuary battery is comprised of sixteen 3.2V lithium iron phosphate (LiFePO4) prismatic cells connected in series to form a (nominal) 51.2 V battery.",
+     "page": 20
+    },
+    {
+     "h": "Circuit Breaker",
+     "page": 20
+    },
+    {
+     "p": "The Sanctuary battery includes a 250 A circuit breaker. This breaker can be electronically turned off by the BMS. If the BMS senses an internal failure such as current still flowing after the MOSFETs have been turned off, it will turn off the circuit breaker. The BMS can also turn off the breaker if the BMS needs to shut down to prevent over-discharge. The BMS can send a voltage signal to the circuit breaker controller board which will turn off the breaker. The circuit breaker controller board takes a two-wire input voltage through an optocoupler to trip the breaker. Once the breaker is off, the circuit in the trip mechanism also opens.",
+     "page": 20
+    },
+    {
+     "h": "Sanctuary 2 vs Sanctuary 3 Batteries",
+     "page": 20
+    },
+    {
+     "p": "The Sanctuary 3 (white) batteries have several differences from the Sanctuary 2 (black) batteries. The communication is different, so Sanctuary 3 batteries are not compatible with Sanctuary 2 inverters. Sanctuary 2 batteries are not compatible with Sanctuary 3 inverters.",
+     "page": 20
+    },
+    {
+     "p": "Cell heater CAN communication",
+     "page": 21
+    },
+    {
+     "p": "Sanctuary 2 (black) no no",
+     "page": 21
+    },
+    {
+     "p": "RS-485 communication Circuit breaker Power button LED indicators LiFePO4 chemistry Cell temperature sensors MOSFET temp sensors Data monitoring",
+     "page": 21
+    },
+    {
+     "p": "yes Inside the battery no no yes yes yes yes",
+     "page": 21
+    },
+    {
+     "p": "Sanctuary 3 (white) yes Between inverter and the number 1 battery Between batteries On top of the battery yes yes yes yes yes yes",
+     "page": 21
+    },
+    {
+     "h": "BMS",
+     "page": 21
+    },
+    {
+     "p": "The BMS is a required component of any lithium battery. Lithium batteries may be damaged if over-charged or over-discharged. The BMS will monitor battery temperature, the voltage of every cell, and the current of the pack. It will disconnect the battery if subjected to potentially damaging conditions.",
+     "page": 21
+    },
+    {
+     "p": "One common problem when connecting the battery to the inverter is that when the inverter's battery terminal voltage is less than 20V, when you connect the battery, the inverter's capacitors draw so much current from the battery that the battery thinks it's a short circuit and will disable discharging. A single battery can charge the capacitors of one Sanctuary 2 inverter up to about 32V before disabling discharge. The inverter then gradually settles down to about 11V if the inverter is connected to grid or solar. The battery needs a voltage greater than its own to re-enable discharging.",
+     "page": 21
+    },
+    {
+     "p": "The \"battery awaken\" feature on the inverter will raise the voltage on the battery terminals, usually to 48.5V for a minute if grid or solar power is available. Since the October 2023 firmware release, battery wake-up may be done automatically.",
+     "page": 21
+    },
+    {
+     "p": "Sometimes the battery will disable both charging and discharging. Usually disconnecting one power cable for 10 seconds will re-enable discharging on a Sanctuary 2 battery. The Sanctuary 3 battery will automatically reset and try applying power again.",
+     "page": 21
+    },
+    {
+     "p": "The Sanctuary 2 BMS will turn off the circuit breaker and go to minimum power mode if the battery is discharged to below 0% and any cell voltage drops below 2300 mV. In this case, the circuit breaker needs to be turned on before the BMS will wake up with charging current. If the battery terminals read 0V DC, the circuit breaker is likely off. If discharging is",
+     "page": 21
+    },
+    {
+     "p": "disabled but the circuit breaker is on, the terminal voltage may read some small DC voltage.",
+     "page": 22
+    },
+    {
+     "h": "BMS Communication Failure",
+     "page": 22
+    },
+    {
+     "p": "The most common BMS communication problem is caused by improper cable routing. The Sanctuary 2 and Sanctuary 3 systems are wired differently. Please refer to the relevant Sanctuary installation manual or the EMS-C manual for the BMS wiring diagram.",
+     "page": 22
+    },
+    {
+     "h": "BMS communication failure � Sanctuary 2",
+     "page": 22
+    },
+    {
+     "p": "First, be sure that all batteries are on the same RS-485 bus and connected to the inverter's BMS port. Refer to the installation manual for the diagram. If the inverter has a BMS communication failure for a long period of time, sometimes the inverter must be power-cycled before BMS communication is restored. Use the Lion Technician app > Select Service > Read Battery Address to check each battery if it's able to communicate. Each battery must have its own unique BMS address. Addresses must be sequential, starting with address #1. Typically, the batteries are numbered left to right and the BMS address matches the battery number. If any battery is not able to communicate, check for DC voltage on the battery terminals. If the voltage measures 0 V, the circuit breaker may be off and the BMS may be asleep. The battery terminals have a small hole in the center of the terminal. This is for measuring voltage. Do not put probes down the side of the terminal. The outer portion of the terminal is connected to the case. If the probes connect the power terminal and the case at the same time, it can short-circuit the battery.",
+     "page": 22
+    },
+    {
+     "p": "If the battery voltage is good, check all Ethernet style cables using an Ethernet cable tester. Check all RJ45 splitters and couplers with an Ethernet cable tester. For batteries with two RJ45 connectors, check the continuity between the two ports using an Ethernet cable tester. For cables with the round 4-pin connector, check continuity between the ends according to this legend:",
+     "page": 23
+    },
+    {
+     "p": "Round Connector A = Green (RS-485 A) B = Orange (RS-485 B) C = No connection D = Blue (GND)",
+     "page": 23
+    },
+    {
+     "p": "RJ45 Connector 6 = Blue (GND) 7 = Green (RS-485 A) 8 = Orange (RS-485 B)",
+     "page": 24
+    },
+    {
+     "p": "Sanctuary 1 Note: The RJ45 ends on Sanctuary 1 batteries were wired using pins 1, 2, and 3 (mirror opposite of the Sanctuary 2 batteries).",
+     "page": 24
+    },
+    {
+     "h": "Sanctuary 2: One Battery is Low and its Breaker is Off",
+     "page": 24
+    },
+    {
+     "p": "1. Unplug the battery power cables from the low battery.",
+     "page": 24
+    },
+    {
+     "p": "2. Measure the voltage on the battery to make sure it's the one with the breaker off. If the battery reads 0V, that's the one.",
+     "page": 24
+    },
+    {
+     "p": "3. Remove the screws on the front panel on the battery using a 4mm Allen. Earlier versions of Sanctuary 2 used #2 Phillips screws.",
+     "page": 24
+    },
+    {
+     "p": "4. Find the circuit breaker inside the battery. There is a small rectangular window on the breaker that indicates if it's in the off or on position. Red=on; green=off. Turn the breaker to the on position.",
+     "page": 24
+    },
+    {
+     "p": "5. Adjust settings:",
+     "page": 24
+    },
+    {
+     "p": "a) For single inverter systems, set \"Inverter Max Charge Current\" to 20A. (This setting is not effective for parallel inverter systems.) This will prevent the cells from charging too fast when low. The BMS may disable charging if the charging current is too high.",
+     "page": 24
+    },
+    {
+     "p": "b) For parallel inverter systems, set \"System Charge Current\" to 20A.",
+     "page": 24
+    },
+    {
+     "p": "c) Put the system in battery priority mode (aka Emergency Mode).",
+     "page": 24
+    },
+    {
+     "p": "6. Unplug one power cable from each of the other batteries so the low battery can charge up by itself.",
+     "page": 24
+    },
+    {
+     "p": "7. Immediately after unplugging the other batteries, plug in the power cables on the low battery. This should wake-up the BMS and it should start charging. If it doesn't start charging, send the command request for \"activate battery\". Another option is to use a 60V/5A variable power supply to start charging the battery from the top terminals. Set the power supply to 54V/5A and connect it to the inverter's battery terminals to have it start charging the low battery. This should keep the battery charging and wake up the BMS to restore communication.",
+     "page": 24
+    },
+    {
+     "p": "8. If the front panel green LED on the Sanctuary stops flashing and is on steady, then the BMS alarm has cleared.",
+     "page": 25
+    },
+    {
+     "p": "9. After the low battery's minimum cell voltage is over 3.0V, increase the charging current. a) For single inverters, restore the setting \"Inverter Max Charge Current\" to its previous value (usually 140A). b) For parallel inverters, change the setting \"System Charge Current\" to 140A. This setting can be increased as additional batteries are reconnected.",
+     "page": 25
+    },
+    {
+     "p": "10. Wait until the low battery's voltage increases to at least the same voltage level as the next lowest battery's voltage and plug that battery in. When the inverter's battery terminal is within +/- 0.5V of the next highest battery, plug in the next battery. Repeat until all batteries are plugged in. Note that if all batteries are low, this may happen before step 9.",
+     "page": 25
+    },
+    {
+     "p": "11. When all batteries are plugged in and working, replace the front cover of the battery. These screws should be tightened to about 29 inch-pounds.",
+     "page": 25
+    },
+    {
+     "p": "12. Replace all wire box covers. 13. Go into the app or smart.lionenergy.com and change from emergency mode to",
+     "page": 25
+    },
+    {
+     "p": "normal mode.",
+     "page": 25
+    },
+    {
+     "h": "Sanctuary 2 Battery Won't Connect (Charging or Discharging is Disabled)",
+     "page": 25
+    },
+    {
+     "p": "The batteries should be within 0.5V of each other before connecting batteries in parallel. 1. In the web app, find the customer's system and scroll down to components. Click on the battery and check if charging and discharging are enabled.",
+     "page": 25
+    },
+    {
+     "p": "2. Check the battery data for something that would cause the BMS to disable charging or discharging: a. High MOSFET temperature: The inverter stops battery charging/discharging when the max MOSFET temperature > 79�C (default setting).",
+     "page": 25
+    },
+    {
+     "p": "b. High cell voltage: The battery stops charging when the max cell voltage > 3650 mV.",
+     "page": 26
+    },
+    {
+     "p": "c. Low cell voltage: The battery stops discharging when the min cell voltage < 2400 mV. The inverter stops battery discharge when the min cell voltage < 2650 mV.",
+     "page": 26
+    },
+    {
+     "p": "d. Max to min cell voltage > 700 mV may cause the battery to disable both charging and discharging. This setting was changed to the more preferred 1000 mV on some batteries.",
+     "page": 26
+    },
+    {
+     "p": "e. High cell temperature: The inverter won't use battery power if the cell temperature is more than 50�C",
+     "page": 26
+    },
+    {
+     "p": "f. Low cell temperature: The battery should not charge below 0�C.",
+     "page": 26
+    },
+    {
+     "p": "3. If charging and discharging are enabled, and the battery voltage when disconnected is still 0V, remove the front cover and check the circuit breaker. There's a little rectangular indicator on the circuit breaker (color indicator, not LED). Green is off (safe to service). Red is on.",
+     "page": 26
+    },
+    {
+     "p": "4. If the voltage on the inverter's battery terminals is low, around 11V, use the battery awaken function to increase the voltage to 48V. It takes at least one minute after sending the command before the inverter raises the voltage. If the inverter doesn't go above battery voltage, the battery won't recognize any charging voltage. If the battery has a short circuit alarm, try disconnecting one power cable for at least 10s and then plug it back in.",
+     "page": 26
+    },
+    {
+     "p": "5. For multiple battery systems, if discharge is still disabled, disconnect one battery cable from each battery. On parallel inverter systems, set the \"System Charging Current\" to 20A. We need to check each battery's voltage before re-connecting. Otherwise, high current can flow from the high SOC battery to the low SOC battery. Starting at the lowest battery, reconnect its cable first and allow the inverters to charge it. Then as the voltage increases to within 0.5V of the next highest battery voltage, connect that one next. Continue until all batteries are reconnected. Then when all batteries are connected and charging is enabled on all batteries, set the system charging current to what it was before.",
+     "page": 26
+    },
+    {
+     "p": "6. If a cell voltage is too low, it can be charged with a DC power supply. Set the power supply's open circuit voltage to no more than 3.65V. Most 60V variable power supplies can supply 5A, which is sufficient to get the voltage up in a reasonable amount of time. If one cell is charged too much, it can reduce the Amp-hours of the pack due to that cell now being the highest SOC and preventing the rest of the cells from charging when it reaches 3.65V. Connect the power supply positive wire to the",
+     "page": 26
+    },
+    {
+     "p": "positive terminal of the cell, and power supply negative to the negative terminal of the cell. Once the cell voltage is the same as the rest of the pack, see if the BMS wakes up when the battery is charged from the battery terminals on the top of the case.",
+     "page": 27
+    },
+    {
+     "h": "Testing the BMS MOSFETs",
+     "page": 27
+    },
+    {
+     "p": "If the battery breaker trips repeatedly or if the MOSFETs overheat, test if there's a short in the charge/discharge MOSFETs.",
+     "page": 27
+    },
+    {
+     "p": "a. Turn off the battery's circuit breaker. b. Unplug the cell temperature sensor plug from the BMS. This will cause the",
+     "page": 27
+    },
+    {
+     "p": "battery to read -50�C on both cell temperature sensors. This will disable both charging and discharging. c. Set your meter to diode check. We will measure across the BMS power terminals. Connect one probe to the BMS side of the circuit breaker and the other probe to the negative cell terminal at the top of the cells. This effectively connects the meter across the BMS main power terminals. The meter should read \"OL\". Switch the probe polarity to read diode voltage the other direction. It should read \"OL\" again. If it reads a forward-biased diode voltage drop in either direction, a MOSFET is damaged and the BMS needs to be replaced. d. Plug the cell temperature sensors back in. Turn the battery's circuit breaker back on if the test passes.",
+     "page": 27
+    }
+   ]
+  },
+  {
+   "id": "sanctuary-3-battery-communication",
+   "title": "Sanctuary 3 Battery Communication",
+   "from": 27,
+   "to": 31,
+   "blocks": [
+    {
+     "h": "Battery Power Switch",
+     "page": 27
+    },
+    {
+     "p": "The Sanctuary 3 batteries have a round power button. If this button is off, the battery cannot accept charging current and cannot discharge power. Communication will also be disabled.",
+     "page": 27
+    },
+    {
+     "p": "If the button is on and no LEDs on the battery turn on, the battery is likely below 0%, with the BMS in sleep mode. The battery will need charging current to wake-up the BMS. If the inverter has a BMS com alarm, check the following:",
+     "page": 28
+    },
+    {
+     "p": "1. Ensure all communication cables are correctly configured. The parent inverter's Parallel A port connects to the EMS-C's inverter port. The EMS-C's battery port connects to the COM1 port on battery #1. COM2 connects to the next battery's COM1 port and so on. The last battery's COM2 port will be empty.",
+     "page": 28
+    },
+    {
+     "p": "2. Try power-cycling all the batteries. Push the round power button off, then on, for all batteries.",
+     "page": 28
+    },
+    {
+     "p": "3. Try power-cycling the inverter. 4. Check if the inverter's firmware is up-to-date. The original firmware sometimes",
+     "page": 28
+    },
+    {
+     "p": "allowed the child inverter in parallel systems to interfere with BMS communication. The firmware can be updated with the Lion Smart web app or with the Lion Technician mobile app. Any firmware older than the originally released firmware (June 2025) will not communicate with the batteries.",
+     "page": 28
+    },
+    {
+     "p": "a. ARM version must be at least 0.5.6 b. DSP version must be at least 1.9 5. If CAN signal reflections are suspected to be a cause due to long cable length, try enabling micro-switch #1 on the last inverter only. (See the installation manual, appendix D.) This micro-switch connects a 120 Ohm termination resistor on the BMS CAN bus at the last inverter. The EMS-C already has a 120 Ohm termination resistor on the BMS CAN bus. 6. Using an Ethernet cable tester, verify all communication cables are good. No RJ45 splitters are used on Sanctuary 3 BMS com cables. 7. Make sure the Sanctuary system was commissioned with the correct number of batteries.",
+     "page": 28
+    },
+    {
+     "p": "Sanctuary User Manual 8. Install the PACEEX mobile app.",
+     "page": 29
+    },
+    {
+     "p": "a. Turn off all batteries except for battery #1. b. With battery #1 on, turn on the PACEEX app and connect to battery #1. Make",
+     "page": 29
+    },
+    {
+     "p": "note of its serial number so that you can connect to this specific battery after all the other batteries are turned on. c. In the lower right corner, go to \"Device Information\" and check the software version.",
+     "page": 29
+    },
+    {
+     "p": "If you see 41826-1.02 (old version), please use an iPhone with the PACEEX BMS app to upgrade to 41826-1.40. The old version of firmware may cause BMS communication problems. d. Check the firmware versions on the remaining batteries. e. Turn on all the batteries. Wait for them all to show up in the PACEEX app. f. Connect to battery #1. g. Check for how many batteries have self-addressed: \"PACK parallel number\" should be the number of batteries. In this example, there are three batteries in parallel. If you open this window on the child batteries, they will have dashes for the data. You can click on PACK data in the lower left of the screen",
+     "page": 29
+    },
+    {
+     "p": "Sanctuary User Manual to view the data for the battery that you're connected to.",
+     "page": 30
+    },
+    {
+     "p": "Sanctuary User Manual h. Make sure all batteries are on the same firmware. In the PACEEX app, go to \"Device Information\" for each battery and check the software version.",
+     "page": 31
+    }
+   ]
+  },
+  {
+   "id": "load-power-is-off",
+   "title": "Load Power is Off",
+   "from": 32,
+   "to": 32,
+   "blocks": [
+    {
+     "h": "Transfer (Bypass) Switch",
+     "page": 32
+    },
+    {
+     "p": "Lion Energy recommends installing a transfer switch (either manual or automatic) so that the backup loads can use grid power in case the Sanctuary system needs service. This switch is also called a bypass switch. Through the transfer switch, the backup loads panel can connect to either grid power or connect to the inverter load ports, but not both at the same time because the load port must never have an external connection to the grid.",
+     "page": 32
+    },
+    {
+     "p": "If the backup panel stays un-powered during a grid outage, check the bypass switch position. It may need to be switched to the inverter position. If the Sanctuary has a problem and the backup panel loses power while the grid is powered, move the transfer switch to the grid position.",
+     "page": 32
+    },
+    {
+     "h": "Off-grid and Low Battery",
+     "page": 32
+    },
+    {
+     "p": "When off-grid and the battery gets down to 10%, the inverter shuts off the load port. The inverter keeps its control board on to maintain 12V power to the rapid solar shutdown transmitter so that the solar panels can resume charging the battery when solar power is available. After charging the batteries up to 20%, (10% above the off-grid depth of discharge), then the load port power will resume. See the Settings Guide > \"Off-Grid Battery Restart Percent\" and \"Off Grid Depth of Discharge\".",
+     "page": 32
+    },
+    {
+     "h": "Remote Shutdown Switch",
+     "page": 32
+    },
+    {
+     "p": "A remote shutdown switch can be wired to the Sanctuary (see installation manual). This switch is in series with the AC/DC power button on the side of the inverter. If either of these switches are open, the load port will shut off and 12V power to the RSD transmitter port will turn off. For parallel systems, if any inverter's AC/DC button is off or any remote shutdown switch is off, all inverters will turn off.",
+     "page": 32
+    },
+    {
+     "h": "Off-grid and BMS communication Failure",
+     "page": 32
+    },
+    {
+     "p": "The Sanctuary will not charge the batteries or power the AC inverter from the batteries if there is a BMS communication failure. When off-grid, the load port will have no power when there is a BMS communication failure.",
+     "page": 32
+    }
+   ]
+  },
+  {
+   "id": "connecting-to-the-grid",
+   "title": "Connecting to the Grid",
+   "from": 33,
+   "to": 34,
+   "blocks": [
+    {
+     "p": "There are several possible reasons why the inverter(s) won't connect to the grid. Before reconnecting to the grid, the inverter will have a grid low frequency alarm and a grid low voltage alarm.",
+     "page": 33
+    },
+    {
+     "h": "Possible Problems",
+     "page": 33
+    },
+    {
+     "p": "1. Grid voltage too high 2. Grid voltage too low 3. One or more inverter grid lines is disconnected 4. Grid frequency too high 5. Grid frequency too low 6. Load port wiring error 7. Grid port wiring error 8. Power button off 9. Time delay: The inverter may be waiting for the time specified in \"Grid Reconnection",
+     "page": 33
+    },
+    {
+     "p": "Delay\" before connecting to the grid. 10. Grid type is wrong (three-phase vs. split phase)",
+     "page": 33
+    },
+    {
+     "h": "Check Alerts",
+     "page": 33
+    },
+    {
+     "p": "The alarms should indicate why it's not connecting to the grid.",
+     "page": 33
+    },
+    {
+     "p": "If the inverter status reads \"off-grid PL\", then the inverter is initiating load to grid phase-lock and getting ready to connect to the grid.",
+     "page": 33
+    },
+    {
+     "h": "Solutions",
+     "page": 33
+    },
+    {
+     "p": "Note: Any DER smart inverter's grid interactive settings should be set to the AHJ's requirements.",
+     "page": 33
+    },
+    {
+     "p": "1. Grid voltage too high: The default max grid reconnect voltage is 105% of normal, or 126V. If the grid voltage is consistently more than 5% too high (above 126V on either leg), call ESS support to adjust the settings as long as your AHJ does not require this to be set to 105%. Also, try enabling HVRT (high voltage ride-through).",
+     "page": 33
+    },
+    {
+     "p": "2. Grid voltage too low: Make sure that grid voltage is present on all inverter grid ports L1 and L2. The inverter will wait five minutes (default) for the grid voltage to remain between 91.7% and 105% of normal). Also try enabling LVRT (low voltage ridethrough). If grid voltage consistently reads below 110V, call ESS support for help adjusting the settings.",
+     "page": 33
+    },
+    {
+     "p": "3. For single phase (also called split phase), make sure voltage at the inverters' grid ports are 120V line to neutral and line-to-line voltage is the same as L1 + L2 (240V). If line-to-line voltage reads about 208V when L1 and L2 read 120V, then it's a threephase service. Single inverters can automatically change between single and threephase. For parallel three-phase operation, only a three-inverter configuration is supported.",
+     "page": 34
+    },
+    {
+     "p": "4. Grid frequency too high: If the grid frequency > 60.1 Hz, the default settings do not allow connecting to the grid.",
+     "page": 34
+    },
+    {
+     "p": "5. Grid frequency too low: If the grid frequency < 59.5 Hz, the default settings do not allow connecting to the grid.",
+     "page": 34
+    },
+    {
+     "p": "6. Parallel inverter loads: Make sure all load combiner breakers are turned on. The load ports from each inverter need to be connected in parallel. The child inverters need to sense the voltage and phase from the parent inverter. Otherwise, the child inverter will have an alarm for EPS wiring error. Check load line phasing. If any inverter is not consistent in both grid side and load side phases, it would result in a direct L1 to L2 short if the inverter were to connect to the grid. A wiring alarm will persist until the inverter is completely shut down.",
+     "page": 34
+    },
+    {
+     "p": "7. Parallel inverter grid connections: Make sure all inverter grid breakers are turned on. Check grid line phasing. If any inverter is not consistent in both grid side and load side phases, it would result in a direct L1 to L2 short if the inverter were to connect to the grid. A wiring alarm will persist until the inverter is completely shut down.",
+     "page": 34
+    },
+    {
+     "p": "8. Check power buttons and remote shutdown switches. Sometimes an installer might wire in a remote shutdown switch that is NO instead of NC. Or the switch could have both an NO terminal and an NC terminal and they might have picked the wrong one. The remote shutdown switch, AC/DC on/off switch, and the complete system shutdown switch must all be closed for the system to operate. If the terminal for the remote shutdown switch reads 5V DC, the switch is open.",
+     "page": 34
+    },
+    {
+     "p": "9. Time delay: The default setting for \"Grid Reconnection Delay\" is 300s. The minimum workable setting is 33s.",
+     "page": 34
+    }
+   ]
+  },
+  {
+   "id": "power-button-testing",
+   "title": "Power Button Testing",
+   "from": 34,
+   "to": 44,
+   "blocks": [
+    {
+     "p": "Caution: Before replacing either switch, be sure to turn off all power to the inverter including grid, solar, and battery.",
+     "page": 34
+    },
+    {
+     "p": "If the inverter won't turn on and you verified the inverter has input power (battery or grid or solar), the problem may be one of the two power buttons or a remote shutdown switch. For Sanctuary 2, the \"AC/DC on/off\" button on the side of the inverter has two switches. One is for the AC power, and the other is for 12V RSD power. The \"Complete System Shutdown\" button has three switches. One is for the AC power that is in series with the top button and also in series with the remote shutdown switch. Another switch connects to the middle of the control board. The last switch connects battery power to the control board. The \"AC/DC on/off\" power button has a switch wired in series with another switch in the \"Complete System Shutdown\" button and is also in series with the remote shutdown port. All three must be turned on for the inverter's AC power to turn on. If the problem is only in one of the AC power switches and there is no problem with the switches that interrupt power to the control board, the controller will turn on and you will be able to communicate with the inverter. In that case, the front panel green LED will be flashing. If the power button status reads off, the controller interprets the AC power button as in the off position. If the problem is in the other switches behind the complete system shutdown button, the LED on the front panel won't turn on and you won't be able to communicate with the inverter. If the controller turns on, then to determine whether the problem is the remote shutdown switch or a problem with a button on the side of the inverter, use a multi-meter to measure voltage as shown in this picture (Sanctuary 3):",
+     "page": 35
+    },
+    {
+     "p": "The plug in the above picture that we're probing is labeled DRY1_1B. If the measurement is 5V, then one or both of the power buttons on the side is off or not connecting. If it's zero volts, check the terminals on the DRY1_1A remote shutdown port. The remote shutdown port comes with a wire loop installed from the factory. If that terminal reads 5V, then the remote shutdown switch has an open circuit. For Sanctuary 2 rev4, the power button connectors are labeled in this next picture and will likely require needle probes to measure the voltage by back-probing:",
+     "page": 36
+    },
+    {
+     "p": "Make sure the inverter has power from at least one of its sources: battery or grid or solar and that the front panel green LED is on or flashing before testing the switch voltage. If the voltage goes to zero when pressing the button all the way in but returns to 5V with the buttons left in the on position, then the button has a mechanical problem. On Sanctuary 3, the top button is accessible by removing the top panel of the inverter (the panel with the Lion logo and LEDs). Be careful because there's a cable attached between the front panel and the control board. If the lower button on a Sanctuary 3 needs to be replaced, remove the bracket over the battery breaker by removing the four Phillips screws and the two 8mm nuts.",
+     "page": 37
+    },
+    {
+     "p": "The back side of the switch can be removed by using a pick to lift the inner yellow tab up (radially outwards from center) while rotating the yellow tab towards you. This is what the switch looks like when removed:",
+     "page": 38
+    },
+    {
+     "p": "The green tabs are what the other half of the button press against. The ratcheting action is handled by the button on the side of the inverter. What I'm holding above are momentary switches. There are three individual switches in this group. Each switch has a terminal on the top and on the bottom.",
+     "page": 39
+    },
+    {
+     "h": "RSD / EMS-C 12V Power",
+     "page": 39
+    },
+    {
+     "p": "On Sanctuary 2 rev4 (but not on Sanctuary 3), 12V power for the EMS-C / RSD 12V comes through the top button. If both power buttons are in the on position, you should get 12V on the RSD port. Unplug the RSD connector and measure voltage on the pins (shown in the photo below). (We didn't show the positive voltage probe on the left pin.)",
+     "page": 39
+    },
+    {
+     "p": "If you don't get 12V and the system is on, it could be the switch behind the top button. Remove the white plug as shown in this photo (below) and measure the left pin (black wire) to 12V COM as shown:",
+     "page": 40
+    },
+    {
+     "p": "You should get 12V. Measure continuity between the two wires on the white plug that you unplugged. It should have continuity when the top switch is on; and be open when the top switch is off.",
+     "page": 41
+    },
+    {
+     "h": "Complete System Shut Down",
+     "page": 41
+    },
+    {
+     "h": "Control Board Switch",
+     "page": 41
+    },
+    {
+     "p": "One switch in the complete system shutdown button with wires SB7 & SB8 connects to this cable (CN13). If the control board won't turn on, unplug this two-wire cable CN13 from the",
+     "page": 41
+    },
+    {
+     "p": "Sanctuary User Manual control board and measure continuity between the two wires. If the bottom button is on, you should get close to zero Ohms.",
+     "page": 42
+    },
+    {
+     "h": "Battery Power Switch",
+     "page": 42
+    },
+    {
+     "p": "The third wire down on the connector on the right side of the control board is battery power. The bottom button has a switch that controls power to this connector. The two red wires shown by arrows in this diagram get connected when the bottom button is on. Back-probe using needle probes to measure DC voltage between the third wire down in the connector (red wire in this picture) and the inverter's positive battery terminal. When the bottom button is on, you should get close to zero volts.",
+     "page": 42
+    },
+    {
+     "h": "Wire Labels (Sanctuary 2, rev 4)",
+     "page": 43
+    },
+    {
+     "h": "Wire Labels, Sanctuary 3",
+     "page": 44
+    }
+   ]
+  },
+  {
+   "id": "sanctuary-2-inverter-relay-check",
+   "title": "Sanctuary 2 Inverter Relay Check",
+   "from": 45,
+   "to": 48,
+   "blocks": [
+    {
+     "p": "The Sanctuary 2 has grid relays and load relays. The load relays can be seen on the I/O board when you remove the lower cover of the Sanctuary inverter. The line 1 load relay is the one on the left. The line 2 load relay is the one on the right.",
+     "page": 45
+    },
+    {
+     "h": "Load Relay Check",
+     "page": 45
+    },
+    {
+     "p": "When the load relay closes, it connects the internal AC bus to the load. We can see if the relay is closed by measuring between the two terminals above that relay. Be sure to check volts before checking continuity. The load relays should be off when the inverter is off. If there is continuity between the two terminals directly above the load relay when it's off, its terminals are welded together (closed, a.k.a. short circuit).",
+     "page": 45
+    },
+    {
+     "h": "Grid Relay Check",
+     "page": 45
+    },
+    {
+     "p": "We can check if the grid relay is closed by first checking if there are zero volts and continuity between the internal bus and the grid port. In the picture below, I circled the internal bus for line 1 above the line 1 load relay. I'll call this \"LOAD1 relay in\". I also circled the line 1 grid port. The line 1 grid relay is between these two test points. Note that the newer rev4 models have the grid and generator ports in a different order on the DIN rail. A Sanctuary 2 rev3 is shown here.",
+     "page": 45
+    },
+    {
+     "p": "To check the line 2 grid relay, measure between the two terminals I circled in the picture below: \"LOAD2 relay in\" to grid L2 port:",
+     "page": 46
+    },
+    {
+     "p": "If you turn off the grid breakers to the inverters, you should get an open circuit between the two terminals circled in red above.",
+     "page": 46
+    },
+    {
+     "h": "EPS Relay Check",
+     "page": 47
+    },
+    {
+     "p": "To check the EPS relays, remove the top cover and test between the INV1- and INV2inverter lines on the right of this photo and the terminals above the load relays.",
+     "page": 47
+    },
+    {
+     "p": "When off, INV1- to \"LOAD1 relay in\" should be open When off, INV2- to \"LOAD2 relay in\" should be open When off, INVN- to LOAD N or GEN N should be open",
+     "page": 47
+    },
+    {
+     "h": "Generator Relay Check",
+     "page": 48
+    },
+    {
+     "p": "To test the generator relays, we'll test between the generator port and the terminals above the load relays. When off, GEN L1 to \"LOAD1 relay in\" should be open When off, GEN L2 to \"LOAD2 relay in\" should be open",
+     "page": 48
+    }
+   ]
+  },
+  {
+   "id": "sanctuary-3-relay-tests",
+   "title": "Sanctuary 3 Relay Tests",
+   "from": 48,
+   "to": 50,
+   "blocks": [
+    {
+     "p": "Unlike Sanctuary 2, Sanctuary 3 does not have load relays.",
+     "page": 48
+    },
+    {
+     "h": "Grid Relay Check",
+     "page": 48
+    },
+    {
+     "h": "While the inverter is on",
+     "page": 48
+    },
+    {
+     "p": "One way to check for a shorted grid relay is to turn off the grid breaker while the inverter is running and measure grid port voltage. Unlatch the front cover and turn off the grid circuit breaker. If it's a parallel inverter system, turn off the grid breakers on all parallel inverters. Make sure the load port has 120V on L1, 120V on L2, and 240V between L1 and L2. If either of the grid ports has 120V to N, the grid relay is stuck closed. If you turned off the breaker inside the inverter, measure on the top terminals of the breaker because the bottom terminals will have been disconnected by the breaker.",
+     "page": 48
+    },
+    {
+     "h": "While the inverter is off",
+     "page": 48
+    },
+    {
+     "p": "Check continuity between the two red circles for L1, and then check between the two blue circles for L2. It should be open circuit, roughly 2M Ohms. If you get close to 0 Ohms, the relay is stuck closed. In the picture below, I circled the test points for the L1 grid relay in red; L2 in blue.",
+     "page": 48
+    },
+    {
+     "h": "EPS Relay Check",
+     "page": 49
+    },
+    {
+     "p": "To check the EPS relays, we'll test from the three inverter lines toward the top of the board to the terminals at the bottom of the board. When the inverter is off, we should get an open circuit between the two terminals circled in red (L1), between the two terminals circled in blue (L2), and between the two terminals circled in green (N).",
+     "page": 49
+    },
+    {
+     "h": "Generator Relay Check",
+     "page": 50
+    },
+    {
+     "p": "When the inverter is off, the generator relays should be open. Measure between the two test points circled in red for L1, and between the two test points circled in blue for L2. Red to red should be open. Blue to blue should be open.",
+     "page": 50
+    }
+   ]
+  },
+  {
+   "id": "igbt-testing-sanctuary-2",
+   "title": "IGBT Testing (Sanctuary 2)",
+   "from": 51,
+   "to": 54,
+   "blocks": [
+    {
+     "p": "If an IGBT fails, it will often conduct enough current to make a relay stick closed. The softstart resistors on the control board and wiring may be damaged. Run these checks before applying power if you suspect a damaged IGBT. If any IGBT fails the test, the inverter will need to be replaced.",
+     "page": 51
+    },
+    {
+     "h": "Test points",
+     "page": 51
+    },
+    {
+     "p": "We will use the following test points to check the integrity of the IGBTs. The main battery power cable terminals: Batt+, Batt-",
+     "page": 51
+    },
+    {
+     "p": "The three inverter outputs: INV 1-, INV 2-, and INV N- are on the right side of the relay board. We will use the following test points for the MPPT power stage: BOOST2+, BUS1-, BOOST1+, BOOST4+, BUS2-, BOOST3+",
+     "page": 52
+    },
+    {
+     "p": "Sanctuary User Manual BUS+ (black wire by soft-start resistors on the control board)",
+     "page": 53
+    },
+    {
+     "h": "Battery IGBT",
+     "page": 53
+    },
+    {
+     "p": "The battery terminals are not protected from reverse polarity. Reverse polarity on the battery terminals with a 51.2V battery will forward bias the IGBT body diodes and probably destroy something. Starting with the battery and all other sources of power disconnected from the inverter, wait until the battery terminal reads close to 0V. Using the diode function on your DMM, starting at 0V on the battery terminals, if you connect pos to neg and neg to pos, the DMM will slowly rise to about 0.8 to 1V and hold there. This takes a couple minutes. This confirms the forward voltage drop across the body diodes in the battery IGBTs. If you connect a 10V power supply to the inverter's battery terminals (pos to pos and neg to neg), it shouldn't draw more than a milliamp once the capacitors charge to 10V.",
+     "page": 53
+    },
+    {
+     "h": "MPPT IGBT",
+     "page": 53
+    },
+    {
+     "p": "These tests must be performed with all sources of power disconnected from the inverter. Forward bias body diode tests for IGBT14, 16, 18, 20: Connect your DMM pos to either",
+     "page": 53
+    },
+    {
+     "p": "BUS1- or BUS2- because they are connected together anyway. Connecting DMM neg to each of the BOOST+ terminals should read about 0.35 to 0.5V. IGBT reverse bias test for IGBT 14, 16, 18, 20: Connect DMM neg to either BUS1- or BUS2-. Connect DMM pos to each of the BOOST+ terminals and it should slowly charge the capacitors until the DMM shows OL (usually when it's more than 2V on the meter).",
+     "page": 54
+    },
+    {
+     "h": "MPPT Diode Check",
+     "page": 54
+    },
+    {
+     "p": "These tests must be performed with all sources of power disconnected from the inverter. D84: Use diode check between BOOST1+ and BUS+. Pos on BOOST1+ should be a forward bias diode, about 0.37V. Neg on BOOST1+ should be OL. D83: Repeat, but with BOOST2+ D86: Repeat, but with BOOST3+ D18: Repeat, but with BOOST4+",
+     "page": 54
+    },
+    {
+     "h": "Inverter IGBT",
+     "page": 54
+    },
+    {
+     "p": "These tests must be performed with all sources of power disconnected from the inverter. Test IGBT1 and IGBT2 by using your DMM diode check between INV2- and INVN-. Check both ways. It should slowly increase to OL and not show a diode voltage either direction. Test IGBT3 and IGBT4 by using your DMM diode check between INV1- and INVN-. Check both ways. It should slowly increase to OL and not show a diode voltage either direction. Test IGBT17 by using diode check between BUS1- and INV1-. Pos on INV1- should read OL. Pos on BUS1- should give a forward biased diode voltage, about 0.37V Test IGBT19 by using diode check between BUS1- and INV2-. Pos on INV2- should read OL. Pos on BUS1- should read about 0.37V. Test IGBT11 by using diode check between BUS+ and INV1-. Pos on BUS+ should read OL. Pos on INV1- should read about 0.37V. Test IGBT13 by using diode check between BUS+ and INV2-. Pos on BUS+ should read OL. Pos on INV2- should read about 0.37V.",
+     "page": 54
+    }
+   ]
+  },
+  {
+   "id": "how-to-recover-from-a-failed-firmware-update",
+   "title": "How to Recover From a Failed Firmware Update",
+   "from": 55,
+   "to": 57,
+   "blocks": [
+    {
+     "p": "The DSP (digital signal processor) microcontroller handles the waveforms and switching the IGBTs. The ARM processor handles the relays, power switch, USB, RS-485, front panel LEDs, etc.",
+     "page": 55
+    },
+    {
+     "p": "On the bottom side of the processor board, there are three LEDs. The left LED is the heartbeat indicator for the DSP processor. The LED on the right edge of the board is the power LED. The LED between those two is the ARM heartbeat indicator.",
+     "page": 55
+    },
+    {
+     "p": "DSP",
+     "page": 55
+    },
+    {
+     "p": "ARM",
+     "page": 55
+    },
+    {
+     "p": "Power",
+     "page": 55
+    },
+    {
+     "p": "Both the DSP LED and the ARM LED should be flashing while the inverter is on. The power LED should be on steady. If either of the processor LEDs are not flashing, that processor is not running.",
+     "page": 55
+    },
+    {
+     "h": "Signs of a failed firmware update",
+     "page": 56
+    },
+    {
+     "p": "� No status LEDs lighting up on the front panel when the power is on. � Endless boot loop where the relays click every few seconds. � Either the DSP or ARM LED isn't flashing. � USB port not recognized or similar error message when connecting a laptop to the",
+     "page": 56
+    },
+    {
+     "p": "inverter's USB port. � No response from RS-485 queries while the inverter is on. This can also be due to a",
+     "page": 56
+    },
+    {
+     "p": "communicator problem, so try restarting the communicator first.",
+     "page": 56
+    },
+    {
+     "p": "If a firmware update is attempted while two inverters are both connected to the communicator using the same modbus address, the update will fail to the point where it needs the firmware flashed directly to the board.",
+     "page": 56
+    },
+    {
+     "h": "Troubleshooting Steps",
+     "page": 56
+    },
+    {
+     "p": "There are several things to try. There isn't a one-size-fits-all approach to fixing this problem, but these steps usually will fix it.",
+     "page": 56
+    },
+    {
+     "p": "1. Power-cycle the inverter.",
+     "page": 56
+    },
+    {
+     "p": "a. Rotate the solar switch to the off position. b. Turn off the grid AC power. c. If equipped, make sure the generator is off too. d. Push the power buttons to the off position. e. For Sanctuary 2 rev1, you also need to unplug all batteries. f. Wait 30s until the relays click. At this point, the LEDs on the front panel",
+     "page": 56
+    },
+    {
+     "p": "should also be off. You can be sure the power is off when the LEDs on the processor board turn off. g. Turn the inverter back on (with the battery connected). h. Re-try flashing the firmware for the processor that failed the firmware update.",
+     "page": 56
+    },
+    {
+     "p": "2. After a power cycle, if the ARM LED isn't flashing, it's locked up and you can't update any firmware via USB or RS-485. A special programmer and special firmware file are required for flashing directly to the board. Call ESS support.",
+     "page": 56
+    },
+    {
+     "p": "3. If re-flashing the DSP fails after power-cycling, try re-flashing the ARM processor (.axf file) via USB. If that fails, try through RS-485. If a firmware update starts and fails, try another power cycle before proceeding.",
+     "page": 56
+    },
+    {
+     "p": "4. If the ARM flash was successful, try re-flashing the DSP (.out file) via USB. If that fails, try through RS-485.",
+     "page": 56
+    },
+    {
+     "p": "5. If the DSP still won't flash, a special programmer is required to re-flash the DSP directly to the board. Call ESS support.",
+     "page": 57
+    }
+   ]
+  },
+  {
+   "id": "communicator",
+   "title": "Communicator",
+   "from": 57,
+   "to": 61,
+   "blocks": [
+    {
+     "p": "There are two types of communicators used for the Sanctuary. The first communicator Lion Energy developed is the Wireless Communication Module (WCM). The second is the Energy Management System - Compact (EMS-C). A Sanctuary system will use either one or the other. The Sanctuary 3 systems were supplied only with the EMS-C. The communicator is used for commissioning the system and for uploading data to the cloud where it can be viewed on an app or in a web browser. The communicator can connect to a laptop or mobile device (tablet or cell phone) through Bluetooth for commissioning the system or for monitoring data on the app. For normal operation, the communicator uploads the data to the cloud through WiFi or an Ethernet cable connection.",
+     "page": 57
+    },
+    {
+     "h": "WCM",
+     "page": 57
+    },
+    {
+     "p": "The WCM was introduced with the Sanctuary 2. The first revision of the WCM could communicate over Bluetooth, WiFi, and RS-485. WCM 2.0 added an Ethernet port for a hard-wired internet connection. The WCM is powered by the inverter through the communication cable.",
+     "page": 57
+    },
+    {
+     "h": "WCM pins",
+     "page": 57
+    },
+    {
+     "p": "1: 5V 6: GND 7: RS-485 A 8: RS-485 B",
+     "page": 57
+    },
+    {
+     "h": "EMS-C",
+     "page": 58
+    },
+    {
+     "p": "While retaining all the functionality of the WCM, the EMS-C is a much more capable piece of hardware. The EMS-C adds more memory, a cellular modem, a backup battery, battery RS-485/CAN port, another RS-485 bus, another CAN bus, USB port, digital I/O, and a power switch. The EMS-C is powered by the inverter through the 12V port. The EMS-C was built to support future development and new features.",
+     "page": 58
+    },
+    {
+     "p": "The EMS-C can connect to the internet through WiFi or Ethernet. If neither are available, it will try to connect to cellular but will only upload alarms. Lion Energy can still manually communicate with the EMS-C over cellular for troubleshooting.",
+     "page": 58
+    },
+    {
+     "p": "Inverter Port Pins 1: BMS CAN H 2: BMS CAN L",
+     "page": 58
+    },
+    {
+     "p": "Battery Port Pins 1: BMS CAN H 2: BMS CAN L",
+     "page": 58
+    },
+    {
+     "p": "4: Inverter CAN H 5: Inverter CAN L 6: GND 7: RS-485 A 8: RS-485 B",
+     "page": 58
+    },
+    {
+     "p": "6: GND 7: RS-485 A 8: RS-485 B",
+     "page": 58
+    },
+    {
+     "p": "The battery port RS-485 bus and the inverter port RS-485 bus are separate, different busses. The EMS-C uses the battery port to address Sanctuary 2 batteries, but this port isn't used in normal operation on Sanctuary 2. For Sanctuary 3, the battery port connects to battery #1 COM1 for normal operation.",
+     "page": 58
+    },
+    {
+     "h": "Communicator Wiring for Sanctuary 2 revs 1-2",
+     "page": 59
+    },
+    {
+     "h": "Communicator Wiring for Sanctuary 2 rev 3",
+     "page": 59
+    },
+    {
+     "p": "The Sanctuary 2 rev3 inverter has a plastic RJ45 connector to the left of the six metal RJ45 connectors. It was equipped with a special flat cable that connected the meter port (top right port) to the WCM. A standard Ethernet cable won't work. If the original cable was lost, make a cable using the wire order in the table below. One end will use the standard T-568B order, while the other end will be according to the right side of the table. This order allows the cable to be installed in either direction. An Ethernet cable tester will say the order is wrong or will fail the cable. Some Ethernet cable testers may be able to detect continuity of wires out of order.",
+     "page": 59
+    },
+    {
+     "p": "T-568B end 1: White/Orange 5V 2: Orange 3: White/Green 4: Blue 5: White/Blue 6: Green (GND) 7: White/Brown (RS-485 A) 8: Brown (RS-485 B)",
+     "page": 60
+    },
+    {
+     "p": "Meter port end 1: Orange 2: White/Orange 5V 3: White/Green 4: White/Brown (RS-485 A) 5: White/Blue 6: Brown (RS-485 B) 7: Blue 8: Green (GND)",
+     "page": 60
+    },
+    {
+     "h": "Communicator Wiring for Sanctuary 2 Rev4",
+     "page": 60
+    },
+    {
+     "p": "Please see the EMS-C manual.",
+     "page": 60
+    },
+    {
+     "h": "Communicator Wiring for Sanctuary 3",
+     "page": 60
+    },
+    {
+     "p": "Refer to the EMS-C manual or see the installation manual section \"BMS Communication Cable Wiring\". The inverter port on the EMS-C connects to the parent inverter's PARALLEL A port. The parent inverter's PARALLEL B port connects to the next inverter's PARALLEL A port.",
+     "page": 60
+    },
+    {
+     "h": "Offline (no data showing on smart.lionenergy.com)",
+     "page": 60
+    },
+    {
+     "p": "Check to make sure the inverter and communicator are both powered on.",
+     "page": 60
+    },
+    {
+     "p": "If the communicator can't connect to WiFi, make sure the correct antenna is in the correct place. The antenna labeled cellular should connect to the cellular port on the EMS-C. The WiFi port on the EMS-C connects to the antenna labeled WiFi/Bluetooth. If the wrong antenna is used, reception will be poor.",
+     "page": 60
+    },
+    {
+     "h": "Changing the WiFi SSID and password",
+     "page": 60
+    },
+    {
+     "p": "For any of the following methods, local access within Bluetooth range of the Sanctuary is required to change the WiFi SSID/password.",
+     "page": 60
+    },
+    {
+     "p": "Mobile Browser",
+     "page": 60
+    },
+    {
+     "p": "Changing WiFi on a mobile browser is not compatible with all devices. If this does not work, try another method. Mobile App (Lion Smart) Currently, the Apple version of the Lion Smart app supports changing WiFi, but the Android version does not yet. Mobile App (Lion Technician) Installers with technician access using the Lion Technician app (either Apple or Android) can change the WiFi under Select Service > \"Change or Reconnect Network\". Laptop Changing WiFi on a laptop with Bluetooth should always work. Open a browser and go to smart.lionenergy.com. In the customer's product page, go to settings > change internet.",
+     "page": 61
+    },
+    {
+     "h": "Hard-wired Ethernet",
+     "page": 61
+    },
+    {
+     "p": "The EMS-C has an Ethernet port for connecting to a router. This is the most reliable connection.",
+     "page": 61
+    }
+   ]
+  },
+  {
+   "id": "solar",
+   "title": "Solar",
+   "from": 61,
+   "to": 65,
+   "blocks": [
+    {
+     "h": "Voltage",
+     "page": 61
+    },
+    {
+     "p": "The MPPT operating voltage is between 120V and 500V. The Sanctuary MPPT requires at least 120V DC to start operation. The maximum open circuit voltage must not exceed 500V. A significantly higher voltage may damage the inverter.",
+     "page": 61
+    },
+    {
+     "h": "Solar String Peak Open-Circuit Voltage Calculation",
+     "page": 61
+    },
+    {
+     "p": "When a solar installer connects a string of panels to the inverter, he must calculate the maximum voltage at the coldest temperature to avoid exceeding the inverter's 500V limit.",
+     "page": 61
+    },
+    {
+     "h": "Example Calculation",
+     "page": 61
+    },
+    {
+     "p": "There are two parameters we'll need from the datasheet. The first is the open-circuit voltage in full sun. For the \"390MS\" panel below, that's 48.2V.",
+     "page": 61
+    },
+    {
+     "p": "Notice the above footnote that states the lighting and temperature for the 48.2Voc. The next parameter we'll need is the temperature coefficient for Voc. A negative value means that the Voc decreases as temperature increases. This also means that Voc increases when temperature decreases.",
+     "page": 62
+    },
+    {
+     "p": "Let's say the installer wants to see if he can connect 10 panels in series. At 25�C, that would be 48.2V x 10 panels = 482V.",
+     "page": 62
+    },
+    {
+     "p": "Now we need to see how much colder he can get without going over 500V. First, we need to calculate the existing margin. 500 - 482 = 18V. 18/482 = 3.73% We can increase 3.73% in Voc. 3.73% / -0.29% = -12.87�C 25�C - 12.87�C = 12.1�C",
+     "page": 63
+    },
+    {
+     "p": "So at temperatures under 12�C, the string open-circuit voltage is going to exceed 500V in full sunlight. Let's try it with 9 panels.",
+     "page": 63
+    },
+    {
+     "p": "48.2V x 9 panels = 433.8V. Now we need to see how much colder he can get without going over 500V. First, we need to calculate the existing margin. 500 - 433.8 = 66.2V. 66.2/433.8 = 15.26% We can increase 15.26% in Voc. 15.26% / -0.29% = -52.6�C 25�C - 52.6�C = -27.6�C",
+     "page": 63
+    },
+    {
+     "p": "So at temperatures under -27.6�C, the string open-circuit voltage is going to exceed 500V in full sunlight.",
+     "page": 63
+    },
+    {
+     "h": "Polarity",
+     "page": 63
+    },
+    {
+     "p": "A common problem resulting in no solar power is when the PV lines are connected backwards. If the voltage from PV1+ to PV1- is approximately -1 V, the PV lines are reversed. The negative one volt reading happens because a reverse polarity will forward bias a diode in the MPPT input circuit.",
+     "page": 63
+    },
+    {
+     "h": "Ground Leakage",
+     "page": 63
+    },
+    {
+     "p": "If water gets inside a solar panel, it can result in a leakage path to ground. Excessive ground current may damage the inverter. Because of this, the inverter will shut down when ground current is detected. The Sanctuary 2 rev4 and Sanctuary 3 come with fuses on the MPPT inputs to protect the inverter. If any solar panel has a leakage path to ground, the inverter will shut down. This often happens during or after rain if a solar module or any of the wiring is no longer water tight. Continued operation with ground fault leakage may damage the inverter.",
+     "page": 63
+    },
+    {
+     "p": "If the ground fault alarm happens, check the solar panels for cracked glass, condensation or water spots inside the panels, or physical damage.",
+     "page": 63
+    },
+    {
+     "h": "Ground Current Measurements",
+     "page": 64
+    },
+    {
+     "p": "A clamp-on DC ammeter with resolution down to 1 mA is preferred to measure ground current leakage. During operation, if either the positive or negative lead is measured, the ammeter will indicate the current flow from that solar string. But if both the positive and negative lead of the string are measured at the same time, the current flow in opposite directions will cancel each other out of the measurement and the remaining commonmode current will be the ground leakage current.",
+     "page": 64
+    },
+    {
+     "p": "Use this method to measure ground current on each string. The problem might not reappear until it rains on the panels again.",
+     "page": 64
+    },
+    {
+     "h": "Rapid Shutdown MLPE",
+     "page": 64
+    },
+    {
+     "p": "The Sanctuary does not include any RSD transmitters. One common problem is forgetting to install an RSD transmitter for the MLPEs installed on the panels. Since the adoption of the 2017 NEC, solar panels on residential rooftops have been required to include rapid shutdown modules. If the RSD module does not keep receiving the stay-on signal, it will shut off output power. The RSD transmitter must be compatible with the module level power electronics (MLPE). Some MLPE units include both optimizer and RSD functionality in one module. One certain popular brand of optimizer is known for making significant noise. The manufacturer claims that this is normal. If the rapid solar shutdown modules get the signal from the RSD transmitter's CT on the PV lines, turning off the PV Disconnect switch will likely interrupt the keep-alive signal. Turning",
+     "page": 64
+    },
+    {
+     "p": "off the PV Disconnect switch does not turn off 12V power to the RSD transmitter. If the MLPE units instead receive a radio signal from the RSD transmitter, then the PV lines will still be energized when the PV Disconnect switch is off.",
+     "page": 65
+    },
+    {
+     "h": "Grid Voltage and Frequency affecting Solar Production",
+     "page": 65
+    },
+    {
+     "p": "When grid voltage exceeds a certain value, typically 106% of nominal, sell-back must be reduced. At 110% of nominal voltage, sell-back power must be reduced to zero. Grid overvoltage will reduce the amount of power the inverter is allowed to sell back to the grid. If the grid frequency exceeds 60.036 Hz, sell-back must be reduced. The grid frequency often reaches 60.1 Hz and this reduces the amount of sell-back allowed. The exact settings vary by location, and it's the installer's responsibility to make sure the inverter's DER settings comply with the utility company's requirements. If grid sell-back is disabled, the solar production will drop to the amount required by the loads after the battery is full.",
+     "page": 65
+    },
+    {
+     "h": "AC Solar",
+     "page": 65
+    },
+    {
+     "p": "The Sanctuary can be configured to accept another solar inverter's 240V AC output at the Sanctuary's generator port. The AC solar inverter must be grid following, meaning it can connect to the grid. Off-grid inverters cannot be used to connect AC solar power to the Sanctuary. All DER smart inverter settings applicable for your utility company should have already been programmed into the AC solar inverter. The DER settings usually include a five minute delay between the time the inverter is connected to the grid and can start generating power. This five minute delay is in addition to the time it takes the Sanctuary inverter to connect to the grid. If the generator port measures 240V AC, then it is ready to accept AC solar power. If the AC solar inverter isn't sending power to the Sanctuary, the problem is on the AC solar inverter's side. Sanctuary 2 revs 1 & 2 do not have an internal CT on the generator port. This means that AC solar power will not be tracked by the inverter. All later versions are able to track AC solar power with the internal CTs.",
+     "page": 65
+    }
+   ]
+  },
+  {
+   "id": "generator",
+   "title": "Generator",
+   "from": 66,
+   "to": 67,
+   "blocks": [
+    {
+     "p": "When the Sanctuary is using generator power, the generator connects internally to the load port of the Sanctuary. Voltage and frequency are from the generator. The generator needs to be connected to each inverter in parallel inverter systems.",
+     "page": 66
+    },
+    {
+     "p": "When running on generator power with solar also, the inverter will not charge the battery any faster than the generator battery charge current setting.",
+     "page": 66
+    },
+    {
+     "p": "The Sanctuary will not accept generator power when the Sanctuary is connected to the grid. This restriction is necessary to prevent the grid forming generator from connecting to the grid.",
+     "page": 66
+    },
+    {
+     "h": "Generator Auto-Start",
+     "page": 66
+    },
+    {
+     "p": "If auto-start is enabled, the Sanctuary will command the generator to turn on when off-grid and the battery is below the start SoC. The Sanctuary will turn off the generator when a stop condition is met.",
+     "page": 66
+    },
+    {
+     "p": "If auto-start isn't working, measure the voltage on the two-wire start wires. If it's zero volts, then either the inverter's generator relay is on, or the generator is not ready to run. If you unplug or disconnect the two-wire start wires from the inverter, you can measure continuity on the Sanctuary's dry-contact relay. Also measure voltage on the two-wire start wires from the generator. If it's 0V, the generator is not ready to run.",
+     "page": 66
+    },
+    {
+     "p": "If the generator continues to run after the inverter shuts off the two-wire start, check the voltage on the two-wire start terminals. Then unplug the two-wire start from the inverter. If that shuts off the generator, then the TVS diode may be leaking enough current to signal the generator to start. The TVS diode has been removed in later Sanctuary 2 rev4 and Sanctuary 3 inverters.",
+     "page": 66
+    },
+    {
+     "h": "Generator Manual Start",
+     "page": 66
+    },
+    {
+     "p": "If generator is enabled in the settings, the inverter will accept generator power when offgrid and generator voltage and frequency are within the window defined in the settings.",
+     "page": 66
+    },
+    {
+     "h": "Generator as Grid",
+     "page": 66
+    },
+    {
+     "p": "If generator as grid is selected, then the generator port will not be used. This setting is exclusively for off-grid installations that don't connect to the grid. The advantage of connecting the generator to the grid port is that the Sanctuary can be dark started from the",
+     "page": 66
+    },
+    {
+     "p": "generator on the grid port. The grid port can also support more current than the generator port.",
+     "page": 67
+    }
+   ]
+  },
+  {
+   "id": "alarm-fault-status-codes",
+   "title": "Alarm / Fault / Status Codes",
+   "from": 67,
+   "to": 67,
+   "faults": true,
+   "blocks": [
+    {
+     "p": "In general, an alarm means that the system has limited capability. In general, a fault means that the system has shut down to protect itself. If an alarm or fault does not clear after the cause has been fixed, power-cycle the inverter(s). For help troubleshooting persistent alarms, contact the Lion Energy ESS Support team.",
+     "page": 67
+    }
+   ]
+  },
+  {
+   "id": "commonly-used-terms-in-solar",
+   "title": "Commonly Used Terms in Solar",
+   "from": 97,
+   "to": 99,
+   "blocks": [
+    {
+     "p": "AC: Alternating Current. This is a form of electrical power where the voltage vs. time graph looks like a sine wave. Common household power is 120/240 V, 60 Hz AC in the United States.",
+     "page": 97
+    },
+    {
+     "p": "AC-Coupled Solar: In an AC-coupled system, solar panels generate DC power, which is then converted into AC power by a separate solar inverter or micro inverters. This AC power can be used to power home appliances and any excess is sold to the grid. The Lion Energy Sanctuary System offers the advantage of battery energy storage, allowing you to store the excess solar power to be used later.",
+     "page": 97
+    },
+    {
+     "p": "AHJ (Authority Having Jurisdiction): Your installer will work with the AHJ throughout the permitting process to ensure your installation meets their requirements.",
+     "page": 97
+    },
+    {
+     "p": "BESS: Battery Energy Storage System.",
+     "page": 97
+    },
+    {
+     "p": "BMS: Battery Management System. All types of lithium batteries require a BMS to prevent damage to the battery. The BMS constantly monitors the cell voltages, current, and temperature and may respond by disabling charging or disabling discharging.",
+     "page": 97
+    },
+    {
+     "p": "Bypass: If the Sanctuary was installed with a manual transfer switch, the essential or backup loads can be powered by the grid rather than the Sanctuary system. It serves as a temporary state during system maintenance, similar to taking a detour in a construction zone. A bypass switch allows homeowners or installers to temporarily bypass the Sanctuary system for servicing or troubleshooting while still maintaining power to the backup loads panel.",
+     "page": 97
+    },
+    {
+     "p": "C rate: The C rate for batteries is related to the Amp-hour capacity. For example, if a battery capacity is rated at 280 Ah, then one C rate is 280 Amps, and 0.1 C is 28 Amps.",
+     "page": 97
+    },
+    {
+     "p": "Consumption: Consumption refers to the power used by electrical loads in the home.",
+     "page": 97
+    },
+    {
+     "p": "CT (Current Transformer): CTs are devices used to measure the current flow in a wire. In the Lion Energy System, external CTs are installed according to specific guidelines to accurately monitor current flow.",
+     "page": 97
+    },
+    {
+     "p": "DC: DC refers to direct current, such as solar power and battery output.",
+     "page": 97
+    },
+    {
+     "p": "DER: Distributed Energy Resource - any power source connected to the grid. When connected to the grid, the Sanctuary is considered a DER.",
+     "page": 97
+    },
+    {
+     "p": "EPS (Emergency Power Supply, aka microgrid): This is an electrical system that can generate electricity either off-grid or connected to the grid.",
+     "page": 98
+    },
+    {
+     "p": "ESS: Energy Storage System.",
+     "page": 98
+    },
+    {
+     "p": "Essential/Backup Loads: Essential or backup loads refer to the circuits and devices powered by the Lion Energy Sanctuary system. These loads are backed up by batteries, inverters, and solar power, ensuring uninterrupted power supply during outages. Excess solar power can offset the usage of nonessential loads, providing the benefits of selfconsumption and energy savings.",
+     "page": 98
+    },
+    {
+     "p": "Grid: The grid refers to the power supply from the utility company. Energy meters installed by utility companies measure the amount of power consumed by a home, typically billed monthly.",
+     "page": 98
+    },
+    {
+     "p": "Inverter: An electrical device used to convert DC power to AC power.",
+     "page": 98
+    },
+    {
+     "p": "kWh: kilo Watt hour. Each kWh is equivalent to 1000 Watts of power for an hour.",
+     "page": 98
+    },
+    {
+     "p": "Load: A load refers to any active electrical circuit or device that uses power, such as light bulbs or appliances.",
+     "page": 98
+    },
+    {
+     "p": "MLPE: Module Level Power Electronics. These are electronic modules mounted under or near the solar panels. Rapid Shutdown Devices and optimizers are two kinds of MLPE.",
+     "page": 98
+    },
+    {
+     "p": "MPPT: Maximum Power Point Tracking. This is a type of DC to DC power converter that is able to extract the maximum solar power available. It accepts a range of DC voltages from solar and converts it to another DC voltage.",
+     "page": 98
+    },
+    {
+     "p": "NEC: National Electric Code. The NEC specifies electrical safety requirements. Each jurisdiction decides which version of the NEC to adopt and when.",
+     "page": 98
+    },
+    {
+     "p": "Net (billing) meter: Also called revenue meter. Unlike the old analog meters of the past, a net meter allows the utility company to track power consumed by the home, and power sent back to the grid.",
+     "page": 98
+    },
+    {
+     "p": "NRTL: Nationally Recognized Testing Laboratory.",
+     "page": 98
+    },
+    {
+     "p": "One-line diagram: This is a type of electrical schematic diagram that abbreviates the connections by only drawing one line when multiple wires are used in the circuit. This assumes the installer knows where to wire the hot and neutral wires.",
+     "page": 98
+    },
+    {
+     "p": "PCS: Power Control System.",
+     "page": 98
+    },
+    {
+     "p": "PCC: Point of Common Coupling. This is where the customer's electrical system connects to the grid. It's basically at the utility billing meter.",
+     "page": 99
+    },
+    {
+     "p": "PTO: Permission To Operate. Permission to operate may be given after the AHJ inspects the installation.",
+     "page": 99
+    },
+    {
+     "p": "PV (Photovoltaic): PV refers to solar energy generation using photovoltaic cells. PV systems convert sunlight into electricity, contributing to sustainable power sources. The Sanctuary system works in conjunction with PV systems to store and distribute solar power efficiently.",
+     "page": 99
+    },
+    {
+     "p": "PV meter: This meter is for measuring solar production only. The utility company can use the information from this meter to help you understand how your solar generation affects your electric bill.",
+     "page": 99
+    },
+    {
+     "p": "SLD: Single Line Diagram. See also \"one-line diagram\".",
+     "page": 99
+    },
+    {
+     "p": "Solar Panel / Module: A solar panel is composed of solar cells wired together to capture energy from sunlight and convert it to electricity. The panels are specially built housings designed to keep water out and last for decades. They are built in a variety of sizes and power ratings. Solar panels for home use are typically rated at 300 to 600 Watts and are approximately 15% to 25% efficient. Output voltage varies from 30 V to 80 V per panel.",
+     "page": 99
+    },
+    {
+     "p": "TOU (Time of Use): The inverter has six different time slots where the battery behavior may be changed throughout the day. See the Settings Guide for how these settings work.",
+     "page": 99
+    }
+   ]
+  },
+  {
+   "id": "reference-materials",
+   "title": "Reference Materials",
+   "from": 99,
+   "to": 101,
+   "blocks": [
+    {
+     "p": "Lion Energy Web Site: https://lionenergy.com/",
+     "page": 99
+    },
+    {
+     "p": "� Sanctuary 2 Spec Sheet � Sanctuary 3 Spec Sheet",
+     "page": 99
+    },
+    {
+     "p": "Installers page: https://lionenergy.com/pages/installers",
+     "page": 99
+    },
+    {
+     "p": "� Apple app / Google app / web site � Certification portal for installers",
+     "page": 99
+    },
+    {
+     "p": "o Training videos o Compliance certificates (UL 9540, UL 9540A, UL 1973, UL 1741, SA, SB) o Warranty information � Knowledge library o Sanctuary Settings Guide",
+     "page": 99
+    },
+    {
+     "p": "Sanctuary User Manual o Alarm / Fault List o Technical Service Manual (this manual)",
+     "page": 100
+    },
+    {
+     "p": "� Sanctuary 2 Installation Guide � Sanctuary 3 Installation Guide � Step-by-step Guide � EMS-C Manual � CT Manual � Submit a wiring diagram for review � Compliance Documents",
+     "page": 100
+    },
+    {
+     "h": "Troubleshooting Assistance",
+     "page": 100
+    },
+    {
+     "p": "Installers are encouraged to contact ESS support if they need additional assistance in troubleshooting. Sanctuary (ESS) Support (435) 244-3352 ess.support@lionenergy.com (8:00 AM - 5:00 PM M-F)",
+     "page": 100
+    },
+    {
+     "p": "385.375.8191 Monday � Friday 9:00 AM � 5:00 PM MST",
+     "page": 101
+    },
+    {
+     "p": "735 S. Auto Mall Drive Suite 200 American Fork, Utah 84003",
+     "page": 101
+    },
+    {
+     "p": "info@lionenergy.com www.lionenergy.com @lionenergy",
+     "page": 101
+    }
+   ]
+  }
+ ]
+}

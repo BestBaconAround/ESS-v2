@@ -225,3 +225,22 @@ body {
 .qr-section { margin-top: 8px; scroll-margin-top: 110px; }
 .qr-section + .qr-section { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
 .qr-heading { font: 700 1.3rem var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 12px; }
+
+/* ---- Technical Service Manual pages ---- */
+.menu { max-height: min(75vh, 640px); overflow-y: auto; }
+.menu .menu-toggle { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--accent); }
+.submenu { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); background: var(--panel-2); }
+.menu .submenu button { padding: 9px 16px 9px 14px; font-weight: 600; font-size: 0.76rem; letter-spacing: 0.04em; display: flex; gap: 10px; align-items: baseline; }
+.toc-page { flex: none; min-width: 2ch; text-align: right; color: var(--dim); font-variant-numeric: tabular-nums; }
+.tsm-kicker { margin: 0 0 8px; font: 600 0.72rem var(--mono); letter-spacing: 0.1em; color: var(--accent); }
+.tsm-body { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; max-width: 760px; }
+.tsm-block { position: relative; }
+.tsm-block p { margin: 0; overflow-wrap: anywhere; }
+.tsm-page { display: block; margin-bottom: 4px; font: 600 0.66rem var(--mono); letter-spacing: 0.08em; color: var(--dim); border-top: 1px dashed var(--line); padding-top: 6px; }
+.tsm-h { font: 700 1.05rem var(--mono); text-transform: uppercase; letter-spacing: 0.03em; margin: 10px 0 0; color: var(--accent); }
+.tsm-pager { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin: 28px 0 14px; }
+.fault-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.fault-btn { width: 100%; text-align: left; font: 400 0.84rem var(--mono); color: var(--text); background: var(--panel); border: 1px solid var(--line); padding: 9px 12px; border-radius: 2px; cursor: pointer; overflow-wrap: anywhere; }
+.fault-btn:hover, .fault-btn.current { border-color: var(--accent); }
+.fault-code { color: var(--accent); font-weight: 700; margin-right: 6px; }
+.fault-list .answer { margin-top: 6px; }
