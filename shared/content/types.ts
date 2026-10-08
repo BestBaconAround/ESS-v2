@@ -1,0 +1,143 @@
+// Content data model. Everything the learner reads lives in data files that
+// satisfy these types, so new modules/lessons/quizzes need no UI changes.
+// See CLAUDE.md ("Content structure", "Hardware variants") for the rules.
+
+/** Hardware revisions: Sanctuary 2 Revs 1-4 (Gen 2, black) and Sanctuary 3 (Gen 3, white). Add new values here for new hardware. */
+export type Revision = 'rev1' | 'rev2' | 'rev3' | 'rev4' | 'gen3'
+
+/**
+ * Which revisions a fact applies to. `'all'` means all four Sanctuary 2 revisions (Revs 1-4) and NOT Sanctuary 3: most of the
+ * content was written before Sanctuary 3 was added. A fact that also holds for Sanctuary 3 is tagged `EVERY` (see labels.ts).
+ */
+export type RevisionTag = 'all' | Revision[]
+
+/** Where a fact came from. Never mix sources: tag each fact. */
+export type SourceTag =
+  | 'manual' // Gen2 12K Installation Guide & Manual, updated 12/20/24 (4) - Rev 4
+  | 'san2_2' // Installation Guide, updated 4/25/25 (2) - Revs 1-2
+  | 'san2_3' // Installation Guide, updated 4/25/25 (3) - Rev 3
+  | 'emsc' // EMS-C Manual, updated 4/13/25
+  | 'san3' // Sanctuary 3 Installation Guide & Manual, updated 3/10/26 (48 pp) - Sanctuary 3
+  | 'ctguide' // Lion Energy CT Guide, updated 4/09/26 (13 pp)
+  | 'video' // Commissioning walkthrough video transcript
+  | 'author' // Field knowledge supplied by the course author
+  | 'web' // Public web page found by search (not Lion material). Never mixed with Lion facts; carries a url and the date searched
+  | 'tsm' // Sanctuary Technical Service Manual, updated 9/30/2026 (Sanctuary 2 and 3)
+  | 'settings' // Settings for Sanctuary 2 and Sanctuary 3, rev1.1 6/4/2026 (user and installer level only)
+  | 'notes' // The author's own ESS support notes (personal details and internal-only items removed)
+
+export interface SourceRef {
+  source: SourceTag
+  /** PDF page numbers (equal to printed page numbers). Omit for video/author. */
+  pages?: number[]
+  note?: string
+  /** Web sources only: the page the fact came from. */
+  url?: string
+}
+
+/** A single teachable fact. */
+export interface Fact {
+  text: string
+  sources: SourceRef[]
+  revisions: RevisionTag
+}
+
+export interface RevisionDiffRow {
+  label: string
+  values: Partial<Record<Revision, string>>
+  sources: SourceRef[]
+}
+
+export type Block =
+  | { type: 'text'; text: string }
+  | { type: 'facts'; title?: string; items: Fact[] }
+  /** "What the customer says" + what the specialist does. */
+  | { type: 'call'; customer: string; answer: string; sources: SourceRef[]; revisions: RevisionTag }
+  | { type: 'callout'; tone: 'warning' | 'note'; text: string; sources: SourceRef[]; revisions: RevisionTag }
+  /** Visible gap: something not in the source. Never guess; leave a TODO. */
+  | { type: 'todo'; text: string }
+  | { type: 'revisionDiff'; title: string; rows: RevisionDiffRow[] }
+  /** A photo from public/images. `src` is relative to public/. Alt text and a caption are required. */
+  | {
+      type: 'image'
+      src: string
+      alt: string
+      caption: string
+      width: number
+      height: number
+      sources: SourceRef[]
+      revisions: RevisionTag
+    }
+
+export interface Lesson {
+  /** Stable. Progress is keyed by this: never rename or reuse. */
+  id: string
+  title: string
+  summary: string
+  blocks: Block[]
+}
+
+export interface QuizChoice {
+  id: string
+  text: string
+}
+
+export interface QuizQuestion {
+  /** Stable. Never rename or reuse. */
+  id: string
+  lessonId?: string
+  prompt: string
+  kind: 'single' | 'multi' | 'truefalse'
+  choices: QuizChoice[]
+  /** Ids of the correct choices. */
+  correct: string[]
+  /** Required: shown after answering. */
+  explanation: string
+  sources: SourceRef[]
+  revisions: RevisionTag
+}
+
+export interface Quiz {
+  /** Fraction of questions needed to pass, 0-1. */
+  passMark: number
+  questions: QuizQuestion[]
+}
+
+/** Simulator kinds. The engine + UI for each kind lives in src/sims and src/sims-ui. */
+export type SimKind =
+  | 'sizing-calculator'
+  | 'inverter-panel'
+  | 'wall-layout'
+  | 'multimeter-bench'
+  | 'wiring-board'
+  | 'continuity-bench'
+  | 'power-up-sequence'
+
+export interface SimDef {
+  /** Stable. Sim progress is keyed by this. */
+  id: string
+  kind: SimKind
+  title: string
+  intro: string
+}
+
+export type ModuleStatus = 'ready' | 'coming-soon'
+
+export interface OutlineItem {
+  text: string
+  sources: SourceRef[]
+}
+
+export interface Module {
+  /** Stable. Never rename or reuse. */
+  id: string
+  number: number
+  title: string
+  summary: string
+  status: ModuleStatus
+  /** Planned topics. Shown on "Coming soon" modules. */
+  outline: OutlineItem[]
+  lessons: Lesson[]
+  quiz?: Quiz
+  sim: SimDef
+}
