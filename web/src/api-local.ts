@@ -28,10 +28,10 @@ const get = (): Knowledge => {
 
 export const ask = async (question: string, revision: RevisionChoice): Promise<AnswerResponse> => answer(get(), question.slice(0, 500), revision)
 
-export const passage = async (id: string, revision: RevisionChoice): Promise<Passage> => {
+export const passage = async (id: string, revision: RevisionChoice, full = false): Promise<Passage> => {
   const chunk = get().byId.get(id)
   if (!chunk) throw new Error('No such passage.')
-  return passageFor(chunk, revision)
+  return passageFor(chunk, revision, full ? Infinity : undefined)
 }
 
 export const health = async (): Promise<Health> => ({ ok: true, version: VERSION, passages: get().chunks.length, mode: 'local' })

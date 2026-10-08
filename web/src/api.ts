@@ -18,7 +18,7 @@ async function json<T>(r: Response): Promise<T> {
 export const ask = (question: string, revision: RevisionChoice): Promise<AnswerResponse> =>
   fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question, revision }) }).then((r) => json<AnswerResponse>(r))
 
-export const passage = (id: string, revision: RevisionChoice): Promise<Passage> => fetch(`/api/passage?id=${encodeURIComponent(id)}&rev=${revision}`).then((r) => json<Passage>(r))
+export const passage = (id: string, revision: RevisionChoice, full = false): Promise<Passage> => fetch(`/api/passage?id=${encodeURIComponent(id)}&rev=${revision}${full ? '&full=1' : ''}`).then((r) => json<Passage>(r))
 
 export const health = (): Promise<Health> => fetch('/api/health').then((r) => json<Health>(r))
 

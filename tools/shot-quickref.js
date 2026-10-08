@@ -1,0 +1,21 @@
+// Screenshots of the Quick ref menu and pages. Same way to run as shot.js.
+(async () => {
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+  await sleep(1500)
+  const toggle = document.querySelector('.dropdown > .nav-item')
+  toggle.click()
+  await sleep(300)
+  await sfc.capture('q1-menu')
+  const items = [...document.querySelectorAll('#quickref-menu button')].map((b) => b.textContent)
+  document.querySelector('#quickref-menu button').click()
+  await sleep(600)
+  await sfc.capture('q2-battery')
+  const batteryCards = [...document.querySelectorAll('.quickref .answer')].map((a) => a.querySelector('.titlebar-text').textContent + ' / ' + a.querySelectorAll('.lines li').length)
+  document.querySelector('.dropdown > .nav-item').click()
+  await sleep(200)
+  document.querySelectorAll('#quickref-menu button')[1].click()
+  await sleep(600)
+  await sfc.capture('q3-inverter')
+  const invCards = [...document.querySelectorAll('.quickref .answer')].map((a) => a.querySelector('.titlebar-text').textContent + ' / ' + a.querySelectorAll('.lines li').length)
+  return { items, batteryCards, invCards, overflow: document.documentElement.scrollWidth > innerWidth }
+})()

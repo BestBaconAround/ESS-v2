@@ -129,7 +129,7 @@ export function createApp(opts: AppOptions) {
       const chunk = opts.knowledge.byId.get(url.searchParams.get('id') ?? '')
       const rev = asRevision(url.searchParams.get('rev') ?? 'all')
       if (!chunk || !rev) return send(res, 404, { error: 'No such passage.' })
-      return send(res, 200, passageFor(chunk, rev))
+      return send(res, 200, passageFor(chunk, rev, url.searchParams.get('full') === '1' ? Infinity : undefined))
     }
 
     if (url.pathname.startsWith('/api/')) return send(res, 404, { error: 'No such endpoint.' })

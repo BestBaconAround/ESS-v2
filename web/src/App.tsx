@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ask, health, passage as fetchPassage, suggestions as fetchSuggestions, type AnswerResponse, type Health, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
+import QuickRef, { QUICK_REFS, type QuickRefId } from './QuickRef'
 
 const REVISIONS: { value: RevisionChoice; label: string }[] = [
   { value: 'all', label: 'ALL' },
@@ -46,6 +47,9 @@ export default function App() {
   const [rev, setRev] = useState<RevisionChoice>(loadRevision)
   const [status, setStatus] = useState<Health | null | 'offline'>(null)
   const [chips, setChips] = useState<string[]>([])
+  const [view, setView] = useState<'chat' | QuickRefId>('chat')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
   const nextId = useRef(1)
   const lastQuestion = useRef<HTMLDivElement | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -62,6 +66,27 @@ export default function App() {
       /* ignore */
     }
   }, [rev])
+
+  // Close the Quick ref menu on an outside click or Escape.
+  useEffect(() => {
+    if (!menuOpen) return
+    const onDown = (e: MouseEvent) => {
+      if (!navRef.current?.contains(e.target as Node)) setMenuOpen(false)
+    }
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenuOpen(false)
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [menuOpen])
+
+  const go = (v: 'chat' | QuickRefId) => {
+    setView(v)
+    setMenuOpen(false)
+    window.scrollTo({ top: 0 })
+  }
 
   // After each new answer, bring the question and the start of its reply into view.
   useEffect(() => {
@@ -119,6 +144,28 @@ export default function App() {
             <div className="wordmark-sub">// CHAT</div>
           </div>
         </div>
+        <nav className="nav" ref={navRef} aria-label="Pages">
+          <button type="button" className={`nav-item ${view === 'chat' ? 'current' : ''}`} onClick={() => go('chat')} aria-current={view === 'chat' ? 'page' : undefined}>
+            CHAT
+          </button>
+          <div className="dropdown">
+            <button type="button" className={`nav-item ${view !== 'chat' ? 'current' : ''}`} aria-haspopup="true" aria-expanded={menuOpen} aria-controls="quickref-menu" onClick={() => setMenuOpen((v) => !v)}>
+              QUICK REF <span className={`caret ${menuOpen ? 'up' : ''}`} aria-hidden />
+            </button>
+            {menuOpen && (
+              <ul id="quickref-menu" className="menu">
+                <li className="menu-head">LOSS OF COMMUNICATION</li>
+                {QUICK_REFS.map((q) => (
+                  <li key={q.id}>
+                    <button type="button" className={view === q.id ? 'current' : ''} onClick={() => go(q.id)} aria-current={view === q.id ? 'page' : undefined}>
+                      {q.menu.toUpperCase()}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </nav>
         <div className="topbar-right">
           <div className="status" aria-live="polite">
             <span className={`dot ${online ? 'on' : status === 'offline' ? 'off' : ''}`} aria-hidden />
@@ -143,7 +190,13 @@ export default function App() {
         </div>
       </header>
 
-      <main className="main">
+      {view !== 'chat' && (
+        <main className="main">
+          <QuickRef page={QUICK_REFS.find((q) => q.id === view)!} rev={rev} />
+        </main>
+      )}
+
+      <main className="main" hidden={view !== 'chat'}>
         {messages.length === 0 && (
           <section className="hero">
             <h1>
@@ -199,7 +252,7 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="bottombar">
+      <footer className="bottombar" hidden={view !== 'chat'}>
         <form onSubmit={onSubmit} className="inputrow">
           <label className="sr-only" htmlFor="q">
             Your question

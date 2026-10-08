@@ -37,7 +37,7 @@ export type AnswerResponse =
 const MAX_LINES = 12
 
 /** One passage as the page shows it: only the lines for the chosen revision, each with its sources. */
-export function passageFor(chunk: Chunk, rev: RevisionChoice): Passage {
+export function passageFor(chunk: Chunk, rev: RevisionChoice, limit = MAX_LINES): Passage {
   const all = chunk.lines.filter((l) => appliesToRevision(l.revisions, rev))
   return {
     id: chunk.id,
@@ -45,7 +45,7 @@ export function passageFor(chunk: Chunk, rev: RevisionChoice): Passage {
     where: chunk.where,
     kind: chunk.kind,
     total: all.length,
-    lines: all.slice(0, MAX_LINES).map((l) => ({ text: l.text, revisions: revisionText(l.revisions), sources: [...new Set(l.sources.map(sourceText))] })),
+    lines: all.slice(0, limit).map((l) => ({ text: l.text, revisions: revisionText(l.revisions), sources: [...new Set(l.sources.map(sourceText))] })),
   }
 }
 

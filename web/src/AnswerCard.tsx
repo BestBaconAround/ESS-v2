@@ -4,8 +4,8 @@ import type { Passage } from './api'
 /** Steps shown before "Show all". Keeps one answer from filling the screen. */
 const PREVIEW_LINES = 3
 
-export default function AnswerCard({ passage, index }: { passage: Passage; index?: number }) {
-  const [all, setAll] = useState(false)
+export default function AnswerCard({ passage, index, open = false }: { passage: Passage; index?: number; open?: boolean }) {
+  const [all, setAll] = useState(open)
   const shown = all ? passage.lines : passage.lines.slice(0, PREVIEW_LINES)
   const sources = [...new Set(passage.lines.flatMap((l) => l.sources))]
   const more = passage.total - PREVIEW_LINES
