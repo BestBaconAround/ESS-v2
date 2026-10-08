@@ -210,3 +210,9 @@ body {
   .footnote { text-align: left; }
 }
 @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+.qr-short { font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+.qr-full { margin-top: 6px; font: 400 0.74rem var(--mono); color: var(--muted); }
+.qr-full summary { cursor: pointer; letter-spacing: 0.08em; list-style: none; }
+.qr-full summary::before { content: '+ '; color: var(--accent); }
+.qr-full[open] summary::before { content: '- '; }
+.qr-full p { margin: 8px 0 0; font: 400 0.95rem/1.5 inherit; color: var(--text); }

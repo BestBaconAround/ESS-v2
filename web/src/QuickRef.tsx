@@ -8,6 +8,8 @@ export type QuickRefId = 'loc-battery' | 'loc-inverter'
 interface Pick {
   passage: string
   starts: string
+  /** A short reading of that line for quick scanning. The full line stays one tap away. */
+  short: string
 }
 
 interface Page {
@@ -28,12 +30,12 @@ export const QUICK_REFS: Page[] = [
     title: 'Loss of communication: battery',
     intro: 'The app says the battery is disconnected. Steps are for Sanctuary 2; Sanctuary 3 is under More detail.',
     steps: [
-      { passage: 'ts-battery-no-comm', starts: 'Check the BMS cable first' },
-      { passage: 'ts-battery-no-comm', starts: 'Make sure the battery voltage is above 51 V' },
-      { passage: 'ts-battery-no-comm', starts: 'Look at the battery BMS port' },
-      { passage: 'ts-battery-no-comm', starts: 'Still no communication' },
-      { passage: 'ts-battery-no-comm', starts: 'If any of the three has no continuity' },
-      { passage: 'ts-battery-no-comm', starts: 'If the BMS connector is good' },
+      { passage: 'ts-battery-no-comm', starts: 'Check the BMS cable first', short: 'Test the BMS cable. Replace it if it fails.' },
+      { passage: 'ts-battery-no-comm', starts: 'Make sure the battery voltage is above 51 V', short: 'Battery voltage above 51 V? If not, use the "will not address, or reads 0 V" entry.' },
+      { passage: 'ts-battery-no-comm', starts: 'Look at the battery BMS port', short: 'Check the BMS port: round 4-pin or Ethernet.' },
+      { passage: 'ts-battery-no-comm', starts: 'Still no communication', short: 'Round 4-pin: check continuity of the port and connector.' },
+      { passage: 'ts-battery-no-comm', starts: 'If any of the three has no continuity', short: 'No continuity: replace the BMS connector.' },
+      { passage: 'ts-battery-no-comm', starts: 'If the BMS connector is good', short: 'Still no communication: replace the BMS or the battery.' },
     ],
     more: ['ts-battery-no-comm', 'ts-gen3-battery-comm', 'ts-fault-a2_11'],
   },
@@ -43,12 +45,12 @@ export const QUICK_REFS: Page[] = [
     title: 'Loss of communication: inverter',
     intro: 'Four links can fail. Work down the list. Steps are for Sanctuary 2; Sanctuary 3 is under More detail.',
     steps: [
-      { passage: 'proc:p-comms-map', starts: 'If any Ethernet cable fails the tester' },
-      { passage: 'proc:p-comms-map', starts: 'Inverter to battery (Sanctuary 2)' },
-      { passage: 'proc:p-comms-map', starts: 'Check each battery in the Technician app' },
-      { passage: 'proc:p-comms-map', starts: 'Inverter to inverter (parallel)' },
-      { passage: 'proc:p-comms-map', starts: 'Communicator to inverter' },
-      { passage: 'proc:p-comms-map', starts: 'Communicator to the internet' },
+      { passage: 'proc:p-comms-map', starts: 'If any Ethernet cable fails the tester', short: 'Test every Ethernet cable. Replace any that fail.' },
+      { passage: 'proc:p-comms-map', starts: 'Inverter to battery (Sanctuary 2)', short: 'Battery link (A2_11): all batteries on one bus, each with an address.' },
+      { passage: 'proc:p-comms-map', starts: 'Check each battery in the Technician app', short: 'Technician app: Read Battery Address on each battery.' },
+      { passage: 'proc:p-comms-map', starts: 'Inverter to inverter (parallel)', short: 'Parallel link (A1_11): check cables and matching firmware.' },
+      { passage: 'proc:p-comms-map', starts: 'Communicator to inverter', short: 'Communicator link (E1_1): inverters on, cables right, power-cycle it.' },
+      { passage: 'proc:p-comms-map', starts: 'Communicator to the internet', short: 'Internet: reset the communicator, wait 3 minutes, use 2.4 GHz Wi-Fi.' },
     ],
     more: ['proc:p-comms-map', 'ts-fault-e1_1', 'ts-fault-a1_11'],
   },
@@ -73,15 +75,15 @@ export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoic
   }, [page, rev])
 
   // Steps that do not apply to the chosen revision drop out, and the list still counts from 1.
-  const steps: AnswerLine[] = []
+  const steps: { line: AnswerLine; short: string }[] = []
   if (loaded) {
     for (const pick of page.steps) {
       const p = loaded.get(pick.passage)
       const line = p && !(p instanceof Error) ? p.lines.find((l) => l.text.startsWith(pick.starts)) : undefined
-      if (line) steps.push(line)
+      if (line) steps.push({ line, short: pick.short })
     }
   }
-  const sources = [...new Set(steps.flatMap((l) => l.sources))]
+  const sources = [...new Set(steps.flatMap((s) => s.line.sources))]
   const more = loaded ? page.more.map((id) => loaded.get(id)).filter((p): p is Passage => !!p && !(p instanceof Error)) : []
 
   return (
@@ -92,14 +94,18 @@ export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoic
       {loaded && steps.length === 0 && <p className="muted">Nothing here applies to the revision you chose.</p>}
       {steps.length > 0 && (
         <ol className="qr-steps">
-          {steps.map((l, i) => (
+          {steps.map(({ line: l, short }, i) => (
             <li key={i}>
               <span className="qr-num" aria-hidden>
                 {i + 1}
               </span>
               <div>
                 {!GENERIC_TAGS.includes(l.revisions) && <span className="tag">{l.revisions}</span>}
-                {l.text}
+                <span className="qr-short">{short}</span>
+                <details className="qr-full">
+                  <summary>FULL STEP</summary>
+                  <p>{l.text}</p>
+                </details>
               </div>
             </li>
           ))}
