@@ -1,8 +1,11 @@
-# Manual GitHub Pages deploy. Run it from the Actions tab after enabling
-# Settings > Pages > Source: "GitHub Actions". Builds the one-file chatbot (no server) into ./dist-static.
+# GitHub Pages deploy. Runs on every push to main, and by hand from the Actions tab. Needs
+# Settings > Pages > Source: "GitHub Actions". Tests run first, so a failing test stops the deploy.
+# Builds the one-file chatbot (no server) into ./dist-static.
 name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:

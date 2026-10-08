@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { Fragment, useEffect, useRef, useState, type FormEvent } from 'react'
 import { ask, health, passage as fetchPassage, suggestions as fetchSuggestions, type AnswerResponse, type Health, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
 import QuickRef, { QUICK_REFS, type QuickRefId } from './QuickRef'
@@ -154,13 +154,17 @@ export default function App() {
             </button>
             {menuOpen && (
               <ul id="quickref-menu" className="menu">
-                <li className="menu-head">LOSS OF COMMUNICATION</li>
-                {QUICK_REFS.map((q) => (
-                  <li key={q.id}>
-                    <button type="button" className={view === q.id ? 'current' : ''} onClick={() => go(q.id)} aria-current={view === q.id ? 'page' : undefined}>
-                      {q.menu.toUpperCase()}
-                    </button>
-                  </li>
+                {[...new Set(QUICK_REFS.map((q) => q.group))].map((g) => (
+                  <Fragment key={g}>
+                    <li className="menu-head">{g}</li>
+                    {QUICK_REFS.filter((q) => q.group === g).map((q) => (
+                      <li key={q.id}>
+                        <button type="button" className={view === q.id ? 'current' : ''} onClick={() => go(q.id)} aria-current={view === q.id ? 'page' : undefined}>
+                          {q.menu.toUpperCase()}
+                        </button>
+                      </li>
+                    ))}
+                  </Fragment>
                 ))}
               </ul>
             )}
