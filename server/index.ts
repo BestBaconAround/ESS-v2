@@ -12,7 +12,8 @@ const port = Number(process.env.PORT ?? 3000)
 const host = process.env.HOST ?? '127.0.0.1'
 
 const knowledge = loadKnowledge()
-const app = createApp({ knowledge, webDir: `${root}web/dist`, version: pkg.version })
+// TRUST_PROXY=1 when it sits behind a tunnel, so the rate limit counts each visitor separately.
+const app = createApp({ knowledge, webDir: `${root}web/dist`, version: pkg.version, trustProxy: process.env.TRUST_PROXY === '1' })
 createServer((req, res) => {
   app(req, res).catch(() => {
     if (!res.headersSent) res.writeHead(500, { 'Content-Type': 'application/json' })
