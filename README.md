@@ -38,6 +38,14 @@ then open Actions > Deploy to GitHub Pages > Run workflow (the workflow is manua
   `shared/ask/` (the tokenizer, the search, the corpus builder). Search tests are in `shared/ask/search.test.ts`.
 - `web/` is the page (React + Vite): a dark HUD style with one yellow accent, monospace caps and square panels.
 
+## Content edited here since the copy
+`shared/content` is now the copy this project maintains. Edits made here that the website's copy does not have (re-apply them if you ever
+re-copy):
+- 2026-10-08, author decision: communication troubleshooting starts with the cable. `ts-battery-no-comm` now starts with testing or
+  replacing the BMS cable, then "make sure the battery voltage is above 51 V". `ts-gen3-battery-comm` now starts with the cable steps
+  (check, test, replace) and then the power button and LED checks. The 51 V check was not added to Sanctuary 3: that figure is the
+  Sanctuary 2 range and no Sanctuary 3 number is in the sources.
+
 ## Rules for the content
 - Never invent specs, fault codes or procedures. The chatbot can only say what is in `shared/content`. A gap in the content
   stays a gap; do not paper over it in the server or the page.
