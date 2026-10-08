@@ -128,24 +128,6 @@ describe('server', () => {
     }
   })
 
-  it('counts each visitor separately behind a proxy, and ignores the proxy header otherwise', async () => {
-    await new Promise<void>((done) => server.close(() => done()))
-    const app = createApp({ knowledge, webDir, version: '9.9.9', rateLimit: 2, trustProxy: true })
-    server = createServer((req, res) => void app(req, res))
-    await new Promise<void>((done) => server.listen(0, '127.0.0.1', () => done()))
-    base = `http://127.0.0.1:${(server.address() as { port: number }).port}`
-    const as = (ip: string) => fetch(`${base}/api/ask`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'CF-Connecting-IP': ip }, body: JSON.stringify({ question: 'A2_10' }) }).then((r) => r.status)
-    expect([await as('1.1.1.1'), await as('1.1.1.1'), await as('1.1.1.1')]).toEqual([200, 200, 429])
-    expect(await as('2.2.2.2')).toBe(200)
-    // Without trustProxy a visitor cannot dodge the limit by sending a different header.
-    await new Promise<void>((done) => server.close(() => done()))
-    await start(2)
-    const spoof = (ip: string) => fetch(`${base}/api/ask`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'CF-Connecting-IP': ip }, body: JSON.stringify({ question: 'A2_10' }) }).then((r) => r.status)
-    expect([await spoof('3.3.3.3'), await spoof('4.4.4.4'), await spoof('5.5.5.5')]).toEqual([200, 200, 429])
-    await new Promise<void>((done) => server.close(() => done()))
-    await start()
-  })
-
   it('limits how fast one address can ask', async () => {
     await new Promise<void>((done) => server.close(() => done()))
     await start(3)

@@ -11,8 +11,6 @@ export interface AppOptions {
   version: string
   /** Requests per minute per address to /api/ask. */
   rateLimit?: number
-  /** Behind a tunnel or proxy every request comes from 127.0.0.1, so use the visitor address the proxy passes along. */
-  trustProxy?: boolean
 }
 
 export const MAX_QUESTION = 500
@@ -73,8 +71,6 @@ export function createApp(opts: AppOptions) {
 
   const limited = (ip: string): boolean => {
     const now = Date.now()
-    // Forget addresses whose minute is over, so the table cannot grow without limit.
-    if (hits.size > 500) for (const [k, v] of hits) if (v.reset < now) hits.delete(k)
     const e = hits.get(ip)
     if (!e || e.reset < now) {
       hits.set(ip, { count: 1, reset: now + 60_000 })
@@ -104,8 +100,7 @@ export function createApp(opts: AppOptions) {
 
   return async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     const url = new URL(req.url ?? '/', 'http://localhost')
-    const forwarded = opts.trustProxy ? String(req.headers['cf-connecting-ip'] ?? req.headers['x-forwarded-for'] ?? '').split(',')[0].trim() : ''
-    const ip = forwarded || (req.socket.remoteAddress ?? 'unknown')
+    const ip = req.socket.remoteAddress ?? 'unknown'
 
     if (url.pathname === '/api/health' && req.method === 'GET') {
       return send(res, 200, { ok: true, version: opts.version, passages: opts.knowledge.chunks.length })

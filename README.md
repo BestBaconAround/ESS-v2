@@ -15,22 +15,16 @@ By default the server only listens on this computer (`127.0.0.1`). `HOST=0.0.0.0
 network reach it. There is no login, so do not put it on the open internet without something in front of it (HTTPS and a
 password at least). `PORT` changes the port.
 
-## Reach it from your phone or another place
-`Start Remote Chat.bat` starts the server and a Cloudflare quick tunnel (no account, nothing to sign in to). The tunnel window prints
-a public `https://....trycloudflare.com` address; open it on any device. Things to know:
-- **There is no password.** Anyone who has the address can ask questions. The address is long and random, the content is the same as
-  the public website, and each visitor is limited to 60 questions a minute, but treat the address like a secret anyway.
-- The address changes every time and stops working when the two windows close. A fixed address needs a free Cloudflare account and a
-  named tunnel, and a password is a good idea then.
-- Another option is Tailscale (private, only your own devices): install it on this PC and your phone and open `http://<pc-name>:3000`
-  with `HOST=0.0.0.0` set. Nothing is exposed to the public internet.
-- The tunnel program is downloaded once into `tools/cloudflared/` (not committed).
-
 ## One-file version (no server)
 `npm run build:static` builds `dist-static/index.html` and `artifact/index.html`: the whole chatbot in one file. The search is plain
 JavaScript, so it runs in the browser with no server and no network. It uses `web/src/api-local.ts` in place of the server calls.
 `artifact/index.html` is the form the Artifact tool publishes (a private page on the owner's Claude account, which works from a phone
 with nothing running on this PC). Both builds share the same page and a dark-first theme with a light palette for light devices.
+
+## Hosting
+The hosted copy runs on GitHub Pages: https://bestbaconaround.github.io/ESS-v2/ (repo `BestBaconAround/ESS-v2`). It is the one-file
+build, so there is no server to keep running. It is public and has no password; nothing typed is saved. To update it, push to `main`,
+then open Actions > Deploy to GitHub Pages > Run workflow (the workflow is manual, like the website's).
 
 ## How it works
 - `server/` is a small Node server (no framework): `POST /api/ask {question, revision}`, `GET /api/passage?id=`,
