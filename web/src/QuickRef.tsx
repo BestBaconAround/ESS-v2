@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { passage as fetchPassage, type AnswerLine, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
 
-export type QuickRefId = 'loc-battery' | 'loc-inverter' | 'power-inputs'
+export type QuickRefId = 'loc-battery' | 'loc-inverter' | 'cts' | 'solar' | 'ac-solar' | 'generator'
 
 /** One step of the short list: a line that already exists in a passage, found by how it starts. */
 interface Pick {
@@ -81,15 +81,14 @@ export const QUICK_REFS: Page[] = [
     ],
   },
   {
-    id: 'power-inputs',
+    id: 'cts',
     group: 'POWER INPUTS',
-    menu: 'CTs, solar, AC solar, generator',
-    title: 'Quick ref: CTs, solar, AC solar, generator',
-    intro: 'Pick one. Each has a short list, harder checks if those fail, and the full entries.',
+    menu: 'CTs',
+    title: 'Quick ref: CTs',
+    intro: 'Grid CT problems. Rev 4 pins are shown where they differ.',
     sections: [
       {
         id: 'cts',
-        heading: 'CTs',
         steps: [
           P('ts-ct-check', 'The CT arrows must point away', 'Arrows point away from the main panel, toward the grid.'),
           P('ts-ct-check', 'On a Rev 4, the L1 CT', 'Rev 4: L1 CT on pins 3 and 6, L2 CT on pins 1 and 2.'),
@@ -100,9 +99,17 @@ export const QUICK_REFS: Page[] = [
         advanced: [P('ts-ct-check', 'Fault A1_12', 'A1_12 does not catch a bad CT install. Check them by eye.'), P('ts-ct-check', 'Sanctuary 3: wrong CTs can stop', 'Sanctuary 3: wrong CTs can drain the batteries. Fix them, then power cycle the batteries.')],
         more: ['ts-ct-check', 'proc:p-fix-cts'],
       },
+    ],
+  },
+  {
+    id: 'solar',
+    group: 'POWER INPUTS',
+    menu: 'Solar',
+    title: 'Quick ref: solar',
+    intro: 'Solar is not being used, or a string stopped producing.',
+    sections: [
       {
         id: 'solar',
-        heading: 'Solar',
         steps: [
           P('ts-no-solar', 'Check the PV Disconnect', 'Check the PV Disconnect is on.'),
           P('ts-no-solar', 'With AC/DC off (Rev 4)', 'Rev 4: the AC/DC button must be on for PV.'),
@@ -118,9 +125,17 @@ export const QUICK_REFS: Page[] = [
         ],
         more: ['ts-no-solar', 'proc:p-string-down', 'ts-gfci-solar'],
       },
+    ],
+  },
+  {
+    id: 'ac-solar',
+    group: 'POWER INPUTS',
+    menu: 'AC solar',
+    title: 'Quick ref: AC solar',
+    intro: 'Another solar inverter feeding the generator port.',
+    sections: [
       {
         id: 'ac-solar',
-        heading: 'AC solar',
         steps: [
           P('proc:p-acsolar', 'If the generator port measures 240 V AC', 'Generator port reads 240 V AC? Then it is ready for AC solar.'),
           P('proc:p-acsolar', 'Set the AC Port setting', 'Set AC Port to "generator port".'),
@@ -135,9 +150,17 @@ export const QUICK_REFS: Page[] = [
         ],
         more: ['proc:p-acsolar'],
       },
+    ],
+  },
+  {
+    id: 'generator',
+    group: 'POWER INPUTS',
+    menu: 'Generator',
+    title: 'Quick ref: generator',
+    intro: 'Will not start, will not be accepted, or turns off.',
+    sections: [
       {
         id: 'generator',
-        heading: 'Generator',
         steps: [
           P('proc:p-generator-setup', 'Generator Input: enabled', 'Generator Input must be enabled.'),
           P('proc:p-generator-setup', 'The Sanctuary will not accept generator power', 'The inverter will not take generator power while on the grid.'),
