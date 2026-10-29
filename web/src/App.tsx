@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef, useState, type FormEvent } from 'react'
 import { ask, health, passage as fetchPassage, suggestions as fetchSuggestions, type AnswerResponse, type Health, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
+import EssPage from './EssPage'
 import QuickRef, { QUICK_REFS, type QuickRefId } from './QuickRef'
 import TsmPage, { TSM_SECTIONS } from './TsmPage'
 
@@ -31,8 +32,8 @@ function loadRevision(): RevisionChoice {
   return 'all'
 }
 
-/** The page on show: the chat, a quick reference page, or a section (`tsm:<id>`) of the Technical Service Manual. */
-type View = 'chat' | QuickRefId | `tsm:${string}`
+/** The page on show: the chat, the ESS practice page, a quick reference page, or a section (`tsm:<id>`) of the Technical Service Manual. */
+type View = 'chat' | 'ess' | QuickRefId | `tsm:${string}`
 
 function BoltLogo() {
   // A dot-matrix lightning bolt.
@@ -153,8 +154,11 @@ export default function App() {
           <button type="button" className={`nav-item ${view === 'chat' ? 'current' : ''}`} onClick={() => go('chat')} aria-current={view === 'chat' ? 'page' : undefined}>
             CHAT
           </button>
+          <button type="button" className={`nav-item ${view === 'ess' ? 'current' : ''}`} onClick={() => go('ess')} aria-current={view === 'ess' ? 'page' : undefined}>
+            ESS
+          </button>
           <div className="dropdown">
-            <button type="button" className={`nav-item ${view !== 'chat' ? 'current' : ''}`} aria-haspopup="true" aria-expanded={menuOpen} aria-controls="quickref-menu" onClick={() => setMenuOpen((v) => !v)}>
+            <button type="button" className={`nav-item ${view !== 'chat' && view !== 'ess' ? 'current' : ''}`} aria-haspopup="true" aria-expanded={menuOpen} aria-controls="quickref-menu" onClick={() => setMenuOpen((v) => !v)}>
               QUICK REF <span className={`caret ${menuOpen ? 'up' : ''}`} aria-hidden />
             </button>
             {menuOpen && (
@@ -218,7 +222,9 @@ export default function App() {
 
       {view !== 'chat' && (
         <main className="main">
-          {view.startsWith('tsm:') ? (
+          {view === 'ess' ? (
+            <EssPage />
+          ) : view.startsWith('tsm:') ? (
             <TsmPage section={TSM_SECTIONS.find((t) => `tsm:${t.id}` === view) ?? TSM_SECTIONS[0]} rev={rev} onGo={(id) => go(`tsm:${id}`)} />
           ) : (
             <QuickRef page={QUICK_REFS.find((q) => q.id === view) ?? QUICK_REFS[0]} rev={rev} />

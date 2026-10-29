@@ -185,6 +185,27 @@ body {
 .sources ul { margin: 8px 0 0; padding-left: 20px; }
 .also { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 0.72rem var(--mono); letter-spacing: 0.06em; }
 
+/* ---- ESS page: learn alarms ---- */
+.quiz { display: flex; flex-direction: column; gap: 14px; }
+.quiz-code { margin: 0; font: 700 clamp(2.2rem, 8vw, 3.6rem)/1 var(--mono); letter-spacing: 0.04em; color: var(--accent); text-shadow: 0 0 22px var(--glow-text); }
+.quiz-code.small { font-size: 0.95rem; text-shadow: none; letter-spacing: 0.06em; }
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option { display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%; padding: 12px 14px; font: 400 0.95rem/1.45 var(--sans); color: var(--text); background: var(--panel); border: 1px solid var(--line-2); border-radius: 2px; cursor: pointer; overflow-wrap: anywhere; }
+.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
+.quiz-option:disabled { cursor: default; }
+.quiz-letter { flex: none; width: 1.6rem; height: 1.6rem; display: grid; place-items: center; font: 700 0.8rem var(--mono); color: var(--accent); border: 1px solid var(--accent-line); border-radius: 2px; }
+.quiz-option.right { border-color: var(--good); background: rgba(110, 231, 160, 0.1); }
+.quiz-option.wrong { border-color: var(--bad); background: rgba(255, 107, 107, 0.1); }
+.quiz-option.dim { opacity: 0.55; }
+.quiz-feedback { border-left: 3px solid var(--line-2); padding: 4px 0 4px 14px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.quiz-feedback p { margin: 0; }
+.quiz-feedback.right { border-left-color: var(--good); }
+.quiz-feedback.wrong { border-left-color: var(--bad); }
+.quiz-feedback .sources { margin-top: 0; }
+.quiz-score { margin: 0; font: 700 1.6rem var(--mono); }
+.missed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.missed li { border: 1px solid var(--line); background: var(--panel-2); padding: 10px 14px; border-radius: 2px; overflow-wrap: anywhere; }
+
 /* ---- input ---- */
 .bottombar { position: sticky; bottom: 0; background: linear-gradient(180deg, transparent, var(--bg) 28%); padding: 22px 22px calc(14px + env(safe-area-inset-bottom, 0px)); }
 .inputrow { max-width: 916px; margin: 0 auto; display: flex; align-items: center; gap: 10px; border: 1px solid var(--line-2); background: var(--panel); padding: 8px 8px 8px 14px; border-radius: 3px; }
