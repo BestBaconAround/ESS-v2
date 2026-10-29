@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { passage as fetchPassage, type AnswerLine, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
+import { NotePanel } from './NotesView'
+import { TROUBLESHOOTING, type NoteSection } from './trainingNotes'
 
 export type QuickRefId = 'loc-battery' | 'loc-inverter' | 'cts' | 'solar' | 'ac-solar' | 'generator'
 
@@ -14,6 +16,10 @@ interface Pick {
 
 interface Section {
   id: string
+  /** The author's own checklists for this topic, shown first as panels, in the author's wording. */
+  notes?: NoteSection[]
+  /** True when the author's checklist above covers the short list, so the short list is not shown a second time. */
+  replaceSteps?: boolean
   /** Shown above the list when a page has more than one section. */
   heading?: string
   /** The short numbered list, in order. It always starts at step 1. */
@@ -35,6 +41,8 @@ interface Page {
 }
 
 const P = (passage: string, starts: string, short: string): Pick => ({ passage, starts, short })
+/** One of the author's checklists from the Training notes, so the wording lives in one place. */
+const NOTE = (id: string): NoteSection => TROUBLESHOOTING.sections.find((n) => n.id === id)!
 const T = 'ts-battery-no-comm'
 const C = 'proc:p-comms-map'
 
@@ -48,6 +56,8 @@ export const QUICK_REFS: Page[] = [
     sections: [
       {
         id: 'battery',
+        notes: [NOTE('battery-comm')],
+        replaceSteps: true,
         steps: [P(T, 'Check the BMS cable first', 'Test the BMS cable. Replace it if it fails.'), P(T, 'Make sure the battery voltage is above 51 V', 'Battery voltage above 51 V? If not, use the "will not address, or reads 0 V" entry.')],
         advanced: [
           P(T, 'Look at the battery BMS port', 'Check the BMS port: round 4-pin or Ethernet.'),
@@ -68,6 +78,7 @@ export const QUICK_REFS: Page[] = [
     sections: [
       {
         id: 'inverter',
+        notes: [NOTE('parallel-comm')],
         steps: [
           P(C, 'If any Ethernet cable fails the tester', 'Test every Ethernet cable. Replace any that fail.'),
           P(C, 'Inverter to battery (Sanctuary 2)', 'Battery link (A2_11): all batteries on one bus, each with an address.'),
@@ -187,29 +198,31 @@ const GENERIC_TAGS = ['All Sanctuary 2 revisions', 'All revisions and Sanctuary 
 type Loaded = Passage | Error
 type Resolved = { line: AnswerLine; short: string }[]
 
-function StepList({ steps }: { steps: Resolved }) {
+/** One panel of short lines to work down. A line that applies to only some revisions carries its tag. */
+function StepPanel({ id, heading, steps }: { id: string; heading: string; steps: Resolved }) {
   return (
-    <ol className="qr-steps">
-      {steps.map(({ line: l, short }, i) => (
-        <li key={i}>
-          <span className="qr-num" aria-hidden>
-            {i + 1}
-          </span>
-          <div>
-            {!GENERIC_TAGS.includes(l.revisions) && <span className="tag">{l.revisions}</span>}
-            <span className="qr-short">{short}</span>
-            <details className="qr-full">
-              <summary>FULL STEP</summary>
-              <p>{l.text}</p>
-            </details>
-          </div>
-        </li>
-      ))}
-    </ol>
+    <section className="panel" aria-labelledby={`qr-h-${id}`}>
+      <div className="titlebar">
+        <h2 className="titlebar-text" id={`qr-h-${id}`}>
+          {heading}
+        </h2>
+        <span className="titlebar-where">FROM THE MANUALS</span>
+      </div>
+      <div className="panel-body notes-body">
+        <ul className="lines">
+          {steps.map(({ line: l, short }) => (
+            <li key={short}>
+              {!GENERIC_TAGS.includes(l.revisions) && <span className="tag">{l.revisions}</span>}
+              {short}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   )
 }
 
-function SectionView({ section, loaded }: { section: Section; loaded: Map<string, Loaded> }) {
+function SectionView({ section, loaded, menu }: { section: Section; loaded: Map<string, Loaded>; menu: string }) {
   const resolve = (picks: Pick[] = []): Resolved => {
     const out: Resolved = []
     for (const pick of picks) {
@@ -226,15 +239,12 @@ function SectionView({ section, loaded }: { section: Section; loaded: Map<string
 
   return (
     <section className="qr-section" id={`qr-${section.id}`} aria-label={section.heading ?? section.id}>
-      {section.heading && <h2 className="qr-heading">{section.heading}</h2>}
-      {steps.length === 0 && advanced.length === 0 && <p className="muted">Nothing here applies to the revision you chose.</p>}
-      {steps.length > 0 && <StepList steps={steps} />}
-      {advanced.length > 0 && (
-        <details className="qr-adv">
-          <summary>ADVANCED: IF ALL OTHER STEPS FAIL</summary>
-          <StepList steps={advanced} />
-        </details>
-      )}
+      {section.notes?.map((n) => (
+        <NotePanel key={n.id} id={`${section.id}-${n.id}`} heading={n.heading} where="AUTHOR'S NOTES" blocks={n.blocks} />
+      ))}
+      {steps.length === 0 && advanced.length === 0 && !section.notes?.length && <p className="muted">Nothing here applies to the revision you chose.</p>}
+      {steps.length > 0 && !section.replaceSteps && <StepPanel id={section.id} heading={section.heading ?? menu} steps={steps} />}
+      {advanced.length > 0 && <StepPanel id={`${section.id}-adv`} heading={`${menu}: if all other steps fail`} steps={advanced} />}
       {sources.length > 0 && (
         <details className="sources">
           <summary>SOURCES ({sources.length})</summary>
@@ -259,7 +269,7 @@ function SectionView({ section, loaded }: { section: Section; loaded: Map<string
   )
 }
 
-export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoice }) {
+export default function QuickRef({ page, rev, bare = false }: { page: Page; rev: RevisionChoice; bare?: boolean }) {
   const [loaded, setLoaded] = useState<Map<string, Loaded> | null>(null)
 
   useEffect(() => {
@@ -276,8 +286,8 @@ export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoic
 
   return (
     <section className="quickref" aria-label={page.title}>
-      <h1 className="qr-title">{page.title}</h1>
-      <p className="lead">{page.intro}</p>
+      {!bare && <h1 className="qr-title">{page.title}</h1>}
+      {!bare && <p className="lead">{page.intro}</p>}
       {page.sections.length > 1 && (
         <div className="chips qr-jump" aria-label="Jump to a section">
           {page.sections.map((s) => (
@@ -288,7 +298,7 @@ export default function QuickRef({ page, rev }: { page: Page; rev: RevisionChoic
         </div>
       )}
       {loaded === null && <p className="muted">LOADING...</p>}
-      {loaded && page.sections.map((s) => <SectionView key={s.id} section={s} loaded={loaded} />)}
+      {loaded && page.sections.map((s) => <SectionView key={s.id} section={s} loaded={loaded} menu={page.menu} />)}
     </section>
   )
 }

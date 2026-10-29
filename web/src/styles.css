@@ -156,7 +156,7 @@ body {
 .chip { font: 400 0.82rem var(--mono); color: var(--accent); background: transparent; border: 1px solid var(--accent-line); padding: 8px 12px; border-radius: 2px; cursor: pointer; letter-spacing: 0.02em; text-align: left; }
 .chip:hover { background: var(--accent-soft); border-color: var(--accent); }
 .chip.on { background: var(--accent-soft); border-color: var(--accent); }
-.loc details .chips { margin: 14px 0 18px; }
+.loc .quickref + .quickref { margin-top: 28px; }
 .chip.small { font-size: 0.74rem; padding: 4px 9px; color: var(--text); border-color: var(--line-2); }
 
 .log { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
@@ -260,7 +260,7 @@ body {
 .qr-adv[open] > summary::before { content: '- '; }
 .qr-adv .qr-steps { margin-top: 12px; }
 .qr-jump { margin-bottom: 22px; }
-.qr-section { margin-top: 8px; scroll-margin-top: 110px; }
+.qr-section { margin-top: 8px; scroll-margin-top: 110px; display: flex; flex-direction: column; gap: 14px; }
 .qr-section + .qr-section { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--line); }
 .qr-heading { font: 700 1.3rem var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 12px; }
 
