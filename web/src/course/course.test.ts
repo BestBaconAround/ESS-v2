@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import data from '../../../shared/tsm/sections.json'
 import { COURSE, COURSE_PARTS, moduleById } from './index'
+import { SKIM_ID } from './SkimView'
 
 type Block = { h?: string; p?: string; page: number }
 
@@ -31,6 +32,10 @@ describe('course structure', () => {
       for (const l of m.lessons) expect(l.facts.length, `${m.id}: ${l.heading}`).toBeGreaterThan(0)
       expect(m.questions.length, m.id).toBeGreaterThanOrEqual(4)
     }
+  })
+
+  it('keeps the id used by the skim page free', () => {
+    expect(moduleById(SKIM_ID)).toBeUndefined()
   })
 
   it('page ranges are in order', () => {

@@ -3,6 +3,7 @@ import { NotePanel } from '../NotesView'
 import { TSM_SECTIONS } from '../TsmPage'
 import { makeCheck, type AskedQuestion } from './check'
 import { COURSE, COURSE_PARTS, PASS_SHARE, moduleById, type CourseModule } from './index'
+import { SKIM_ID } from './SkimView'
 import { clearProgress, hasPassed, loadProgress, recordResult, saveProgress, type Progress } from './progress'
 
 const LETTERS = ['A', 'B', 'C', 'D']
@@ -239,6 +240,11 @@ export default function CourseHome({ onOpen }: { onOpen: (id: string) => void })
       </p>
       <p className="course-progress" role="status">
         <span className="num">{passed}</span> OF {COURSE.length} MODULES PASSED
+      </p>
+      <p>
+        <button type="button" className="btn primary" onClick={() => onOpen(`course:${SKIM_ID}`)}>
+          SKIM THE WHOLE COURSE
+        </button>
       </p>
       {COURSE_PARTS.map((part) => (
         <section key={part} aria-label={part}>

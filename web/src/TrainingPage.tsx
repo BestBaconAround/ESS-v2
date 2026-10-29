@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 import type { RevisionChoice } from './api'
 import CourseHome, { ModuleView } from './course/CoursePage'
 import { COURSE } from './course'
+import SkimView, { SKIM_ID } from './course/SkimView'
 import LearnAlarms from './LearnAlarms'
 import LossOfCommunication from './LossOfCommunication'
 import NotesView from './NotesView'
@@ -116,7 +117,7 @@ export default function TrainingPage({ open, rev, onOpen }: { open: string | nul
           <button type="button" className="back" onClick={() => onOpen('course')}>
             &lsaquo; COURSE
           </button>
-          <ModuleView key={courseId} id={courseId} onOpen={onOpen} />
+          {courseId === SKIM_ID ? <SkimView onOpen={onOpen} /> : <ModuleView key={courseId} id={courseId} onOpen={onOpen} />}
         </div>
         {tsmSection && (
           <div>

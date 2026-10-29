@@ -199,6 +199,11 @@ body {
 .titlebar h2 { margin: 0; }
 
 /* ---- Course ---- */
+.skim-jump { margin: 4px 0 8px; }
+.skim-module { margin-top: 26px; scroll-margin-top: 110px; }
+@media (max-width: 640px) { .skim-module { scroll-margin-top: 215px; } }
+.skim-title { margin: 0 0 4px; font: 700 1.25rem var(--mono); letter-spacing: 0.04em; text-transform: uppercase; }
+.skim-num { color: var(--accent); margin-right: 8px; }
 .course-progress { margin: 0 0 4px; font: 700 0.9rem var(--mono); letter-spacing: 0.08em; color: var(--muted); }
 .course-row { align-items: center; }
 .course-row-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
