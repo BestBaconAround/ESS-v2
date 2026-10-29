@@ -2,6 +2,8 @@ import type { ComponentType } from 'react'
 import type { RevisionChoice } from './api'
 import LearnAlarms from './LearnAlarms'
 import LossOfCommunication from './LossOfCommunication'
+import NotesView from './NotesView'
+import { COMMON_QUESTIONS, TAKING_A_CALL, TROUBLESHOOTING } from './trainingNotes'
 
 interface TrainingEntry {
   id: string
@@ -19,6 +21,24 @@ export const TRAINING_PAGES: TrainingEntry[] = [
     title: 'Loss of communication',
     blurb: 'The app says the battery is disconnected or the inverter is offline. The checks to work through, in order, for each.',
     Page: LossOfCommunication,
+  },
+  {
+    id: 'taking-a-call',
+    title: 'Taking a call',
+    blurb: 'How a support call starts, and a worked example: the power keeps going off.',
+    Page: () => <NotesView page={TAKING_A_CALL} />,
+  },
+  {
+    id: 'troubleshooting',
+    title: 'Troubleshooting by problem',
+    blurb: 'What to check for battery or parallel communication, low solar production, and grid voltage too high or too low.',
+    Page: () => <NotesView page={TROUBLESHOOTING} />,
+  },
+  {
+    id: 'common-questions',
+    title: 'Common questions',
+    blurb: 'Offline systems, shared access, adding solar, warranty: the short answers.',
+    Page: () => <NotesView page={COMMON_QUESTIONS} />,
   },
   {
     id: 'alarms',
