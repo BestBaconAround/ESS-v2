@@ -64,6 +64,10 @@ describe('training hub', () => {
     expect(TSM_SECTIONS.length).toBeGreaterThan(0)
   })
 
+  it('has the Technical Service Manual course', () => {
+    expect(ids).toContain('course')
+  })
+
   it('a link block always points at a real hub page', () => {
     for (const p of PAGES)
       for (const s of p.sections)

@@ -40,6 +40,9 @@ then open Actions > Deploy to GitHub Pages > Run workflow (the workflow is manua
 - The **Training** tab is a hub of pages (the old Quick ref pages, the author's call notes, the alarm quiz and the Technical Service Manual).
   To add a page, add an entry to `TRAINING_PAGES` in `web/src/TrainingPage.tsx`. The author's own wording lives in `web/src/trainingNotes.ts`;
   each checklist line should appear once, and a test checks that.
+- The **Technical Service Manual course** (a Training page) is 18 modules in `web/src/course/`: a lesson and a check for each. Every lesson line and
+  question names its manual page and carries a short quote from it, and `course.test.ts` checks the quote really is on that page, so the course cannot
+  drift from the manual. Results are kept in the browser only (`localStorage`). To change a module, edit its part file and run `npm test`.
 
 ## Content edited here since the copy
 `shared/content` is now the copy this project maintains. Edits made here that the website's copy does not have (re-apply them if you ever

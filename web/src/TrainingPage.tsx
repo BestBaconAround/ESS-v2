@@ -1,5 +1,7 @@
 import type { ComponentType } from 'react'
 import type { RevisionChoice } from './api'
+import CourseHome, { ModuleView } from './course/CoursePage'
+import { COURSE } from './course'
 import LearnAlarms from './LearnAlarms'
 import LossOfCommunication from './LossOfCommunication'
 import NotesView from './NotesView'
@@ -26,6 +28,7 @@ interface TrainingEntry {
 }
 
 const TROUBLESHOOT = 'TROUBLESHOOT'
+const COURSE_GROUP = 'COURSE'
 const ON_A_CALL = 'ON A CALL'
 const PRACTICE = 'PRACTICE'
 const REFERENCE = 'REFERENCE'
@@ -55,6 +58,13 @@ export const TRAINING_PAGES: TrainingEntry[] = [
     title: 'Troubleshooting by problem',
     blurb: 'What to check for low solar production and for grid voltage too high or too low.',
     Page: ({ onOpen }) => <NotesView page={TROUBLESHOOTING} onOpen={onOpen} />,
+  },
+  {
+    id: 'course',
+    group: COURSE_GROUP,
+    title: 'Technical Service Manual course',
+    blurb: `${COURSE.length} short modules built from the manual: a lesson, then a check, with your best result kept.`,
+    Page: ({ onOpen }) => <CourseHome onOpen={onOpen} />,
   },
   {
     id: 'taking-a-call',
@@ -93,7 +103,32 @@ const groups = [...new Set(TRAINING_PAGES.map((t) => t.group))]
 
 /** The Training hub: pick a page to open. Opening one shows it with a way back. `open` is a page id, or `tsm:<section>` for a manual section. */
 export default function TrainingPage({ open, rev, onOpen }: { open: string | null; rev: RevisionChoice; onOpen: (id: string | null) => void }) {
-  const tsmSection = open?.startsWith('tsm:') ? TSM_SECTIONS.find((t) => `tsm:${t.id}` === open) : undefined
+  // `tsm:<section>@course:<module>` is a manual page opened from a module: Back returns to that module, which stays mounted
+  // (hidden) meanwhile, so a check in progress is not lost.
+  const [pageId = '', returnTo] = (open ?? '').split('@')
+  const tsmSection = pageId.startsWith('tsm:') ? TSM_SECTIONS.find((t) => `tsm:${t.id}` === pageId) : undefined
+  const courseId = pageId.startsWith('course:') ? pageId.slice('course:'.length) : returnTo?.startsWith('course:') ? returnTo.slice('course:'.length) : undefined
+
+  if (courseId) {
+    return (
+      <div className="training">
+        <div hidden={!!tsmSection}>
+          <button type="button" className="back" onClick={() => onOpen('course')}>
+            &lsaquo; COURSE
+          </button>
+          <ModuleView key={courseId} id={courseId} onOpen={onOpen} />
+        </div>
+        {tsmSection && (
+          <div>
+            <button type="button" className="back" onClick={() => onOpen(`course:${courseId}`)}>
+              &lsaquo; BACK TO THE MODULE
+            </button>
+            <TsmPage section={tsmSection} rev={rev} onGo={(id) => onOpen(`tsm:${id}@course:${courseId}`)} />
+          </div>
+        )}
+      </div>
+    )
+  }
   if (tsmSection) {
     return (
       <div className="training">
@@ -104,7 +139,7 @@ export default function TrainingPage({ open, rev, onOpen }: { open: string | nul
       </div>
     )
   }
-  const entry = open ? trainingPageFor(open) : undefined
+  const entry = pageId ? trainingPageFor(pageId) : undefined
   if (entry) {
     return (
       <div className="training">
