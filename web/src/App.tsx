@@ -1,8 +1,8 @@
 import { Fragment, useEffect, useRef, useState, type FormEvent } from 'react'
 import { ask, health, passage as fetchPassage, suggestions as fetchSuggestions, type AnswerResponse, type Health, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
-import EssPage from './EssPage'
 import QuickRef, { QUICK_REFS, type QuickRefId } from './QuickRef'
+import TrainingPage from './TrainingPage'
 import TsmPage, { TSM_SECTIONS } from './TsmPage'
 
 const REVISIONS: { value: RevisionChoice; label: string }[] = [
@@ -32,8 +32,10 @@ function loadRevision(): RevisionChoice {
   return 'all'
 }
 
-/** The page on show: the chat, the ESS practice page, a quick reference page, or a section (`tsm:<id>`) of the Technical Service Manual. */
-type View = 'chat' | 'ess' | QuickRefId | `tsm:${string}`
+/** The page on show: the chat, the Training hub (`training`) or one of its pages (`training:<id>`), a quick reference page, or a section (`tsm:<id>`) of the Technical Service Manual. */
+type View = 'chat' | 'training' | `training:${string}` | QuickRefId | `tsm:${string}`
+
+const isTraining = (v: View) => v === 'training' || v.startsWith('training:')
 
 function BoltLogo() {
   // A dot-matrix lightning bolt.
@@ -154,11 +156,11 @@ export default function App() {
           <button type="button" className={`nav-item ${view === 'chat' ? 'current' : ''}`} onClick={() => go('chat')} aria-current={view === 'chat' ? 'page' : undefined}>
             CHAT
           </button>
-          <button type="button" className={`nav-item ${view === 'ess' ? 'current' : ''}`} onClick={() => go('ess')} aria-current={view === 'ess' ? 'page' : undefined}>
-            ESS
+          <button type="button" className={`nav-item ${isTraining(view) ? 'current' : ''}`} onClick={() => go('training')} aria-current={isTraining(view) ? 'page' : undefined}>
+            TRAINING
           </button>
           <div className="dropdown">
-            <button type="button" className={`nav-item ${view !== 'chat' && view !== 'ess' ? 'current' : ''}`} aria-haspopup="true" aria-expanded={menuOpen} aria-controls="quickref-menu" onClick={() => setMenuOpen((v) => !v)}>
+            <button type="button" className={`nav-item ${view !== 'chat' && !isTraining(view) ? 'current' : ''}`} aria-haspopup="true" aria-expanded={menuOpen} aria-controls="quickref-menu" onClick={() => setMenuOpen((v) => !v)}>
               QUICK REF <span className={`caret ${menuOpen ? 'up' : ''}`} aria-hidden />
             </button>
             {menuOpen && (
@@ -222,8 +224,8 @@ export default function App() {
 
       {view !== 'chat' && (
         <main className="main">
-          {view === 'ess' ? (
-            <EssPage />
+          {isTraining(view) ? (
+            <TrainingPage rev={rev} open={view.startsWith('training:') ? view.slice('training:'.length) : null} onOpen={(id) => go(`training:${id}`)} onBack={() => go('training')} />
           ) : view.startsWith('tsm:') ? (
             <TsmPage section={TSM_SECTIONS.find((t) => `tsm:${t.id}` === view) ?? TSM_SECTIONS[0]} rev={rev} onGo={(id) => go(`tsm:${id}`)} />
           ) : (

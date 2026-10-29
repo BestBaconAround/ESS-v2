@@ -11,7 +11,7 @@ interface Missed {
 }
 
 /** Learn alarms: an alarm code comes up, and you pick its description from four. */
-function LearnAlarms() {
+export default function LearnAlarms() {
   const [round, setRound] = useState<AlarmQuestion[]>(() => makeRound(ROUND))
   const [index, setIndex] = useState(0)
   const [picked, setPicked] = useState<number | null>(null)
@@ -121,16 +121,5 @@ function LearnAlarms() {
         </div>
       </div>
     </section>
-  )
-}
-
-/** The ESS page. Learn alarms is its first section; more can follow. */
-export default function EssPage() {
-  return (
-    <div className="ess">
-      <h1 className="qr-title">ESS</h1>
-      <p className="lead">Practice for the Sanctuary ESS. The alarm descriptions come from the Technical Service Manual, the same text the chat answers from.</p>
-      <LearnAlarms />
-    </div>
   )
 }
