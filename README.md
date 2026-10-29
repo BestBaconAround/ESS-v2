@@ -23,8 +23,9 @@ with nothing running on this PC). Both builds share the same page and a dark-fir
 
 ## Hosting
 The hosted copy runs on GitHub Pages: https://bestbaconaround.github.io/ESS-v2/ (repo `BestBaconAround/ESS-v2`). It is the one-file
-build, so there is no server to keep running. It is public and has no password; nothing typed is saved. To update it, push to `main`,
-then open Actions > Deploy to GitHub Pages > Run workflow (the workflow is manual, like the website's).
+build, so there is no server to keep running. It is public and has no password; nothing typed is saved. Pushing to `main` does **not** publish.
+To update the live site, open Actions > Deploy to GitHub Pages > Run workflow (or `gh workflow run deploy.yml`). The top bar shows the website version, which is the
+`version` in `package.json`: it changes only when someone bumps it.
 
 ## How it works
 - `server/` is a small Node server (no framework): `POST /api/ask {question, revision}`, `GET /api/passage?id=`,
@@ -33,7 +34,7 @@ then open Actions > Deploy to GitHub Pages > Run workflow (the workflow is manua
   never serves files outside `web/dist`. It does not log or save what people type.
 - `server/answer.ts` turns a question into an answer: several fault codes in one question get one answer each, in the order
   typed; one question gets the best passage plus "also relevant" passages; no good match gets an honest "nothing matches".
-  Lines are filtered by the revision chosen (Rev 1 to 4, Sanctuary 3, or all).
+  The page has no revision picker, so it asks for all revisions; each line that applies to only some revisions says which. (The server still accepts a `revision`.)
 - `shared/` is **copied** from the website and is read-only here: `shared/content/` (all sourced content) and
   `shared/ask/` (the tokenizer, the search, the corpus builder). Search tests are in `shared/ask/search.test.ts`.
 - `web/` is the page (React + Vite): a dark HUD style with one yellow accent, monospace caps and square panels.
