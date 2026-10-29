@@ -5,8 +5,8 @@
  * details (no names, emails or phone numbers): the site is public.
  */
 
-/** A paragraph, or a list of short lines (a checklist of what to check, or the steps in order). */
-export type NoteBlock = { p: string } | { list: string[] }
+/** A paragraph, a list of short lines (a checklist of what to check, or the steps in order), or a link to another Training page. */
+export type NoteBlock = { p: string } | { list: string[] } | { see: { to: string; label: string } }
 
 export interface NoteSection {
   id: string
@@ -77,10 +77,8 @@ export const TAKING_A_CALL: NotesPage = {
   ],
 }
 
-export const TROUBLESHOOTING: NotesPage = {
-  title: 'Troubleshooting by problem',
-  lead: 'What to check for the problems that come up most often.',
-  sections: [
+/** The author's two communication checklists. They are shown on the Loss of communication page. */
+export const LOSS_OF_COMMUNICATION_NOTES: NoteSection[] = [
     {
       id: 'battery-comm',
       heading: 'Battery loss of communication',
@@ -99,6 +97,17 @@ export const TROUBLESHOOTING: NotesPage = {
           ],
         },
       ],
+    },
+]
+
+export const TROUBLESHOOTING: NotesPage = {
+  title: 'Troubleshooting by problem',
+  lead: 'What to check for the problems that come up most often.',
+  sections: [
+    {
+      id: 'comm-pointer',
+      heading: 'Battery or parallel communication',
+      blocks: [{ see: { to: 'loss-of-communication', label: 'Open Loss of communication' } }],
     },
     {
       id: 'solar-low',

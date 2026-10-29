@@ -123,20 +123,11 @@ body {
 .rev { display: flex; align-items: center; gap: 10px; font: 600 0.72rem var(--mono); letter-spacing: 0.1em; color: var(--muted); }
 .rev select { font: 600 0.8rem var(--mono); letter-spacing: 0.06em; color: var(--accent); background: var(--panel); border: 1px solid var(--line-2); padding: 8px 10px; border-radius: 2px; cursor: pointer; }
 
-/* ---- nav and the Quick ref dropdown ---- */
+/* ---- nav ---- */
 .nav { display: flex; align-items: stretch; border-left: 1px solid var(--line); }
 .nav-item { font: 700 0.8rem var(--mono); letter-spacing: 0.1em; color: var(--muted); background: transparent; border: none; border-right: 1px solid var(--line); padding: 0 20px; min-height: 48px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
 .nav-item:hover { color: var(--text); background: var(--accent-soft); }
 .nav-item.current { color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); }
-.nav-item:focus-visible, .menu button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.caret { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid currentColor; transition: transform 0.15s; }
-.caret.up { transform: rotate(180deg); }
-.dropdown { position: relative; display: flex; }
-.menu { position: absolute; top: 100%; left: 0; min-width: 240px; margin: 0; padding: 0; list-style: none; background: var(--panel); border: 1px solid var(--line-2); border-top: 2px solid var(--accent); box-shadow: 0 10px 30px rgb(0 0 0 / 0.35); z-index: 20; }
-.menu-head { padding: 9px 16px; font: 600 0.66rem var(--mono); letter-spacing: 0.12em; color: var(--dim); background: var(--panel-2); border-bottom: 1px solid var(--line); }
-.menu button { display: block; width: 100%; text-align: left; padding: 12px 16px; font: 700 0.82rem var(--mono); letter-spacing: 0.08em; color: var(--text); background: transparent; border: none; cursor: pointer; }
-.menu button:hover { background: var(--accent-soft); color: var(--accent); }
-.menu button.current { color: var(--accent); }
 .qr-title { font: 700 clamp(1.5rem, 4vw, 2.3rem)/1.1 var(--mono); text-transform: uppercase; margin: 0 0 14px; text-wrap: balance; }
 .qr-list { display: flex; flex-direction: column; gap: 14px; margin-top: 12px; }
 .qr-steps { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-direction: column; gap: 10px; counter-reset: none; }
@@ -188,6 +179,11 @@ body {
 .also { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 400 0.72rem var(--mono); letter-spacing: 0.06em; }
 
 /* ---- Training hub and its pages ---- */
+.hub-group { margin: 26px 0 0; font: 600 0.7rem var(--mono); letter-spacing: 0.12em; color: var(--dim); }
+.toc { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.toc-item { width: 100%; display: flex; gap: 14px; align-items: baseline; text-align: left; padding: 11px 14px; font: 600 0.84rem var(--mono); letter-spacing: 0.03em; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 2px; cursor: pointer; overflow-wrap: anywhere; }
+.toc-item:hover { border-color: var(--accent); background: var(--accent-soft); }
+.toc-page { flex: none; min-width: 5ch; color: var(--dim); font-variant-numeric: tabular-nums; }
 .hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 8px; }
 .hub-card { display: flex; flex-direction: column; gap: 8px; text-align: left; padding: 16px; font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--line-2); border-radius: 3px; cursor: pointer; min-width: 0; }
 .hub-card:hover { border-color: var(--accent); background: var(--accent-soft); }
@@ -239,8 +235,6 @@ body {
   .logo-cell { padding: 10px 16px; border-right: none; }
   .nav { width: 100%; order: 3; border-left: none; border-top: 1px solid var(--line); }
   .nav-item { flex: 1; justify-content: center; padding: 0 12px; }
-  .menu { min-width: 0; width: max(100%, 220px); }
-  .dropdown { flex: 1; }
   .topbar-right { padding: 8px 16px; gap: 12px; }
   .main { padding: 24px 16px 16px; }
   .bottombar { padding-left: 16px; padding-right: 16px; }
@@ -265,11 +259,6 @@ body {
 .qr-heading { font: 700 1.3rem var(--mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); margin: 0 0 12px; }
 
 /* ---- Technical Service Manual pages ---- */
-.menu { max-height: min(75vh, 640px); overflow-y: auto; }
-.menu .menu-toggle { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: var(--accent); }
-.submenu { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); background: var(--panel-2); }
-.menu .submenu button { padding: 9px 16px 9px 14px; font-weight: 600; font-size: 0.76rem; letter-spacing: 0.04em; display: flex; gap: 10px; align-items: baseline; }
-.toc-page { flex: none; min-width: 2ch; text-align: right; color: var(--dim); font-variant-numeric: tabular-nums; }
 .tsm-kicker { margin: 0 0 8px; font: 600 0.72rem var(--mono); letter-spacing: 0.1em; color: var(--accent); }
 .tsm-body { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; max-width: 760px; }
 .tsm-block { position: relative; }

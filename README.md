@@ -37,6 +37,9 @@ then open Actions > Deploy to GitHub Pages > Run workflow (the workflow is manua
 - `shared/` is **copied** from the website and is read-only here: `shared/content/` (all sourced content) and
   `shared/ask/` (the tokenizer, the search, the corpus builder). Search tests are in `shared/ask/search.test.ts`.
 - `web/` is the page (React + Vite): a dark HUD style with one yellow accent, monospace caps and square panels.
+- The **Training** tab is a hub of pages (the old Quick ref pages, the author's call notes, the alarm quiz and the Technical Service Manual).
+  To add a page, add an entry to `TRAINING_PAGES` in `web/src/TrainingPage.tsx`. The author's own wording lives in `web/src/trainingNotes.ts`;
+  each checklist line should appear once, and a test checks that.
 
 ## Content edited here since the copy
 `shared/content` is now the copy this project maintains. Edits made here that the website's copy does not have (re-apply them if you ever

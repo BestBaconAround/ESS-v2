@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { passage as fetchPassage, type AnswerLine, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
 import { NotePanel } from './NotesView'
-import { TROUBLESHOOTING, type NoteSection } from './trainingNotes'
+import { LOSS_OF_COMMUNICATION_NOTES, type NoteSection } from './trainingNotes'
 
 export type QuickRefId = 'loc-battery' | 'loc-inverter' | 'cts' | 'solar' | 'ac-solar' | 'generator'
 
@@ -42,7 +42,7 @@ interface Page {
 
 const P = (passage: string, starts: string, short: string): Pick => ({ passage, starts, short })
 /** One of the author's checklists from the Training notes, so the wording lives in one place. */
-const NOTE = (id: string): NoteSection => TROUBLESHOOTING.sections.find((n) => n.id === id)!
+const NOTE = (id: string): NoteSection => LOSS_OF_COMMUNICATION_NOTES.find((n) => n.id === id)!
 const T = 'ts-battery-no-comm'
 const C = 'proc:p-comms-map'
 
@@ -95,7 +95,7 @@ export const QUICK_REFS: Page[] = [
     id: 'cts',
     group: 'POWER INPUTS',
     menu: 'CTs',
-    title: 'Quick ref: CTs',
+    title: 'CTs',
     intro: 'Grid CT problems. Rev 4 pins are shown where they differ.',
     sections: [
       {
@@ -116,7 +116,7 @@ export const QUICK_REFS: Page[] = [
     id: 'solar',
     group: 'POWER INPUTS',
     menu: 'Solar',
-    title: 'Quick ref: solar',
+    title: 'Solar',
     intro: 'Solar is not being used, or a string stopped producing.',
     sections: [
       {
@@ -142,7 +142,7 @@ export const QUICK_REFS: Page[] = [
     id: 'ac-solar',
     group: 'POWER INPUTS',
     menu: 'AC solar',
-    title: 'Quick ref: AC solar',
+    title: 'AC solar',
     intro: 'Another solar inverter feeding the generator port.',
     sections: [
       {
@@ -167,7 +167,7 @@ export const QUICK_REFS: Page[] = [
     id: 'generator',
     group: 'POWER INPUTS',
     menu: 'Generator',
-    title: 'Quick ref: generator',
+    title: 'Generator',
     intro: 'Will not start, will not be accepted, or turns off.',
     sections: [
       {

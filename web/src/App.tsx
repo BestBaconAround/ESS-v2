@@ -1,9 +1,7 @@
-import { Fragment, useEffect, useRef, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { ask, health, passage as fetchPassage, suggestions as fetchSuggestions, type AnswerResponse, type Health, type Passage, type RevisionChoice } from './api'
 import AnswerCard from './AnswerCard'
-import QuickRef, { QUICK_REFS, type QuickRefId } from './QuickRef'
 import TrainingPage from './TrainingPage'
-import TsmPage, { TSM_SECTIONS } from './TsmPage'
 
 const REVISIONS: { value: RevisionChoice; label: string }[] = [
   { value: 'all', label: 'ALL' },
@@ -32,10 +30,9 @@ function loadRevision(): RevisionChoice {
   return 'all'
 }
 
-/** The page on show: the chat, the Training hub (`training`) or one of its pages (`training:<id>`), a quick reference page, or a section (`tsm:<id>`) of the Technical Service Manual. */
-type View = 'chat' | 'training' | `training:${string}` | QuickRefId | `tsm:${string}`
+/** The page on show: the chat, the Training hub (`training`) or one of its pages (`training:<id>`). */
+type View = 'chat' | 'training' | `training:${string}`
 
-const isTraining = (v: View) => v === 'training' || v.startsWith('training:')
 
 function BoltLogo() {
   // A dot-matrix lightning bolt.
@@ -55,9 +52,6 @@ export default function App() {
   const [status, setStatus] = useState<Health | null | 'offline'>(null)
   const [chips, setChips] = useState<string[]>([])
   const [view, setView] = useState<View>('chat')
-  const [tocOpen, setTocOpen] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const navRef = useRef<HTMLElement>(null)
   const nextId = useRef(1)
   const lastQuestion = useRef<HTMLDivElement | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -75,24 +69,8 @@ export default function App() {
     }
   }, [rev])
 
-  // Close the Quick ref menu on an outside click or Escape.
-  useEffect(() => {
-    if (!menuOpen) return
-    const onDown = (e: MouseEvent) => {
-      if (!navRef.current?.contains(e.target as Node)) setMenuOpen(false)
-    }
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenuOpen(false)
-    document.addEventListener('mousedown', onDown)
-    document.addEventListener('keydown', onKey)
-    return () => {
-      document.removeEventListener('mousedown', onDown)
-      document.removeEventListener('keydown', onKey)
-    }
-  }, [menuOpen])
-
   const go = (v: View) => {
     setView(v)
-    setMenuOpen(false)
     window.scrollTo({ top: 0 })
   }
 
@@ -152,51 +130,13 @@ export default function App() {
             <div className="wordmark-sub">// CHAT</div>
           </div>
         </div>
-        <nav className="nav" ref={navRef} aria-label="Pages">
+        <nav className="nav" aria-label="Pages">
           <button type="button" className={`nav-item ${view === 'chat' ? 'current' : ''}`} onClick={() => go('chat')} aria-current={view === 'chat' ? 'page' : undefined}>
             CHAT
           </button>
-          <button type="button" className={`nav-item ${isTraining(view) ? 'current' : ''}`} onClick={() => go('training')} aria-current={isTraining(view) ? 'page' : undefined}>
+          <button type="button" className={`nav-item ${view !== 'chat' ? 'current' : ''}`} onClick={() => go('training')} aria-current={view !== 'chat' ? 'page' : undefined}>
             TRAINING
           </button>
-          <div className="dropdown">
-            <button type="button" className={`nav-item ${view !== 'chat' && !isTraining(view) ? 'current' : ''}`} aria-haspopup="true" aria-expanded={menuOpen} aria-controls="quickref-menu" onClick={() => setMenuOpen((v) => !v)}>
-              QUICK REF <span className={`caret ${menuOpen ? 'up' : ''}`} aria-hidden />
-            </button>
-            {menuOpen && (
-              <ul id="quickref-menu" className="menu">
-                {[...new Set(QUICK_REFS.map((q) => q.group))].map((g) => (
-                  <Fragment key={g}>
-                    <li className="menu-head">{g}</li>
-                    {QUICK_REFS.filter((q) => q.group === g).map((q) => (
-                      <li key={q.id}>
-                        <button type="button" className={view === q.id ? 'current' : ''} onClick={() => go(q.id)} aria-current={view === q.id ? 'page' : undefined}>
-                          {q.menu.toUpperCase()}
-                        </button>
-                      </li>
-                    ))}
-                  </Fragment>
-                ))}
-                <li className="menu-head">TECHNICAL SERVICE MANUAL</li>
-                <li>
-                  <button type="button" className="menu-toggle" aria-expanded={tocOpen} aria-controls="tsm-toc" onClick={() => setTocOpen((v) => !v)}>
-                    TABLE OF CONTENTS <span className={`caret ${tocOpen ? 'up' : ''}`} aria-hidden />
-                  </button>
-                  {tocOpen && (
-                    <ul id="tsm-toc" className="submenu">
-                      {TSM_SECTIONS.map((t) => (
-                        <li key={t.id}>
-                          <button type="button" className={view === `tsm:${t.id}` ? 'current' : ''} onClick={() => go(`tsm:${t.id}`)} aria-current={view === `tsm:${t.id}` ? 'page' : undefined}>
-                            <span className="toc-page">{t.from}</span> {t.title}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              </ul>
-            )}
-          </div>
         </nav>
         <div className="topbar-right">
           <div className="status" aria-live="polite">
@@ -224,13 +164,7 @@ export default function App() {
 
       {view !== 'chat' && (
         <main className="main">
-          {isTraining(view) ? (
-            <TrainingPage rev={rev} open={view.startsWith('training:') ? view.slice('training:'.length) : null} onOpen={(id) => go(`training:${id}`)} onBack={() => go('training')} />
-          ) : view.startsWith('tsm:') ? (
-            <TsmPage section={TSM_SECTIONS.find((t) => `tsm:${t.id}` === view) ?? TSM_SECTIONS[0]} rev={rev} onGo={(id) => go(`tsm:${id}`)} />
-          ) : (
-            <QuickRef page={QUICK_REFS.find((q) => q.id === view) ?? QUICK_REFS[0]} rev={rev} />
-          )}
+          <TrainingPage open={view.startsWith('training:') ? view.slice('training:'.length) : null} rev={rev} onOpen={(id) => go(id ? `training:${id}` : 'training')} />
         </main>
       )}
 
