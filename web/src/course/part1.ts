@@ -25,7 +25,8 @@ export const PART_1: CourseModule[] = [
         facts: [
           f(7, 'Outdoors, keep IP65 and NEMA 3R protection. Seal any hole made in the wire box with the right fittings.', 'maintain IP65 and NEMA 3R protection'),
           f(7, 'In a fire, evacuate and call emergency services. Overheated batteries may release hydrogen gas.', 'Overheated batteries may release hydrogen gas'),
-          f(7, 'If the unit is damaged, smokes, or any wiring overheats, do not operate it. Contact a qualified technician or ESS Support.', 'Do not operate if any wiring overheats'),
+          f(7, 'If smoke comes out of the unit, treat it as an emergency. Do not operate it, get clear of it, and contact emergency services as well as a qualified technician or ESS Support.', 'If smoke comes out, do not operate'),
+          f(7, 'If the unit or any part is damaged, or any wiring overheats, do not operate the system. Contact a qualified technician or ESS Support for inspection and repair.', 'Do not operate if any wiring overheats'),
         ],
       },
       {
@@ -41,7 +42,7 @@ export const PART_1: CourseModule[] = [
       q(6, 'Before maintenance or cleaning, what must you do?', 'Disconnect all power sources, AC and DC terminals included, and use lockout/tagout', ['Turn off only the AC breaker', 'Put the system in emergency mode', 'Switch the inverter to standby with the power button'], 'Always disconnect all power sources, including the AC and DC terminals, before performing any maintenance or cleaning'),
       q(7, 'Which enclosure protection must be kept when the system is installed outdoors?', 'IP65 and NEMA 3R', ['IP44 and NEMA 1', 'IP54 and NEMA 4', 'IP67 and NEMA 6P'], 'maintain IP65 and NEMA 3R protection'),
       q(8, 'What does the introduction say causes the majority of problems the ESS support team deals with?', 'Incorrect installation', ['Battery failures', 'Firmware bugs', 'Homeowners changing settings'], 'The majority of problems that our ESS support team deals with are due to incorrect installation'),
-      q(7, 'Smoke comes out of the unit. What should you do?', 'Do not operate it, and contact a qualified technician or ESS Support for inspection and repair', ['Keep it running until the battery is empty', 'Power-cycle it and watch for the alarm to clear', 'Switch it to emergency mode'], 'Contact a qualified technician or Lion Energy\'s ESS Support Team for inspection and repair'),
+      q(7, 'Smoke comes out of the unit. What should you do?', 'Treat it as an emergency: do not operate it, get clear, and contact emergency services, then a qualified technician or ESS Support', ['Keep it running until the battery is empty, then call ESS Support in the morning', 'Power-cycle it and watch whether the alarm clears before calling anyone', 'Switch it to emergency mode and let the batteries discharge into the loads'], 'If smoke comes out, do not operate', 'The manual says not to operate the unit if smoke comes out, and in case of fire to evacuate the area and contact emergency services immediately. Smoke is an emergency: call emergency services, then a qualified technician or ESS Support.'),
       q(7, 'What must be done before powering on a newly installed system?', 'A final continuity check', ['A firmware update', 'A recommission', 'A full battery charge'], 'Do not power on the system until a final continuity check is performed'),
     ],
   },
