@@ -156,7 +156,7 @@ body {
 .chip { font: 400 0.82rem var(--mono); color: var(--accent); background: transparent; border: 1px solid var(--accent-line); padding: 8px 12px; border-radius: 2px; cursor: pointer; letter-spacing: 0.02em; text-align: left; }
 .chip:hover { background: var(--accent-soft); border-color: var(--accent); }
 .chip.on { background: var(--accent-soft); border-color: var(--accent); }
-.loc > .chips { margin-bottom: 18px; }
+.loc details .chips { margin: 14px 0 18px; }
 .chip.small { font-size: 0.74rem; padding: 4px 9px; color: var(--text); border-color: var(--line-2); }
 
 .log { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }

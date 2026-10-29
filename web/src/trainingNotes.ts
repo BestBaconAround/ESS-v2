@@ -28,9 +28,15 @@ export const TAKING_A_CALL: NotesPage = {
       id: 'first-call',
       heading: 'First call approach',
       blocks: [
-        { p: 'Hello, thank you for calling Lion Energy. This is (name). Do you need help with the Sanctuary system?' },
         {
-          p: "They'll usually start ranting about the system. The first thing we need to find out on the call is whether the caller is a homeowner or a technician. Then we need the name on the system. Most of the time it's the homeowner's name. We can also search by street address or communicator name, or find it under the installer's company. Once we find the system, we can start troubleshooting.",
+          list: [
+            'Hello, thank you for calling Lion Energy. This is (name). Do you need help with the Sanctuary system?',
+            "They'll usually start ranting about the system.",
+            'The first thing we need to find out on the call is whether the caller is a homeowner or a technician.',
+            "Then we need the name on the system. Most of the time it's the homeowner's name.",
+            "We can also search by street address or communicator name, or find it under the installer's company.",
+            'Once we find the system, we can start troubleshooting.',
+          ],
         },
       ],
     },
@@ -39,12 +45,32 @@ export const TAKING_A_CALL: NotesPage = {
       heading: 'Example: the power keeps going off',
       blocks: [
         {
-          p: "A homeowner texted in to tell us that her power keeps going off. First, I'm going to go to her Sanctuary and open up some tabs: her settings page, alarms page, and compare page. We have an alert for A2_11, BMS communication failure. I'm going to figure out which battery has stopped communicating. I'll plot all the battery voltages and find which battery isn't communicating.",
+          list: [
+            'A homeowner texted in to tell us that her power keeps going off.',
+            "First, I'm going to go to her Sanctuary and open up some tabs: her settings page, alarms page, and compare page.",
+            'We have an alert for A2_11, BMS communication failure.',
+            "I'm going to figure out which battery has stopped communicating. I'll plot all the battery voltages and find which battery isn't communicating.",
+            "I see that battery #1 isn't showing any values. This is our problem battery.",
+            "Now we need to troubleshoot, and we can't do this alone. We'll need a technician to come out.",
+            "I'm going to go ahead and read battery #1's register and verify that it is down, which it is.",
+            "I'll send a battery activation request and see if that helps.",
+          ],
         },
-        { p: "I see that battery #1 isn't showing any values. This is our problem battery. Now we need to troubleshoot, and we can't do this alone. We'll need a technician to come out." },
-        { p: "I'm going to go ahead and read battery #1's register and verify that it is down, which it is. I'll send a battery activation request and see if that helps." },
+      ],
+    },
+    {
+      id: 'why-battery-comm-lost',
+      heading: 'What can happen when we lose battery communication?',
+      blocks: [
         {
-          p: 'What can happen when we lose battery communication? It can be a cable that has gone bad, water that got inside the battery and damaged the BMS, a drifted low cell that put the BMS to sleep, a tripped battery breaker, a bad BMS port, or a faulty BMS.',
+          list: [
+            'A cable that has gone bad.',
+            'Water that got inside the battery and damaged the BMS.',
+            'A drifted low cell that put the BMS to sleep.',
+            'A tripped battery breaker.',
+            'A bad BMS port.',
+            'A faulty BMS.',
+          ],
         },
       ],
     },
@@ -84,15 +110,15 @@ export const TROUBLESHOOTING: NotesPage = {
             "Go to the homeowner's Sanctuary and go to Compare. Plot all the PV voltages.",
             "Look for the string that isn't producing.",
             'Check the MPPT fuse with a multimeter. A good fuse will have a resistance value. OL is an open circuit, and the fuse needs to be replaced.',
+            'The Sanctuary system often has a Tigo system installed by the technician. Tigo has its own troubleshooting team.',
           ],
         },
-        { p: 'The Sanctuary system often has a Tigo system installed by the technician. Tigo has its own troubleshooting team.' },
       ],
     },
     {
       id: 'grid-high',
       heading: 'Grid voltage too high',
-      blocks: [{ p: 'Adjusting the grid voltage register to 107% and enabling HVRT can help.' }],
+      blocks: [{ list: ['Adjusting the grid voltage register to 107% and enabling HVRT can help.'] }],
     },
     {
       id: 'grid-low',
@@ -106,23 +132,38 @@ export const COMMON_QUESTIONS: NotesPage = {
   title: 'Common questions',
   lead: 'The questions customers ask most, and the short answers.',
   sections: [
-    { id: 'offline', heading: 'My system is offline', blocks: [{ p: 'Press the reset button on the communicator and wait a few minutes. The status light should be solid blue for the EMS-C, or green for the WCM.' }] },
-    { id: 'no-access', heading: "I can't access my system", blocks: [{ p: 'Locate their Sanctuary and ask for their email. Under their Sanctuary, click Shared access, enter their email, and send.' }] },
-    { id: 'specs', heading: 'What are the specs of my system?', blocks: [{ p: 'Refer to the manual for specifications.' }] },
+    {
+      id: 'offline',
+      heading: 'My system is offline',
+      blocks: [{ list: ['Press the reset button on the communicator and wait a few minutes.', 'The status light should be solid blue for the EMS-C, or green for the WCM.'] }],
+    },
+    {
+      id: 'no-access',
+      heading: "I can't access my system",
+      blocks: [{ list: ['Locate their Sanctuary and ask for their email.', 'Under their Sanctuary, click Shared access, enter their email, and send.'] }],
+    },
+    { id: 'specs', heading: 'What are the specs of my system?', blocks: [{ list: ['Refer to the manual for specifications.'] }] },
     {
       id: 'share-access',
       heading: 'How can I share access?',
-      blocks: [{ p: "In the browser, under their Sanctuary, click the hamburger button at the top right and click Shared access. They can enter a person's email to share their system." }],
+      blocks: [
+        {
+          list: [
+            'In the browser, under their Sanctuary, click the hamburger button at the top right and click Shared access.',
+            "They can enter a person's email to share their system.",
+          ],
+        },
+      ],
     },
     {
       id: 'more-solar',
       heading: 'Can I add more solar to my system?',
-      blocks: [{ p: 'Ask what their solar capacity is. Gen2 only accepts 12 kW of solar per inverter, and Gen3 accepts 18 kW.' }],
+      blocks: [{ list: ['Ask what their solar capacity is.', 'Gen2 only accepts 12 kW of solar per inverter, and Gen3 accepts 18 kW.'] }],
     },
     {
       id: 'warranty',
       heading: 'What is my warranty?',
-      blocks: [{ p: 'Every Sanctuary system gets a 10-year warranty. It covers the site visit to replace the defective item and some labor.' }],
+      blocks: [{ list: ['Every Sanctuary system gets a 10-year warranty.', 'It covers the site visit to replace the defective item and some labor.'] }],
     },
   ],
 }
