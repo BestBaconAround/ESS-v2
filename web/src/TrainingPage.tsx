@@ -9,7 +9,7 @@ import NotesView from './NotesView'
 import QuickRef, { QUICK_REFS } from './QuickRef'
 import TsmContents from './TsmContents'
 import TsmPage, { TSM_SECTIONS } from './TsmPage'
-import { COMMON_QUESTIONS, TAKING_A_CALL, TROUBLESHOOTING } from './trainingNotes'
+import { COMMON_QUESTIONS, TAKING_A_CALL, TROUBLESHOOTING, UPDATING_THE_INVERTER } from './trainingNotes'
 
 interface PageProps {
   rev: RevisionChoice
@@ -30,6 +30,7 @@ interface TrainingEntry {
 
 const TROUBLESHOOT = 'TROUBLESHOOT'
 const COURSE_GROUP = 'COURSE'
+const HOW_TO = 'HOW TO'
 const ON_A_CALL = 'ON A CALL'
 const PRACTICE = 'PRACTICE'
 const REFERENCE = 'REFERENCE'
@@ -66,6 +67,13 @@ export const TRAINING_PAGES: TrainingEntry[] = [
     title: 'Technical Service Manual course',
     blurb: `${COURSE.length} short modules built from the manual: a lesson, then a check, with your best result kept.`,
     Page: ({ onOpen }) => <CourseHome onOpen={onOpen} />,
+  },
+  {
+    id: 'update-inverter',
+    group: HOW_TO,
+    title: 'Updating the inverter',
+    blurb: 'The steps to update the inverter and the communicator firmware, in order.',
+    Page: () => <NotesView page={UPDATING_THE_INVERTER} />,
   },
   {
     id: 'taking-a-call',

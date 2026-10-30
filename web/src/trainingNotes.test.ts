@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { COMMON_QUESTIONS, LOSS_OF_COMMUNICATION_NOTES, TAKING_A_CALL, TROUBLESHOOTING, type NoteBlock, type NotesPage } from './trainingNotes'
+import { COMMON_QUESTIONS, LOSS_OF_COMMUNICATION_NOTES, TAKING_A_CALL, TROUBLESHOOTING, UPDATING_THE_INVERTER, type NoteBlock, type NotesPage } from './trainingNotes'
 import { QUICK_REFS } from './QuickRef'
 import { TSM_SECTIONS } from './TsmPage'
 import { TRAINING_PAGES } from './TrainingPage'
 
-const PAGES: NotesPage[] = [TAKING_A_CALL, TROUBLESHOOTING, COMMON_QUESTIONS]
+const PAGES: NotesPage[] = [TAKING_A_CALL, TROUBLESHOOTING, COMMON_QUESTIONS, UPDATING_THE_INVERTER]
 const lines = (b: NoteBlock): string[] => ('list' in b ? b.list : 'p' in b ? [b.p] : [b.see.label])
 const text = (p: NotesPage) => p.sections.flatMap((s) => [s.heading, ...s.blocks.flatMap(lines)])
 
@@ -62,6 +62,17 @@ describe('training hub', () => {
     expect(ids).toContain('loss-of-communication')
     expect(ids).toContain('tsm')
     expect(TSM_SECTIONS.length).toBeGreaterThan(0)
+  })
+
+  it('has the Updating the inverter page, with its steps in order', () => {
+    expect(ids).toContain('update-inverter')
+    const steps = UPDATING_THE_INVERTER.sections.flatMap((s) => s.blocks.flatMap(lines))
+    const at = (needle: string) => steps.findIndex((t) => t.includes(needle))
+    for (const n of ['Power-cycle', 'smart.lionenergy.com', 'USB data cable', 'STM firmware', 'TMS firmware', 'ARM Bootloader', 'EMS-C or WCM', 'reset button']) expect(at(n), n).toBeGreaterThanOrEqual(0)
+    expect(at('Power-cycle')).toBeLessThan(at('USB data cable'))
+    expect(at('STM firmware')).toBeLessThan(at('TMS firmware'))
+    expect(at('TMS firmware')).toBeLessThan(at('EMS-C or WCM'))
+    expect(at('EMS-C or WCM')).toBeLessThan(at('reset button'))
   })
 
   it('has the Technical Service Manual course', () => {

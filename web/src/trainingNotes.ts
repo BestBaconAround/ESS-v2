@@ -176,3 +176,54 @@ export const COMMON_QUESTIONS: NotesPage = {
     },
   ],
 }
+
+export const UPDATING_THE_INVERTER: NotesPage = {
+  title: 'Updating the inverter',
+  lead: 'The steps to update the inverter and the communicator, in order.',
+  sections: [
+    {
+      id: 'update-get-ready',
+      heading: 'Get ready',
+      blocks: [
+        {
+          list: [
+            'Power-cycle the inverter, and make sure the inverter stays off for at least 10 seconds before you turn it back on.',
+            'You will get power outages when updating the inverter. The inverter will turn off and back on while updating.',
+            'Then go to smart.lionenergy.com and log in.',
+            'Under the Technician tab, click Firmware.',
+            'Put in the correct information for your system.',
+          ],
+        },
+      ],
+    },
+    {
+      id: 'update-inverter-files',
+      heading: 'Update the inverter',
+      blocks: [
+        {
+          list: [
+            'Connect your laptop to the inverter with the USB data cable.',
+            'Open the port and connect to the address STM32.',
+            'Then click STM firmware to update that file.',
+            'Then do TMS firmware.',
+            "Don't update the ARM Bootloader! It's already included with the other two firmware files.",
+          ],
+        },
+      ],
+    },
+    {
+      id: 'update-communicator',
+      heading: 'Update the communicator',
+      blocks: [
+        {
+          list: [
+            'Go back to the firmware page, and this time click EMS-C or WCM, whichever you have equipped.',
+            'Update the two available files. These updates can take up to five minutes to download and install.',
+            'Once everything is updated, hit the reset button on the communicator.',
+            "Then you're done updating the inverter.",
+          ],
+        },
+      ],
+    },
+  ],
+}
